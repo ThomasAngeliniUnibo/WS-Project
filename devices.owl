@@ -1,0 +1,167 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#"
+     xml:base="http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:untitled-ontology-26="http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26">
+        <owl:imports rdf:resource="http://www.w3.org/2001/XMLSchema"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasMassMeasure -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasMassMeasure">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasMeasure"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Mass_Measure"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasMeasure -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasMeasure">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Event"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Measure"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasDate -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasDate">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasMeasure -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasMeasure"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Device -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Device"/>
+    
+
+
+    <!-- http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Event -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Event"/>
+    
+
+
+    <!-- http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Frequency -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Frequency">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Unit_of_Measurement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Mass_Measure -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Mass_Measure">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Measure"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Mass_UOM -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Mass_UOM">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Unit_of_Measurement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Measure -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Measure"/>
+    
+
+
+    <!-- http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Smart_Scale -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Smart_Scale">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Device"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Unit_of_Measurement -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Unit_of_Measurement"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#e0 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#e0">
+        <rdf:type rdf:resource="http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Event"/>
+        <hasDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2021-04-24T14:00:00</hasDate>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#kg -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#kg">
+        <rdf:type rdf:resource="http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Mass_UOM"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
