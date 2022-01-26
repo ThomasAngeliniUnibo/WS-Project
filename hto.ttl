@@ -23,135 +23,135 @@ xsd:duration rdf:type rdfs:Datatype .
 
 ###  http://www.semanticweb.org/health_track_ontology#hasBurntCalories
 hto:hasBurntCalories rdf:type owl:ObjectProperty ;
-                     rdfs:subPropertyOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasMeasure> ;
+                     rdfs:subPropertyOf hto:hasMeasure ;
                      rdfs:range hto:Calories .
 
 
 ###  http://www.semanticweb.org/health_track_ontology#hasCaloriesUOM
 hto:hasCaloriesUOM rdf:type owl:ObjectProperty ;
-                   rdfs:subPropertyOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasUOM> ;
+                   rdfs:subPropertyOf hto:hasUOM ;
                    rdfs:domain hto:Calories .
 
 
 ###  http://www.semanticweb.org/health_track_ontology#hasFrequencyUOM
 hto:hasFrequencyUOM rdf:type owl:ObjectProperty ;
-                    rdfs:subPropertyOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasUOM> ;
-                    rdfs:domain <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Frequency> .
+                    rdfs:subPropertyOf hto:hasUOM ;
+                    rdfs:domain hto:Frequency .
 
 
 ###  http://www.semanticweb.org/health_track_ontology#hasHeartRate
 hto:hasHeartRate rdf:type owl:ObjectProperty ;
-                 rdfs:subPropertyOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasMeasure> ;
-                 rdfs:range <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Frequency> .
+                 rdfs:subPropertyOf hto:hasMeasure ;
+                 rdfs:range hto:Frequency .
 
 
 ###  http://www.semanticweb.org/health_track_ontology#hasQualifier
 hto:hasQualifier rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf owl:topObjectProperty ;
-                 rdfs:domain <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Measure> ;
+                 rdfs:domain hto:Measure ;
                  rdfs:range hto:MeasureQualifier .
 
 
 ###  http://www.semanticweb.org/health_track_ontology#hasSpeed
 hto:hasSpeed rdf:type owl:ObjectProperty ;
-             rdfs:subPropertyOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasMeasure> .
+             rdfs:subPropertyOf hto:hasMeasure .
 
 
 ###  http://www.semanticweb.org/health_track_ontology#hasSpeedUOM
 hto:hasSpeedUOM rdf:type owl:ObjectProperty ;
-                rdfs:subPropertyOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasUOM> ;
+                rdfs:subPropertyOf hto:hasUOM ;
                 rdfs:domain hto:Speed .
 
 
 ###  http://www.semanticweb.org/health_track_ontology#hasTarget
 hto:hasTarget rdf:type owl:ObjectProperty ;
               rdfs:subPropertyOf owl:topObjectProperty ;
-              rdfs:domain <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Measure> ;
+              rdfs:domain hto:Measure ;
               rdfs:range hto:Target .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasEvent
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasEvent> rdf:type owl:ObjectProperty ,
+###  http://www.semanticweb.org/health_track_ontology#hasEvent
+hto:hasEvent rdf:type owl:ObjectProperty ,
                                                                                             owl:InverseFunctionalProperty ;
-                                                                                   rdfs:domain <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Person> ;
-                                                                                   rdfs:range <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Event> .
+                                                                                   rdfs:domain hto:Person ;
+                                                                                   rdfs:range hto:Event .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasLength
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasLength> rdf:type owl:ObjectProperty ;
-                                                                                    rdfs:subPropertyOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasMeasure> ;
-                                                                                    rdfs:range <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Length> .
+###  http://www.semanticweb.org/health_track_ontology#hasLength
+hto:hasLength rdf:type owl:ObjectProperty ;
+                                                                                    rdfs:subPropertyOf hto:hasMeasure ;
+                                                                                    rdfs:range hto:Length .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasLengthUOM
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasLengthUOM> rdf:type owl:ObjectProperty ;
-                                                                                       rdfs:subPropertyOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasUOM> ;
-                                                                                       rdfs:domain <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Length> .
+###  http://www.semanticweb.org/health_track_ontology#hasLengthUOM
+hto:hasLengthUOM rdf:type owl:ObjectProperty ;
+                                                                                       rdfs:subPropertyOf hto:hasUOM ;
+                                                                                       rdfs:domain hto:Length .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasMass
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasMass> rdf:type owl:ObjectProperty ;
-                                                                                  rdfs:subPropertyOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasMeasure> ;
-                                                                                  rdfs:domain <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Snapshot> ;
-                                                                                  rdfs:range <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Mass> .
+###  http://www.semanticweb.org/health_track_ontology#hasMass
+hto:hasMass rdf:type owl:ObjectProperty ;
+                                                                                  rdfs:subPropertyOf hto:hasMeasure ;
+                                                                                  rdfs:domain hto:Snapshot ;
+                                                                                  rdfs:range hto:Mass .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasMassUOM
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasMassUOM> rdf:type owl:ObjectProperty ;
-                                                                                     rdfs:subPropertyOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasUOM> ;
-                                                                                     rdfs:domain <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Mass> .
+###  http://www.semanticweb.org/health_track_ontology#hasMassUOM
+hto:hasMassUOM rdf:type owl:ObjectProperty ;
+                                                                                     rdfs:subPropertyOf hto:hasUOM ;
+                                                                                     rdfs:domain hto:Mass .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasMeasure
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasMeasure> rdf:type owl:ObjectProperty ,
+###  http://www.semanticweb.org/health_track_ontology#hasMeasure
+hto:hasMeasure rdf:type owl:ObjectProperty ,
                                                                                               owl:FunctionalProperty ;
-                                                                                     rdfs:domain <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Event> ;
-                                                                                     rdfs:range <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Measure> .
+                                                                                     rdfs:domain hto:Event ;
+                                                                                     rdfs:range hto:Measure .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasUOM
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasUOM> rdf:type owl:ObjectProperty ;
+###  http://www.semanticweb.org/health_track_ontology#hasUOM
+hto:hasUOM rdf:type owl:ObjectProperty ;
                                                                                  rdfs:subPropertyOf owl:topObjectProperty ;
                                                                                  rdf:type owl:FunctionalProperty ;
-                                                                                 rdfs:domain <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Measure> ;
-                                                                                 rdfs:range <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Unit_of_Measurement> .
+                                                                                 rdfs:domain hto:Measure ;
+                                                                                 rdfs:range hto:Unit_of_Measurement .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#isTrackedBy
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#isTrackedBy> rdf:type owl:ObjectProperty ;
-                                                                                      rdfs:domain <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Snapshot> ;
-                                                                                      rdfs:range <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Device> .
+###  http://www.semanticweb.org/health_track_ontology#isTrackedBy
+hto:isTrackedBy rdf:type owl:ObjectProperty ;
+                                                                                      rdfs:domain hto:Snapshot ;
+                                                                                      rdfs:range hto:Device .
 
 
 #################################################################
 #    Data properties
 #################################################################
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasDate
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasDate> rdf:type owl:DatatypeProperty ,
+###  http://www.semanticweb.org/health_track_ontology#hasDate
+hto:hasDate rdf:type owl:DatatypeProperty ,
                                                                                            owl:FunctionalProperty ;
                                                                                   rdfs:range xsd:dateTime .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasDuration
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasDuration> rdf:type owl:DatatypeProperty ,
+###  http://www.semanticweb.org/health_track_ontology#hasDuration
+hto:hasDuration rdf:type owl:DatatypeProperty ,
                                                                                                owl:FunctionalProperty ;
-                                                                                      rdfs:domain <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Activity> ;
+                                                                                      rdfs:domain hto:Activity ;
                                                                                       rdfs:range xsd:duration .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasValue
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasValue> rdf:type owl:DatatypeProperty ;
+###  http://www.semanticweb.org/health_track_ontology#hasValue
+hto:hasValue rdf:type owl:DatatypeProperty ;
                                                                                    rdfs:subPropertyOf owl:topDataProperty ;
                                                                                    rdf:type owl:FunctionalProperty ;
-                                                                                   rdfs:domain <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Measure> ;
+                                                                                   rdfs:domain hto:Measure ;
                                                                                    rdfs:range owl:real .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#steps
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#steps> rdf:type owl:DatatypeProperty ,
+###  http://www.semanticweb.org/health_track_ontology#steps
+hto:steps rdf:type owl:DatatypeProperty ,
                                                                                          owl:FunctionalProperty ;
-                                                                                rdfs:domain <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Activity> ;
+                                                                                rdfs:domain hto:Activity ;
                                                                                 rdfs:range xsd:int .
 
 
@@ -171,9 +171,9 @@ hto:Body_Part rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/health_track_ontology#Calories
 hto:Calories rdf:type owl:Class ;
-             rdfs:subClassOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Measure> ,
+             rdfs:subClassOf hto:Measure ,
                              [ rdf:type owl:Restriction ;
-                               owl:onProperty <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasUOM> ;
+                               owl:onProperty hto:hasUOM ;
                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                owl:onClass hto:Calories_UOM
                              ] .
@@ -181,18 +181,18 @@ hto:Calories rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/health_track_ontology#Calories_UOM
 hto:Calories_UOM rdf:type owl:Class ;
-                 rdfs:subClassOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Unit_of_Measurement> .
+                 rdfs:subClassOf hto:Unit_of_Measurement .
 
 
 ###  http://www.semanticweb.org/health_track_ontology#Cardio
 hto:Cardio rdf:type owl:Class ;
-           rdfs:subClassOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Activity> ;
+           rdfs:subClassOf hto:Activity ;
            owl:disjointWith hto:Gym .
 
 
 ###  http://www.semanticweb.org/health_track_ontology#Gym
 hto:Gym rdf:type owl:Class ;
-        rdfs:subClassOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Activity> .
+        rdfs:subClassOf hto:Activity .
 
 
 ###  http://www.semanticweb.org/health_track_ontology#MeasureQualifier
@@ -201,9 +201,9 @@ hto:MeasureQualifier rdf:type owl:Class .
 
 ###  http://www.semanticweb.org/health_track_ontology#Speed
 hto:Speed rdf:type owl:Class ;
-          rdfs:subClassOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Measure> ,
+          rdfs:subClassOf hto:Measure ,
                           [ rdf:type owl:Restriction ;
-                            owl:onProperty <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasUOM> ;
+                            owl:onProperty hto:hasUOM ;
                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                             owl:onClass hto:Speed_UOM
                           ] .
@@ -211,145 +211,145 @@ hto:Speed rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/health_track_ontology#Speed_UOM
 hto:Speed_UOM rdf:type owl:Class ;
-              rdfs:subClassOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Unit_of_Measurement> .
+              rdfs:subClassOf hto:Unit_of_Measurement .
 
 
 ###  http://www.semanticweb.org/health_track_ontology#Target
 hto:Target rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Activity
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Activity> rdf:type owl:Class ;
-                                                                                   rdfs:subClassOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Event> .
+###  http://www.semanticweb.org/health_track_ontology#Activity
+hto:Activity rdf:type owl:Class ;
+                                                                                   rdfs:subClassOf hto:Event .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Cycling
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Cycling> rdf:type owl:Class ;
+###  http://www.semanticweb.org/health_track_ontology#Cycling
+hto:Cycling rdf:type owl:Class ;
                                                                                   rdfs:subClassOf hto:Cardio .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Device
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Device> rdf:type owl:Class .
+###  http://www.semanticweb.org/health_track_ontology#Device
+hto:Device rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Event
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Event> rdf:type owl:Class .
+###  http://www.semanticweb.org/health_track_ontology#Event
+hto:Event rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Female
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Female> rdf:type owl:Class ;
-                                                                                 rdfs:subClassOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Person> ;
-                                                                                 owl:disjointWith <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Male> .
+###  http://www.semanticweb.org/health_track_ontology#Female
+hto:Female rdf:type owl:Class ;
+                                                                                 rdfs:subClassOf hto:Person ;
+                                                                                 owl:disjointWith hto:Male .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Frequency
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Frequency> rdf:type owl:Class ;
-                                                                                    rdfs:subClassOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Measure> ,
+###  http://www.semanticweb.org/health_track_ontology#Frequency
+hto:Frequency rdf:type owl:Class ;
+                                                                                    rdfs:subClassOf hto:Measure ,
                                                                                                     [ rdf:type owl:Restriction ;
-                                                                                                      owl:onProperty <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasUOM> ;
+                                                                                                      owl:onProperty hto:hasUOM ;
                                                                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                                      owl:onClass <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Frequency_UOM>
+                                                                                                      owl:onClass hto:Frequency_UOM
                                                                                                     ] .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Frequency_UOM
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Frequency_UOM> rdf:type owl:Class ;
-                                                                                        rdfs:subClassOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Unit_of_Measurement> .
+###  http://www.semanticweb.org/health_track_ontology#Frequency_UOM
+hto:Frequency_UOM rdf:type owl:Class ;
+                                                                                        rdfs:subClassOf hto:Unit_of_Measurement .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Length
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Length> rdf:type owl:Class ;
-                                                                                 rdfs:subClassOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Measure> ,
+###  http://www.semanticweb.org/health_track_ontology#Length
+hto:Length rdf:type owl:Class ;
+                                                                                 rdfs:subClassOf hto:Measure ,
                                                                                                  [ rdf:type owl:Restriction ;
-                                                                                                   owl:onProperty <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasUOM> ;
+                                                                                                   owl:onProperty hto:hasUOM ;
                                                                                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                                   owl:onClass <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Length_UOM>
+                                                                                                   owl:onClass hto:Length_UOM
                                                                                                  ] .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Length_UOM
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Length_UOM> rdf:type owl:Class ;
-                                                                                     rdfs:subClassOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Unit_of_Measurement> .
+###  http://www.semanticweb.org/health_track_ontology#Length_UOM
+hto:Length_UOM rdf:type owl:Class ;
+                                                                                     rdfs:subClassOf hto:Unit_of_Measurement .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Male
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Male> rdf:type owl:Class ;
-                                                                               rdfs:subClassOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Person> .
+###  http://www.semanticweb.org/health_track_ontology#Male
+hto:Male rdf:type owl:Class ;
+                                                                               rdfs:subClassOf hto:Person .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Mass
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Mass> rdf:type owl:Class ;
-                                                                               rdfs:subClassOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Measure> ,
+###  http://www.semanticweb.org/health_track_ontology#Mass
+hto:Mass rdf:type owl:Class ;
+                                                                               rdfs:subClassOf hto:Measure ,
                                                                                                [ rdf:type owl:Restriction ;
-                                                                                                 owl:onProperty <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasUOM> ;
+                                                                                                 owl:onProperty hto:hasUOM ;
                                                                                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                                 owl:onClass <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Mass_UOM>
+                                                                                                 owl:onClass hto:Mass_UOM
                                                                                                ] .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Mass_UOM
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Mass_UOM> rdf:type owl:Class ;
-                                                                                   rdfs:subClassOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Unit_of_Measurement> .
+###  http://www.semanticweb.org/health_track_ontology#Mass_UOM
+hto:Mass_UOM rdf:type owl:Class ;
+                                                                                   rdfs:subClassOf hto:Unit_of_Measurement .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Measure
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Measure> rdf:type owl:Class ;
+###  http://www.semanticweb.org/health_track_ontology#Measure
+hto:Measure rdf:type owl:Class ;
                                                                                   rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                                                                                    owl:onProperty <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasUOM> ;
+                                                                                                    owl:onProperty hto:hasUOM ;
                                                                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                                    owl:onClass <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Unit_of_Measurement>
+                                                                                                    owl:onClass hto:Unit_of_Measurement
                                                                                                   ] ,
                                                                                                   [ rdf:type owl:Restriction ;
-                                                                                                    owl:onProperty <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasValue> ;
+                                                                                                    owl:onProperty hto:hasValue ;
                                                                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                                                     owl:onDataRange owl:real
                                                                                                   ] .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Person
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Person> rdf:type owl:Class .
+###  http://www.semanticweb.org/health_track_ontology#Person
+hto:Person rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Running
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Running> rdf:type owl:Class ;
+###  http://www.semanticweb.org/health_track_ontology#Running
+hto:Running rdf:type owl:Class ;
                                                                                   rdfs:subClassOf hto:Cardio .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Smart_Scale
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Smart_Scale> rdf:type owl:Class ;
-                                                                                      rdfs:subClassOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Device> .
+###  http://www.semanticweb.org/health_track_ontology#Smart_Scale
+hto:Smart_Scale rdf:type owl:Class ;
+                                                                                      rdfs:subClassOf hto:Device .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Smartband
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Smartband> rdf:type owl:Class ;
-                                                                                    rdfs:subClassOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Device> .
+###  http://www.semanticweb.org/health_track_ontology#Smartband
+hto:Smartband rdf:type owl:Class ;
+                                                                                    rdfs:subClassOf hto:Device .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Smartphone
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Smartphone> rdf:type owl:Class ;
-                                                                                     rdfs:subClassOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Device> .
+###  http://www.semanticweb.org/health_track_ontology#Smartphone
+hto:Smartphone rdf:type owl:Class ;
+                                                                                     rdfs:subClassOf hto:Device .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Smartwatch
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Smartwatch> rdf:type owl:Class ;
-                                                                                     rdfs:subClassOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Device> .
+###  http://www.semanticweb.org/health_track_ontology#Smartwatch
+hto:Smartwatch rdf:type owl:Class ;
+                                                                                     rdfs:subClassOf hto:Device .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Snapshot
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Snapshot> rdf:type owl:Class ;
-                                                                                   rdfs:subClassOf <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Event> ,
+###  http://www.semanticweb.org/health_track_ontology#Snapshot
+hto:Snapshot rdf:type owl:Class ;
+                                                                                   rdfs:subClassOf hto:Event ,
                                                                                                    [ rdf:type owl:Restriction ;
-                                                                                                     owl:onProperty <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasMeasure> ;
-                                                                                                     owl:someValuesFrom <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Measure>
+                                                                                                     owl:onProperty hto:hasMeasure ;
+                                                                                                     owl:someValuesFrom hto:Measure
                                                                                                    ] .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Unit_of_Measurement
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Unit_of_Measurement> rdf:type owl:Class .
+###  http://www.semanticweb.org/health_track_ontology#Unit_of_Measurement
+hto:Unit_of_Measurement rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Walking
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Walking> rdf:type owl:Class ;
+###  http://www.semanticweb.org/health_track_ontology#Walking
+hto:Walking rdf:type owl:Class ;
                                                                                   rdfs:subClassOf hto:Cardio .
 
 
@@ -382,88 +382,88 @@ hto:total rdf:type owl:NamedIndividual ,
                    hto:MeasureQualifier .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Angelo
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Angelo> rdf:type owl:NamedIndividual ,
-                                                                                          <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Male> .
+###  http://www.semanticweb.org/health_track_ontology#Angelo
+hto:Angelo rdf:type owl:NamedIndividual ,
+                                                                                          hto:Male .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Federico
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Federico> rdf:type owl:NamedIndividual ,
-                                                                                            <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Male> .
+###  http://www.semanticweb.org/health_track_ontology#Federico
+hto:Federico rdf:type owl:NamedIndividual ,
+                                                                                            hto:Male .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Hz
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Hz> rdf:type owl:NamedIndividual ,
-                                                                                      <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Frequency_UOM> .
+###  http://www.semanticweb.org/health_track_ontology#Hz
+hto:Hz rdf:type owl:NamedIndividual ,
+                                                                                      hto:Frequency_UOM .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Mario
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Mario> rdf:type owl:NamedIndividual ,
-                                                                                         <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Male> .
+###  http://www.semanticweb.org/health_track_ontology#Mario
+hto:Mario rdf:type owl:NamedIndividual ,
+                                                                                         hto:Male .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#XiaomiScale
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#XiaomiScale> rdf:type owl:NamedIndividual ,
-                                                                                               <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Smart_Scale> .
+###  http://www.semanticweb.org/health_track_ontology#XiaomiScale
+hto:XiaomiScale rdf:type owl:NamedIndividual ,
+                                                                                               hto:Smart_Scale .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#e0
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#e0> rdf:type owl:NamedIndividual ,
-                                                                                      <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Snapshot> ;
-                                                                             <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasMass> [ ] ;
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#isTrackedBy> [ rdf:type <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Smart_Scale>
+###  http://www.semanticweb.org/health_track_ontology#e0
+hto:e0 rdf:type owl:NamedIndividual ,
+                                                                                      hto:Snapshot ;
+                                                                             hto:hasMass [ ] ;
+hto:isTrackedBy [ rdf:type hto:Smart_Scale
                                                                                       ] ;
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasDate> "2021-04-24T14:00:00"^^xsd:dateTime .
+hto:hasDate "2021-04-24T14:00:00"^^xsd:dateTime .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#e1
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#e1> rdf:type owl:NamedIndividual ,
-                                                                                      <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Snapshot> ;
-                                                                             <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasMass> [ ] ;
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#isTrackedBy> [ rdf:type <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Smart_Scale>
+###  http://www.semanticweb.org/health_track_ontology#e1
+hto:e1 rdf:type owl:NamedIndividual ,
+                                                                                      hto:Snapshot ;
+                                                                             hto:hasMass [ ] ;
+hto:isTrackedBy [ rdf:type hto:Smart_Scale
                                                                                       ] ;
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasDate> "2021-04-25T08:00:00"^^xsd:dateTime .
+hto:hasDate "2021-04-25T08:00:00"^^xsd:dateTime .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#e2
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#e2> rdf:type owl:NamedIndividual ,
-                                                                                      <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Activity> .
+###  http://www.semanticweb.org/health_track_ontology#e2
+hto:e2 rdf:type owl:NamedIndividual ,
+                                                                                      hto:Activity .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#kg
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#kg> rdf:type owl:NamedIndividual ,
-                                                                                      <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Mass_UOM> .
+###  http://www.semanticweb.org/health_track_ontology#kg
+hto:kg rdf:type owl:NamedIndividual ,
+                                                                                      hto:Mass_UOM .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#km
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#km> rdf:type owl:NamedIndividual ,
-                                                                                      <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Length_UOM> .
+###  http://www.semanticweb.org/health_track_ontology#km
+hto:km rdf:type owl:NamedIndividual ,
+                                                                                      hto:Length_UOM .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#measure0
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#measure0> rdf:type owl:NamedIndividual ,
-                                                                                            <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Mass> ;
-                                                                                   <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasUOM> <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#kg> ;
-                                                                                   <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasValue> 80 .
+###  http://www.semanticweb.org/health_track_ontology#measure0
+hto:measure0 rdf:type owl:NamedIndividual ,
+                                                                                            hto:Mass ;
+                                                                                   hto:hasUOM hto:kg ;
+                                                                                   hto:hasValue 80 .
 
 
-###  http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#measure1
-<http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#measure1> rdf:type owl:NamedIndividual ,
-                                                                                            <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Frequency> ;
-                                                                                   <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasUOM> <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Hz> ;
-                                                                                   <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasValue> 10 .
+###  http://www.semanticweb.org/health_track_ontology#measure1
+hto:measure1 rdf:type owl:NamedIndividual ,
+                                                                                            hto:Frequency ;
+                                                                                   hto:hasUOM hto:Hz ;
+                                                                                   hto:hasValue 10 .
 
 
-[ <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasValue> 80.5
+[ hto:hasValue 80.5
 ] .
 
-[ <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasValue> 80
+[ hto:hasValue 80
  ] .
 
-[ <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasUOM> <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#kg>
+[ hto:hasUOM hto:kg
  ] .
 
-[ <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#hasUOM> <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#kg>
+[ hto:hasUOM hto:kg
  ] .
 
 #################################################################
@@ -473,9 +473,9 @@ hto:total rdf:type owl:NamedIndividual ,
 [ rdf:type owl:AllDisjointClasses ;
    owl:members ( hto:Calories
                  hto:Speed
-                 <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Frequency>
-                 <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Length>
-                 <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Mass>
+                 hto:Frequency
+                 hto:Length
+                 hto:Mass
                )
  ] .
 
@@ -483,17 +483,17 @@ hto:total rdf:type owl:NamedIndividual ,
 [ rdf:type owl:AllDisjointClasses ;
   owl:members ( hto:Calories_UOM
                 hto:Speed_UOM
-                <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Frequency_UOM>
-                <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Length_UOM>
-                <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Mass_UOM>
+                hto:Frequency_UOM
+                hto:Length_UOM
+                hto:Mass_UOM
               )
 ] .
 
 
 [ rdf:type owl:AllDisjointClasses ;
-  owl:members ( <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Cycling>
-                <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Running>
-                <http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26#Walking>
+  owl:members ( hto:Cycling
+                hto:Running
+                hto:Walking
               )
 ] .
 
