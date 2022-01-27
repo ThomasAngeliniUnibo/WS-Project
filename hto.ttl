@@ -1,502 +1,173 @@
-@prefix : <http://www.semanticweb.org/health_track_ontology#> .
-@prefix hto: <http://www.semanticweb.org/health_track_ontology#> .
+@prefix : <http://www.semanticweb.org/health-track-ontology#> .
+@prefix fma: <http://purl.obolibrary.org/obo/fma.owl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://www.semanticweb.org/health_track_ontology> .
+@base <http://www.semanticweb.org/health-track-ontology#> .
 
-<http://www.semanticweb.org/health_track_ontology> rdf:type owl:Ontology ;
-                                                   owl:imports <https://w3id.org/italia/onto/MU> .
-
-#################################################################
-#    Datatypes
-#################################################################
-
-###  http://www.w3.org/2001/XMLSchema#duration
-xsd:duration rdf:type rdfs:Datatype .
-
+<http://www.semanticweb.org/health-track-ontology#> rdf:type owl:Ontology ;
+                                                     owl:imports <https://w3id.org/italia/onto/MU> ,
+                                                                 <https://w3id.org/italia/onto/TI> .
 
 #################################################################
 #    Object Properties
 #################################################################
 
-###  http://www.semanticweb.org/health_track_ontology#hasBurntCalories
-hto:hasBurntCalories rdf:type owl:ObjectProperty ;
-                     rdfs:subPropertyOf hto:hasMeasure ;
-                     rdfs:range hto:Calories .
+###  http://www.semanticweb.org/health-track-ontology#atTimeInstant
+:atTimeInstant rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf <https://w3id.org/italia/onto/TI/hasTemporalEntity> ;
+               rdfs:comment "Relazione tra qualsiasi cosa e un istante di tempo."@it ;
+               rdfs:label "at time instant" .
 
 
-###  http://www.semanticweb.org/health_track_ontology#hasCaloriesUOM
-hto:hasCaloriesUOM rdf:type owl:ObjectProperty ;
-                   rdfs:subPropertyOf hto:hasUOM ;
-                   rdfs:domain hto:Calories .
+###  http://www.semanticweb.org/health-track-ontology#hasEvent
+:hasEvent rdf:type owl:ObjectProperty ;
+          owl:inverseOf :isEventOf ;
+          rdf:type owl:InverseFunctionalProperty ;
+          rdfs:domain :Person ;
+          rdfs:range :Episode ;
+          rdfs:label "has event" .
 
 
-###  http://www.semanticweb.org/health_track_ontology#hasFrequencyUOM
-hto:hasFrequencyUOM rdf:type owl:ObjectProperty ;
-                    rdfs:subPropertyOf hto:hasUOM ;
-                    rdfs:domain hto:Frequency .
+###  http://www.semanticweb.org/health-track-ontology#hasTracked
+:hasTracked rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            owl:inverseOf :isTrackedBy ;
+            rdfs:label "has tracked"@en .
 
 
-###  http://www.semanticweb.org/health_track_ontology#hasHeartRate
-hto:hasHeartRate rdf:type owl:ObjectProperty ;
-                 rdfs:subPropertyOf hto:hasMeasure ;
-                 rdfs:range hto:Frequency .
+###  http://www.semanticweb.org/health-track-ontology#isEventOf
+:isEventOf rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           rdfs:label "is event of" .
 
 
-###  http://www.semanticweb.org/health_track_ontology#hasQualifier
-hto:hasQualifier rdf:type owl:ObjectProperty ;
-                 rdfs:subPropertyOf owl:topObjectProperty ;
-                 rdfs:domain hto:Measure ;
-                 rdfs:range hto:MeasureQualifier .
+###  http://www.semanticweb.org/health-track-ontology#isTargetMeasureOf
+:isTargetMeasureOf rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf owl:topObjectProperty ;
+                   owl:inverseOf :measureTarget ;
+                   rdfs:label "is target measure of"@en .
 
 
-###  http://www.semanticweb.org/health_track_ontology#hasSpeed
-hto:hasSpeed rdf:type owl:ObjectProperty ;
-             rdfs:subPropertyOf hto:hasMeasure .
+###  http://www.semanticweb.org/health-track-ontology#isTrackedBy
+:isTrackedBy rdf:type owl:ObjectProperty ;
+             rdfs:domain :Episode ;
+             rdfs:range :Device ;
+             rdfs:label "is tracked by"@en .
 
 
-###  http://www.semanticweb.org/health_track_ontology#hasSpeedUOM
-hto:hasSpeedUOM rdf:type owl:ObjectProperty ;
-                rdfs:subPropertyOf hto:hasUOM ;
-                rdfs:domain hto:Speed .
+###  http://www.semanticweb.org/health-track-ontology#measureTarget
+:measureTarget rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf owl:topObjectProperty ;
+               rdfs:domain <https://w3id.org/italia/onto/MU/Value> ;
+               rdfs:range owl:Thing ;
+               rdfs:label "measure target"@en .
 
 
-###  http://www.semanticweb.org/health_track_ontology#hasTarget
-hto:hasTarget rdf:type owl:ObjectProperty ;
-              rdfs:subPropertyOf owl:topObjectProperty ;
-              rdfs:domain hto:Measure ;
-              rdfs:range hto:Target .
-
-
-###  http://www.semanticweb.org/health_track_ontology#hasEvent
-hto:hasEvent rdf:type owl:ObjectProperty ,
-                                                                                            owl:InverseFunctionalProperty ;
-                                                                                   rdfs:domain hto:Person ;
-                                                                                   rdfs:range hto:Event .
-
-
-###  http://www.semanticweb.org/health_track_ontology#hasLength
-hto:hasLength rdf:type owl:ObjectProperty ;
-                                                                                    rdfs:subPropertyOf hto:hasMeasure ;
-                                                                                    rdfs:range hto:Length .
-
-
-###  http://www.semanticweb.org/health_track_ontology#hasLengthUOM
-hto:hasLengthUOM rdf:type owl:ObjectProperty ;
-                                                                                       rdfs:subPropertyOf hto:hasUOM ;
-                                                                                       rdfs:domain hto:Length .
-
-
-###  http://www.semanticweb.org/health_track_ontology#hasMass
-hto:hasMass rdf:type owl:ObjectProperty ;
-                                                                                  rdfs:subPropertyOf hto:hasMeasure ;
-                                                                                  rdfs:domain hto:Snapshot ;
-                                                                                  rdfs:range hto:Mass .
-
-
-###  http://www.semanticweb.org/health_track_ontology#hasMassUOM
-hto:hasMassUOM rdf:type owl:ObjectProperty ;
-                                                                                     rdfs:subPropertyOf hto:hasUOM ;
-                                                                                     rdfs:domain hto:Mass .
-
-
-###  http://www.semanticweb.org/health_track_ontology#hasMeasure
-hto:hasMeasure rdf:type owl:ObjectProperty ,
-                                                                                              owl:FunctionalProperty ;
-                                                                                     rdfs:domain hto:Event ;
-                                                                                     rdfs:range hto:Measure .
-
-
-###  http://www.semanticweb.org/health_track_ontology#hasUOM
-hto:hasUOM rdf:type owl:ObjectProperty ;
-                                                                                 rdfs:subPropertyOf owl:topObjectProperty ;
-                                                                                 rdf:type owl:FunctionalProperty ;
-                                                                                 rdfs:domain hto:Measure ;
-                                                                                 rdfs:range hto:Unit_of_Measurement .
-
-
-###  http://www.semanticweb.org/health_track_ontology#isTrackedBy
-hto:isTrackedBy rdf:type owl:ObjectProperty ;
-                                                                                      rdfs:domain hto:Snapshot ;
-                                                                                      rdfs:range hto:Device .
+###  https://w3id.org/italia/onto/TI/hasTemporalEntity
+<https://w3id.org/italia/onto/TI/hasTemporalEntity> rdf:type owl:ObjectProperty .
 
 
 #################################################################
 #    Data properties
 #################################################################
 
-###  http://www.semanticweb.org/health_track_ontology#hasDate
-hto:hasDate rdf:type owl:DatatypeProperty ,
-                                                                                           owl:FunctionalProperty ;
-                                                                                  rdfs:range xsd:dateTime .
-
-
-###  http://www.semanticweb.org/health_track_ontology#hasDuration
-hto:hasDuration rdf:type owl:DatatypeProperty ,
-                                                                                               owl:FunctionalProperty ;
-                                                                                      rdfs:domain hto:Activity ;
-                                                                                      rdfs:range xsd:duration .
-
-
-###  http://www.semanticweb.org/health_track_ontology#hasValue
-hto:hasValue rdf:type owl:DatatypeProperty ;
-                                                                                   rdfs:subPropertyOf owl:topDataProperty ;
-                                                                                   rdf:type owl:FunctionalProperty ;
-                                                                                   rdfs:domain hto:Measure ;
-                                                                                   rdfs:range owl:real .
-
-
-###  http://www.semanticweb.org/health_track_ontology#steps
-hto:steps rdf:type owl:DatatypeProperty ,
-                                                                                         owl:FunctionalProperty ;
-                                                                                rdfs:domain hto:Activity ;
-                                                                                rdfs:range xsd:int .
+###  http://www.semanticweb.org/health-track-ontology#steps
+:steps rdf:type owl:DatatypeProperty ,
+                owl:FunctionalProperty ;
+       rdfs:domain :Walking ;
+       rdfs:range xsd:int .
 
 
 #################################################################
 #    Classes
 #################################################################
 
-###  http://www.semanticweb.org/health_track_ontology#Activity
-hto:Activity rdf:type owl:Class ;
-             rdfs:subClassOf hto:Target .
+###  http://www.semanticweb.org/health-track-ontology#Activity
+:Activity rdf:type owl:Class ;
+          rdfs:subClassOf :Episode ,
+                          <https://w3id.org/italia/onto/TI/TimeIndexedEvent> ;
+          owl:disjointWith :Snapshot .
 
 
-###  http://www.semanticweb.org/health_track_ontology#Body_Part
-hto:Body_Part rdf:type owl:Class ;
-              rdfs:subClassOf hto:Target .
+###  http://www.semanticweb.org/health-track-ontology#Cardio
+:Cardio rdf:type owl:Class ;
+        rdfs:subClassOf :Activity .
 
 
-###  http://www.semanticweb.org/health_track_ontology#Calories
-hto:Calories rdf:type owl:Class ;
-             rdfs:subClassOf hto:Measure ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty hto:hasUOM ;
-                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                               owl:onClass hto:Calories_UOM
-                             ] .
+###  http://www.semanticweb.org/health-track-ontology#Device
+:Device rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/health_track_ontology#Calories_UOM
-hto:Calories_UOM rdf:type owl:Class ;
-                 rdfs:subClassOf hto:Unit_of_Measurement .
+###  http://www.semanticweb.org/health-track-ontology#Episode
+:Episode rdf:type owl:Class ;
+         rdfs:subClassOf <https://w3id.org/italia/onto/l0/Entity> .
 
 
-###  http://www.semanticweb.org/health_track_ontology#Cardio
-hto:Cardio rdf:type owl:Class ;
-           rdfs:subClassOf hto:Activity ;
-           owl:disjointWith hto:Gym .
+###  http://www.semanticweb.org/health-track-ontology#Female
+:Female rdf:type owl:Class ;
+        rdfs:subClassOf :Person .
 
 
-###  http://www.semanticweb.org/health_track_ontology#Gym
-hto:Gym rdf:type owl:Class ;
-        rdfs:subClassOf hto:Activity .
+###  http://www.semanticweb.org/health-track-ontology#Male
+:Male rdf:type owl:Class ;
+      rdfs:subClassOf :Person .
 
 
-###  http://www.semanticweb.org/health_track_ontology#MeasureQualifier
-hto:MeasureQualifier rdf:type owl:Class .
+###  http://www.semanticweb.org/health-track-ontology#Person
+:Person rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/health_track_ontology#Speed
-hto:Speed rdf:type owl:Class ;
-          rdfs:subClassOf hto:Measure ,
+###  http://www.semanticweb.org/health-track-ontology#Snapshot
+:Snapshot rdf:type owl:Class ;
+          rdfs:subClassOf :Episode ,
+                          <https://w3id.org/italia/onto/l0/Characteristic> ,
                           [ rdf:type owl:Restriction ;
-                            owl:onProperty hto:hasUOM ;
-                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                            owl:onClass hto:Speed_UOM
+                            owl:onProperty :atTimeInstant ;
+                            owl:someValuesFrom <https://w3id.org/italia/onto/TI/TimeInstant>
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty <https://w3id.org/italia/onto/MU/hasValue> ;
+                            owl:someValuesFrom <https://w3id.org/italia/onto/MU/Value>
                           ] .
 
 
-###  http://www.semanticweb.org/health_track_ontology#Speed_UOM
-hto:Speed_UOM rdf:type owl:Class ;
-              rdfs:subClassOf hto:Unit_of_Measurement .
+###  http://www.semanticweb.org/health-track-ontology#Walking
+:Walking rdf:type owl:Class ;
+         rdfs:subClassOf :Cardio .
 
 
-###  http://www.semanticweb.org/health_track_ontology#Target
-hto:Target rdf:type owl:Class .
+###  https://w3id.org/italia/onto/TI/TimeIndexedEvent
+<https://w3id.org/italia/onto/TI/TimeIndexedEvent> rdf:type owl:Class .
 
 
-###  http://www.semanticweb.org/health_track_ontology#Activity
-hto:Activity rdf:type owl:Class ;
-                                                                                   rdfs:subClassOf hto:Event .
-
-
-###  http://www.semanticweb.org/health_track_ontology#Cycling
-hto:Cycling rdf:type owl:Class ;
-                                                                                  rdfs:subClassOf hto:Cardio .
-
-
-###  http://www.semanticweb.org/health_track_ontology#Device
-hto:Device rdf:type owl:Class .
-
-
-###  http://www.semanticweb.org/health_track_ontology#Event
-hto:Event rdf:type owl:Class .
-
-
-###  http://www.semanticweb.org/health_track_ontology#Female
-hto:Female rdf:type owl:Class ;
-                                                                                 rdfs:subClassOf hto:Person ;
-                                                                                 owl:disjointWith hto:Male .
-
-
-###  http://www.semanticweb.org/health_track_ontology#Frequency
-hto:Frequency rdf:type owl:Class ;
-                                                                                    rdfs:subClassOf hto:Measure ,
-                                                                                                    [ rdf:type owl:Restriction ;
-                                                                                                      owl:onProperty hto:hasUOM ;
-                                                                                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                                      owl:onClass hto:Frequency_UOM
-                                                                                                    ] .
-
-
-###  http://www.semanticweb.org/health_track_ontology#Frequency_UOM
-hto:Frequency_UOM rdf:type owl:Class ;
-                                                                                        rdfs:subClassOf hto:Unit_of_Measurement .
-
-
-###  http://www.semanticweb.org/health_track_ontology#Length
-hto:Length rdf:type owl:Class ;
-                                                                                 rdfs:subClassOf hto:Measure ,
-                                                                                                 [ rdf:type owl:Restriction ;
-                                                                                                   owl:onProperty hto:hasUOM ;
-                                                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                                   owl:onClass hto:Length_UOM
-                                                                                                 ] .
-
-
-###  http://www.semanticweb.org/health_track_ontology#Length_UOM
-hto:Length_UOM rdf:type owl:Class ;
-                                                                                     rdfs:subClassOf hto:Unit_of_Measurement .
-
-
-###  http://www.semanticweb.org/health_track_ontology#Male
-hto:Male rdf:type owl:Class ;
-                                                                               rdfs:subClassOf hto:Person .
-
-
-###  http://www.semanticweb.org/health_track_ontology#Mass
-hto:Mass rdf:type owl:Class ;
-                                                                               rdfs:subClassOf hto:Measure ,
-                                                                                               [ rdf:type owl:Restriction ;
-                                                                                                 owl:onProperty hto:hasUOM ;
-                                                                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                                 owl:onClass hto:Mass_UOM
-                                                                                               ] .
-
-
-###  http://www.semanticweb.org/health_track_ontology#Mass_UOM
-hto:Mass_UOM rdf:type owl:Class ;
-                                                                                   rdfs:subClassOf hto:Unit_of_Measurement .
-
-
-###  http://www.semanticweb.org/health_track_ontology#Measure
-hto:Measure rdf:type owl:Class ;
-                                                                                  rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                                                                                    owl:onProperty hto:hasUOM ;
-                                                                                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                                    owl:onClass hto:Unit_of_Measurement
-                                                                                                  ] ,
-                                                                                                  [ rdf:type owl:Restriction ;
-                                                                                                    owl:onProperty hto:hasValue ;
-                                                                                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                                    owl:onDataRange owl:real
-                                                                                                  ] .
-
-
-###  http://www.semanticweb.org/health_track_ontology#Person
-hto:Person rdf:type owl:Class .
-
-
-###  http://www.semanticweb.org/health_track_ontology#Running
-hto:Running rdf:type owl:Class ;
-                                                                                  rdfs:subClassOf hto:Cardio .
-
-
-###  http://www.semanticweb.org/health_track_ontology#Smart_Scale
-hto:Smart_Scale rdf:type owl:Class ;
-                                                                                      rdfs:subClassOf hto:Device .
-
-
-###  http://www.semanticweb.org/health_track_ontology#Smartband
-hto:Smartband rdf:type owl:Class ;
-                                                                                    rdfs:subClassOf hto:Device .
-
-
-###  http://www.semanticweb.org/health_track_ontology#Smartphone
-hto:Smartphone rdf:type owl:Class ;
-                                                                                     rdfs:subClassOf hto:Device .
-
-
-###  http://www.semanticweb.org/health_track_ontology#Smartwatch
-hto:Smartwatch rdf:type owl:Class ;
-                                                                                     rdfs:subClassOf hto:Device .
-
-
-###  http://www.semanticweb.org/health_track_ontology#Snapshot
-hto:Snapshot rdf:type owl:Class ;
-                                                                                   rdfs:subClassOf hto:Event ,
-                                                                                                   [ rdf:type owl:Restriction ;
-                                                                                                     owl:onProperty hto:hasMeasure ;
-                                                                                                     owl:someValuesFrom hto:Measure
-                                                                                                   ] .
-
-
-###  http://www.semanticweb.org/health_track_ontology#Unit_of_Measurement
-hto:Unit_of_Measurement rdf:type owl:Class .
-
-
-###  http://www.semanticweb.org/health_track_ontology#Walking
-hto:Walking rdf:type owl:Class ;
-                                                                                  rdfs:subClassOf hto:Cardio .
+###  https://w3id.org/italia/onto/TI/TimeInstant
+<https://w3id.org/italia/onto/TI/TimeInstant> rdf:type owl:Class .
 
 
 #################################################################
 #    Individuals
 #################################################################
 
-###  http://www.semanticweb.org/health_track_ontology#avg
-hto:avg rdf:type owl:NamedIndividual ,
-                 hto:MeasureQualifier .
+###  http://www.semanticweb.org/health-track-ontology#Mass
+:Mass rdf:type owl:NamedIndividual ,
+               <https://w3id.org/italia/onto/MU/MeasureType> ;
+      <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :kg .
 
 
-###  http://www.semanticweb.org/health_track_ontology#instant
-hto:instant rdf:type owl:NamedIndividual ,
-                     hto:MeasureQualifier .
+###  http://www.semanticweb.org/health-track-ontology#kg
+:kg rdf:type owl:NamedIndividual ,
+             <https://w3id.org/italia/onto/MU/MeasurementUnit> .
 
 
-###  http://www.semanticweb.org/health_track_ontology#max
-hto:max rdf:type owl:NamedIndividual ,
-                 hto:MeasureQualifier .
-
-
-###  http://www.semanticweb.org/health_track_ontology#min
-hto:min rdf:type owl:NamedIndividual ,
-                 hto:MeasureQualifier .
-
-
-###  http://www.semanticweb.org/health_track_ontology#total
-hto:total rdf:type owl:NamedIndividual ,
-                   hto:MeasureQualifier .
-
-
-###  http://www.semanticweb.org/health_track_ontology#Angelo
-hto:Angelo rdf:type owl:NamedIndividual ,
-                                                                                          hto:Male .
-
-
-###  http://www.semanticweb.org/health_track_ontology#Federico
-hto:Federico rdf:type owl:NamedIndividual ,
-                                                                                            hto:Male .
-
-
-###  http://www.semanticweb.org/health_track_ontology#Hz
-hto:Hz rdf:type owl:NamedIndividual ,
-                                                                                      hto:Frequency_UOM .
-
-
-###  http://www.semanticweb.org/health_track_ontology#Mario
-hto:Mario rdf:type owl:NamedIndividual ,
-                                                                                         hto:Male .
-
-
-###  http://www.semanticweb.org/health_track_ontology#XiaomiScale
-hto:XiaomiScale rdf:type owl:NamedIndividual ,
-                                                                                               hto:Smart_Scale .
-
-
-###  http://www.semanticweb.org/health_track_ontology#e0
-hto:e0 rdf:type owl:NamedIndividual ,
-                                                                                      hto:Snapshot ;
-                                                                             hto:hasMass [ ] ;
-hto:isTrackedBy [ rdf:type hto:Smart_Scale
-                                                                                      ] ;
-hto:hasDate "2021-04-24T14:00:00"^^xsd:dateTime .
-
-
-###  http://www.semanticweb.org/health_track_ontology#e1
-hto:e1 rdf:type owl:NamedIndividual ,
-                                                                                      hto:Snapshot ;
-                                                                             hto:hasMass [ ] ;
-hto:isTrackedBy [ rdf:type hto:Smart_Scale
-                                                                                      ] ;
-hto:hasDate "2021-04-25T08:00:00"^^xsd:dateTime .
-
-
-###  http://www.semanticweb.org/health_track_ontology#e2
-hto:e2 rdf:type owl:NamedIndividual ,
-                                                                                      hto:Activity .
-
-
-###  http://www.semanticweb.org/health_track_ontology#kg
-hto:kg rdf:type owl:NamedIndividual ,
-                                                                                      hto:Mass_UOM .
-
-
-###  http://www.semanticweb.org/health_track_ontology#km
-hto:km rdf:type owl:NamedIndividual ,
-                                                                                      hto:Length_UOM .
-
-
-###  http://www.semanticweb.org/health_track_ontology#measure0
-hto:measure0 rdf:type owl:NamedIndividual ,
-                                                                                            hto:Mass ;
-                                                                                   hto:hasUOM hto:kg ;
-                                                                                   hto:hasValue 80 .
-
-
-###  http://www.semanticweb.org/health_track_ontology#measure1
-hto:measure1 rdf:type owl:NamedIndividual ,
-                                                                                            hto:Frequency ;
-                                                                                   hto:hasUOM hto:Hz ;
-                                                                                   hto:hasValue 10 .
-
-
-[ hto:hasValue 80.5
-] .
-
-[ hto:hasValue 80
- ] .
-
-[ hto:hasUOM hto:kg
- ] .
-
-[ hto:hasUOM hto:kg
- ] .
-
-#################################################################
-#    General axioms
-#################################################################
-
-[ rdf:type owl:AllDisjointClasses ;
-   owl:members ( hto:Calories
-                 hto:Speed
-                 hto:Frequency
-                 hto:Length
-                 hto:Mass
-               )
- ] .
-
-
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( hto:Calories_UOM
-                hto:Speed_UOM
-                hto:Frequency_UOM
-                hto:Length_UOM
-                hto:Mass_UOM
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( hto:Cycling
-                hto:Running
-                hto:Walking
-              )
-] .
+###  http://www.semanticweb.org/health-track-ontology#val1
+:val1 rdf:type owl:NamedIndividual ,
+               <https://w3id.org/italia/onto/MU/Value> ;
+      <https://w3id.org/italia/onto/MU/hasMeasureType> :Mass ;
+      <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :kg ;
+      <https://w3id.org/italia/onto/MU/value> 50 .
 
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
