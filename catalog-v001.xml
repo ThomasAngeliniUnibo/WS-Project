@@ -9,6 +9,6 @@
     <uri id="Imports Wizard Entry" name="https://w3id.org/italia/onto/SM/0.7" uri="https://w3id.org/italia/onto/SM"/>
     <uri id="Imports Wizard Entry" name="https://w3id.org/italia/onto/MU/0.4" uri="https://w3id.org/italia/onto/MU#"/>
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1643275296713" name="http://www.semanticweb.org/thoma/ontologies/2022/0/untitled-ontology-26" uri="devices.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1643284781379" name="https://w3id.org/italia/onto/TI/" uri="ti.owl"/>
     </group>
 </catalog>
