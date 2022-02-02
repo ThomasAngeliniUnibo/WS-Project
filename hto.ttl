@@ -10,7 +10,8 @@
 @base <http://www.semanticweb.org/health-track-ontology#> .
 
 <http://www.semanticweb.org/health-track-ontology#> rdf:type owl:Ontology ;
-                                                     owl:imports <https://w3id.org/italia/onto/MU> ,
+                                                     owl:imports <http://purl.obolibrary.org/obo/ws-fse-prototype> ,
+                                                                 <https://w3id.org/italia/onto/MU> ,
                                                                  <https://w3id.org/italia/onto/TI> .
 
 #################################################################
@@ -48,6 +49,22 @@ ti:date rdf:type owl:AnnotationProperty .
                rdfs:label "at time instant" .
 
 
+###  http://www.semanticweb.org/health-track-ontology#doctorHasDoneAnalysis
+:doctorHasDoneAnalysis rdf:type owl:ObjectProperty ;
+                       owl:propertyChainAxiom ( <http://purl.obolibrary.org/obo/ws-fse-prototype#hasDoneExamination>
+                                                :hasAnalysis
+                                              ) ;
+                       rdfs:label "doctor has done analysis"@en .
+
+
+###  http://www.semanticweb.org/health-track-ontology#hasAnalysis
+:hasAnalysis rdf:type owl:ObjectProperty ,
+                      owl:InverseFunctionalProperty ;
+             rdfs:domain <http://purl.obolibrary.org/obo/ws-fse-prototype#MedicalExamination> ;
+             rdfs:range :Analysis ;
+             rdfs:label "has analysis"@en .
+
+
 ###  http://www.semanticweb.org/health-track-ontology#hasEpisode
 :hasEpisode rdf:type owl:ObjectProperty ;
             owl:inverseOf :isEpisodeOf ;
@@ -55,6 +72,14 @@ ti:date rdf:type owl:AnnotationProperty .
             rdfs:domain :Person ;
             rdfs:range :Episode ;
             rdfs:label "has episode" .
+
+
+###  http://www.semanticweb.org/health-track-ontology#hasPhysicalEntity
+:hasPhysicalEntity rdf:type owl:ObjectProperty ;
+                   owl:inverseOf :isPhysicalEntityOfAnalysis ;
+                   rdfs:domain :Analysis ;
+                   rdfs:range <http://purl.obolibrary.org/obo/FMA_61775> ;
+                   rdfs:label "has physical entity"@en .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#hasTracked
@@ -68,6 +93,11 @@ ti:date rdf:type owl:AnnotationProperty .
 :isEpisodeOf rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf owl:topObjectProperty ;
              rdfs:label "is episode of" .
+
+
+###  http://www.semanticweb.org/health-track-ontology#isPhysicalEntityOfAnalysis
+:isPhysicalEntityOfAnalysis rdf:type owl:ObjectProperty ;
+                            rdfs:label "is physical entity of analysis"@en .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#isTargetMeasureOf
@@ -92,6 +122,15 @@ ti:date rdf:type owl:AnnotationProperty .
                rdfs:label "measure target"@en .
 
 
+###  http://www.semanticweb.org/health-track-ontology#medicalRecordHasAnalysis
+:medicalRecordHasAnalysis rdf:type owl:ObjectProperty ;
+                          owl:propertyChainAxiom ( <http://purl.obolibrary.org/obo/ws-fse-prototype#hasExaminationRecord>
+                                                   <http://purl.obolibrary.org/obo/ws-fse-prototype#hasMedicalExamination>
+                                                   :hasAnalysis
+                                                 ) ;
+                          rdfs:label "medical record has analysis"@en .
+
+
 ###  https://w3id.org/italia/onto/TI/hasTemporalEntity
 <https://w3id.org/italia/onto/TI/hasTemporalEntity> rdf:type owl:ObjectProperty .
 
@@ -111,11 +150,34 @@ ti:date rdf:type owl:AnnotationProperty .
 #    Classes
 #################################################################
 
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#PersonaDataSet
+<http://purl.obolibrary.org/obo/ws-fse-prototype#PersonaDataSet> owl:equivalentClass :Person .
+
+
 ###  http://www.semanticweb.org/health-track-ontology#Activity
 :Activity rdf:type owl:Class ;
           rdfs:subClassOf :Episode ,
                           <https://w3id.org/italia/onto/TI/TimeIndexedEvent> ;
           owl:disjointWith :Snapshot .
+
+
+###  http://www.semanticweb.org/health-track-ontology#Analysis
+:Analysis rdf:type owl:Class ;
+          rdfs:subClassOf :Episode ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :atTimeInstant ;
+                            owl:someValuesFrom <https://w3id.org/italia/onto/TI/TimeInstant>
+                          ] .
+
+
+###  http://www.semanticweb.org/health-track-ontology#Biopsy
+:Biopsy rdf:type owl:Class ;
+        rdfs:subClassOf :Analysis .
+
+
+###  http://www.semanticweb.org/health-track-ontology#BloodTest
+:BloodTest rdf:type owl:Class ;
+           rdfs:subClassOf :Analysis .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#Cardio
@@ -127,6 +189,12 @@ ti:date rdf:type owl:AnnotationProperty .
 :Device rdf:type owl:Class .
 
 
+###  http://www.semanticweb.org/health-track-ontology#Doctor
+:Doctor rdf:type owl:Class ;
+        rdfs:subClassOf :Person ,
+                        <https://w3id.org/italia/onto/RO/Role> .
+
+
 ###  http://www.semanticweb.org/health-track-ontology#Episode
 :Episode rdf:type owl:Class ;
          rdfs:subClassOf <https://w3id.org/italia/onto/l0/Entity> .
@@ -134,7 +202,8 @@ ti:date rdf:type owl:AnnotationProperty .
 
 ###  http://www.semanticweb.org/health-track-ontology#Female
 :Female rdf:type owl:Class ;
-        rdfs:subClassOf :Person .
+        rdfs:subClassOf :Person ;
+        owl:disjointWith :Male .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#Male
@@ -160,6 +229,11 @@ ti:date rdf:type owl:AnnotationProperty .
                           ] .
 
 
+###  http://www.semanticweb.org/health-track-ontology#Ultrasound
+:Ultrasound rdf:type owl:Class ;
+            rdfs:subClassOf :Analysis .
+
+
 ###  http://www.semanticweb.org/health-track-ontology#Walking
 :Walking rdf:type owl:Class ;
          rdfs:subClassOf :Cardio .
@@ -181,10 +255,19 @@ ti:TimeInstant rdf:type owl:Class .
 #    Individuals
 #################################################################
 
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#examination0001
+<http://purl.obolibrary.org/obo/ws-fse-prototype#examination0001> :hasAnalysis :analysis0001 .
+
+
 ###  http://www.semanticweb.org/health-track-ontology#Mass
 :Mass rdf:type owl:NamedIndividual ,
                <https://w3id.org/italia/onto/MU/MeasureType> ;
       <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :kg .
+
+
+###  http://www.semanticweb.org/health-track-ontology#analysis0001
+:analysis0001 rdf:type owl:NamedIndividual ;
+              <https://w3id.org/italia/onto/TI/date> "2022-01-29T15:00:00"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#e0
@@ -200,12 +283,12 @@ ti:TimeInstant rdf:type owl:Class .
 ###  http://www.semanticweb.org/health-track-ontology#mario
 :mario rdf:type owl:NamedIndividual ,
                 :Male ;
-       :hasEpisode _:genid3 ,
-                   _:genid6 ,
-                   _:genid9 ,
-                   _:genid12 .
+       :hasEpisode _:genid9 ,
+                   _:genid12 ,
+                   _:genid15 ,
+                   _:genid18 .
 
-_:genid3 rdf:type :Snapshot ;
+_:genid9 rdf:type :Snapshot ;
           :atTimeInstant [ ti:date "2022-01-29T11:04:00"^^xsd:dateTime
                          ] ;
           mu:hasValue [ mu:hasMeasureType :Mass ;
@@ -213,23 +296,23 @@ _:genid3 rdf:type :Snapshot ;
                         mu:value 90
                       ] .
 
-_:genid6 rdf:type :Snapshot ;
-          :atTimeInstant [ ti:date "2022-01-22T11:04:00"^^xsd:dateTime
-                         ] ;
-          mu:hasValue [ mu:hasMeasureType :Mass ;
-                        mu:hasMeasurementUnit :kg ;
-                        mu:value 92
-                      ] .
-
-_:genid9 rdf:type :Snapshot ;
-          :atTimeInstant [ ti:date "2022-01-15T11:04:00"^^xsd:dateTime
-                         ] ;
-          mu:hasValue [ mu:hasMeasureType :Mass ;
-                        mu:hasMeasurementUnit :kg ;
-                        mu:value 93
-                      ] .
-
 _:genid12 rdf:type :Snapshot ;
+           :atTimeInstant [ ti:date "2022-01-22T11:04:00"^^xsd:dateTime
+                          ] ;
+           mu:hasValue [ mu:hasMeasureType :Mass ;
+                         mu:hasMeasurementUnit :kg ;
+                         mu:value 92
+                       ] .
+
+_:genid15 rdf:type :Snapshot ;
+           :atTimeInstant [ ti:date "2022-01-15T11:04:00"^^xsd:dateTime
+                          ] ;
+           mu:hasValue [ mu:hasMeasureType :Mass ;
+                         mu:hasMeasurementUnit :kg ;
+                         mu:value 93
+                       ] .
+
+_:genid18 rdf:type :Snapshot ;
            :atTimeInstant [ ti:date "2022-01-08T11:04:00"^^xsd:dateTime
                           ] ;
            mu:hasValue [ mu:hasMeasureType :Mass ;
@@ -241,6 +324,7 @@ _:genid12 rdf:type :Snapshot ;
 ###  http://www.semanticweb.org/health-track-ontology#t0
 :t0 rdf:type owl:NamedIndividual ,
              ti:TimeInstant ;
+    <https://w3id.org/italia/onto/TI/date> "2022-01-29T13:00:00"^^xsd:dateTime ;
     ti:date "2022-01-29T13:00:00"^^xsd:dateTime .
 
 
@@ -250,6 +334,18 @@ _:genid12 rdf:type :Snapshot ;
       <https://w3id.org/italia/onto/MU/hasMeasureType> :Mass ;
       <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :kg ;
       <https://w3id.org/italia/onto/MU/value> 50 .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Biopsy
+                :BloodTest
+                :Ultrasound
+              )
+] .
 
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

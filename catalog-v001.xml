@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="Imports Wizard Entry" name="http://purl.obolibrary.org/obo/fma/releases/2020-04-13/fma.owl" uri="http://purl.obolibrary.org/obo/fma.owl"/>
+    <uri id="Imports Wizard Entry" name="http://purl.obolibrary.org/obo/ws-fse-prototype" uri="file:/home/filo/Downloads/WS-konchenkov-pasqualini%20FSES/WS-konchenkov-pasqualini/WS-project-fse.owl"/>
     <uri id="Imports Wizard Entry" name="https://w3id.org/italia/onto/TI/0.8" uri="https://w3id.org/italia/onto/TI/"/>
     <uri id="Imports Wizard Entry" name="https://w3id.org/italia/onto/MU/0.4" uri="https://ontopia-lode.agid.gov.it/lode/source?url=https://w3id.org/italia/onto/MU"/>
     <uri id="Imports Wizard Entry" name="https://w3id.org/italia/onto/RO/0.3" uri="https://w3id.org/italia/onto/RO"/>
