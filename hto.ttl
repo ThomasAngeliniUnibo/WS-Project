@@ -42,6 +42,18 @@ ti:date rdf:type owl:AnnotationProperty .
 #    Object Properties
 #################################################################
 
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#hasDoneExamination
+<http://purl.obolibrary.org/obo/ws-fse-prototype#hasDoneExamination> rdf:type owl:ObjectProperty .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#hasExaminationRecord
+<http://purl.obolibrary.org/obo/ws-fse-prototype#hasExaminationRecord> rdf:type owl:ObjectProperty .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#hasMedicalExamination
+<http://purl.obolibrary.org/obo/ws-fse-prototype#hasMedicalExamination> rdf:type owl:ObjectProperty .
+
+
 ###  http://www.semanticweb.org/health-track-ontology#atTimeInstant
 :atTimeInstant rdf:type owl:ObjectProperty ;
                rdfs:subPropertyOf <https://w3id.org/italia/onto/TI/hasTemporalEntity> ;
@@ -86,6 +98,8 @@ ti:date rdf:type owl:AnnotationProperty .
 :hasTracked rdf:type owl:ObjectProperty ;
             rdfs:subPropertyOf owl:topObjectProperty ;
             owl:inverseOf :isTrackedBy ;
+            rdfs:domain :Device ;
+            rdfs:range :Episode ;
             rdfs:label "has tracked"@en .
 
 
@@ -150,8 +164,17 @@ ti:date rdf:type owl:AnnotationProperty .
 #    Classes
 #################################################################
 
+###  http://purl.obolibrary.org/obo/FMA_61775
+<http://purl.obolibrary.org/obo/FMA_61775> rdf:type owl:Class .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#MedicalExamination
+<http://purl.obolibrary.org/obo/ws-fse-prototype#MedicalExamination> rdf:type owl:Class .
+
+
 ###  http://purl.obolibrary.org/obo/ws-fse-prototype#PersonaDataSet
-<http://purl.obolibrary.org/obo/ws-fse-prototype#PersonaDataSet> owl:equivalentClass :Person .
+<http://purl.obolibrary.org/obo/ws-fse-prototype#PersonaDataSet> rdf:type owl:Class ;
+                                                                 owl:equivalentClass :Person .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#Activity
@@ -239,6 +262,10 @@ ti:date rdf:type owl:AnnotationProperty .
          rdfs:subClassOf :Cardio .
 
 
+###  https://w3id.org/italia/onto/RO/Role
+<https://w3id.org/italia/onto/RO/Role> rdf:type owl:Class .
+
+
 ###  https://w3id.org/italia/onto/TI#TimeInstant
 ti:TimeInstant rdf:type owl:Class .
 
@@ -256,7 +283,8 @@ ti:TimeInstant rdf:type owl:Class .
 #################################################################
 
 ###  http://purl.obolibrary.org/obo/ws-fse-prototype#examination0001
-<http://purl.obolibrary.org/obo/ws-fse-prototype#examination0001> :hasAnalysis :analysis0001 .
+<http://purl.obolibrary.org/obo/ws-fse-prototype#examination0001> rdf:type owl:NamedIndividual ;
+                                                                  :hasAnalysis :analysis0001 .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#Mass
@@ -319,6 +347,18 @@ _:genid18 rdf:type :Snapshot ;
                          mu:hasMeasurementUnit :kg ;
                          mu:value 93.5
                        ] .
+
+
+###  http://www.semanticweb.org/health-track-ontology#marioActivity0001
+:marioActivity0001 rdf:type owl:NamedIndividual ,
+                            :Activity ;
+                   :isEpisodeOf :mario ;
+                   :isTrackedBy :marioFitnessTracker .
+
+
+###  http://www.semanticweb.org/health-track-ontology#marioFitnessTracker
+:marioFitnessTracker rdf:type owl:NamedIndividual ,
+                              :Device .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#t0
