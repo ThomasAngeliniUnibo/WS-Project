@@ -80,12 +80,26 @@ ti:startTime rdf:type owl:AnnotationProperty .
                        rdfs:label "doctor has done analysis"@en .
 
 
+###  http://www.semanticweb.org/health-track-ontology#hasActivity
+:hasActivity rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :hasEpisode ;
+             rdfs:range :Activity ;
+             rdfs:label "has activity"@en .
+
+
 ###  http://www.semanticweb.org/health-track-ontology#hasAnalysis
 :hasAnalysis rdf:type owl:ObjectProperty ,
                       owl:InverseFunctionalProperty ;
              rdfs:domain <http://purl.obolibrary.org/obo/ws-fse-prototype#MedicalExamination> ;
              rdfs:range :Analysis ;
              rdfs:label "has analysis"@en .
+
+
+###  http://www.semanticweb.org/health-track-ontology#hasCardioActivity
+:hasCardioActivity rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf :hasActivity ;
+                   rdfs:range :Cardio ;
+                   rdfs:label "has cardio activity"@en .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#hasEpisode
@@ -101,8 +115,7 @@ ti:startTime rdf:type owl:AnnotationProperty .
 :hasMeasureAggregator rdf:type owl:ObjectProperty ;
                       rdfs:subPropertyOf owl:topObjectProperty ;
                       rdfs:domain <https://w3id.org/italia/onto/MU/Value> ;
-                      rdfs:range :Measure_Aggregator ;
-                      rdfs:label "measure aggregator"@en .
+                      rdfs:range :Measure_Aggregator .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#hasPhysicalEntity
@@ -113,6 +126,13 @@ ti:startTime rdf:type owl:AnnotationProperty .
                    rdfs:label "has physical entity"@en .
 
 
+###  http://www.semanticweb.org/health-track-ontology#hasSnapshot
+:hasSnapshot rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :hasEpisode ;
+             rdfs:range :Snapshot ;
+             rdfs:label "has snapshot"@en .
+
+
 ###  http://www.semanticweb.org/health-track-ontology#hasTracked
 :hasTracked rdf:type owl:ObjectProperty ;
             rdfs:subPropertyOf owl:topObjectProperty ;
@@ -120,6 +140,13 @@ ti:startTime rdf:type owl:AnnotationProperty .
             rdfs:domain :Device ;
             rdfs:range :Episode ;
             rdfs:label "has tracked"@en .
+
+
+###  http://www.semanticweb.org/health-track-ontology#hasWalkingActivity
+:hasWalkingActivity rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :hasCardioActivity ;
+                    rdfs:range :Walking ;
+                    rdfs:label "has walking activity"@en .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#isEpisodeOf
@@ -394,24 +421,26 @@ _:genid18 rdf:type :Snapshot ;
                    :isEpisodeOf :mario ;
                    :isTrackedBy :marioFitnessTracker ;
                    :steps 8000 ;
-                   mu:hasValue [ mu:hasMeasureType :Length ;
+                   mu:hasValue _:genid21 ,
+                               [ :hasMeasureAggregator 100 ;
+                                 mu:hasMeasureType :Length ;
                                  mu:hasMeasurementUnit :km ;
-                                 mu:value 4 ;
-                                 :hasMeasureAggregator 100
+                                 mu:value 4
                                ] ,
-                               [ mu:hasMeasureType :Frequency ;
-                                 mu:hasMeasurementUnit :bpm ;
-                                 mu:value 145 ;
-                                 :hasMeasureAggregator :max
-                               ] ,
-                               [ mu:hasMeasureType :Frequency ;
-                                 mu:hasMeasurementUnit :bpm ;
-                                 mu:value 70 ;
-                                 :hasMeasureAggregator :min
-                               ] ;
+                               _:genid23 ;
                    ti:atTime [ ti:endTime "2022-01-08T12:14:00"^^xsd:dateTime ;
                                ti:startTime "2022-01-08T11:04:00"^^xsd:dateTime
                              ] .
+
+_:genid21 :hasMeasureAggregator :min ;
+           mu:hasMeasureType :Frequency ;
+           mu:hasMeasurementUnit :bpm ;
+           mu:value 70 .
+
+_:genid23 :hasMeasureAggregator :max ;
+           mu:hasMeasureType :Frequency ;
+           mu:hasMeasurementUnit :bpm ;
+           mu:value 145 .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#marioActivity0002
@@ -419,14 +448,15 @@ _:genid18 rdf:type :Snapshot ;
                             :Cardio ;
                    :isEpisodeOf :mario ;
                    :isTrackedBy :marioFitnessTracker ;
-                   mu:hasValue [ mu:hasMeasureType :Length ;
-                                 mu:hasMeasurementUnit :km ;
-                                 mu:value 6;
-                                 :hasMeasureAggregator :max ;
-                               ] ;
+                   mu:hasValue _:genid25 ;
                    ti:atTime [ ti:endTime "2022-01-10T11:40:00"^^xsd:dateTime ;
                                ti:startTime "2022-01-10T11:04:00"^^xsd:dateTime
                              ] .
+
+_:genid25 :hasMeasureAggregator :max ;
+           mu:hasMeasureType :Length ;
+           mu:hasMeasurementUnit :km ;
+           mu:value 6 .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#marioActivity0003
@@ -435,28 +465,31 @@ _:genid18 rdf:type :Snapshot ;
                    :isEpisodeOf :mario ;
                    :isTrackedBy :marioFitnessTracker ;
                    :steps 12000 ;
-                   mu:hasValue [ mu:hasMeasureType :Frequency ;
-                                 mu:hasMeasurementUnit :bpm ;
-                                 mu:value 96 ;
-                                 :hasMeasureAggregator :avg
-                               ] ,
-                               [ mu:hasMeasureType :Frequency ;
-                                 mu:hasMeasurementUnit :bpm ;
-                                 mu:value 135 ;
-                                 :hasMeasureAggregator :max
-                               ] ,
-                               [ mu:hasMeasureType :Frequency ;
-                                 mu:hasMeasurementUnit :bpm ;
-                                 mu:value 65 ;
-                                 :hasMeasureAggregator :min
-                               ] ,
-                               [ mu:hasMeasureType :Length ;
+                   mu:hasValue [ mu:hasMeasureType :Length ;
                                  mu:hasMeasurementUnit :km ;
                                  mu:value 6
-                               ] ;
+                               ] ,
+                               _:genid28 ,
+                               _:genid29 ,
+                               _:genid30 ;
                    ti:atTime [ ti:endTime "2022-01-08T13:04:00"^^xsd:dateTime ;
                                ti:startTime "2022-01-08T11:04:00"^^xsd:dateTime
                              ] .
+
+_:genid28 :hasMeasureAggregator :avg ;
+           mu:hasMeasureType :Frequency ;
+           mu:hasMeasurementUnit :bpm ;
+           mu:value 96 .
+
+_:genid29 :hasMeasureAggregator :max ;
+           mu:hasMeasureType :Frequency ;
+           mu:hasMeasurementUnit :bpm ;
+           mu:value 135 .
+
+_:genid30 :hasMeasureAggregator :min ;
+           mu:hasMeasureType :Frequency ;
+           mu:hasMeasurementUnit :bpm ;
+           mu:value 65 .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#marioFitnessTracker
@@ -487,6 +520,13 @@ _:genid18 rdf:type :Snapshot ;
       <https://w3id.org/italia/onto/MU/hasMeasureType> :Mass ;
       <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :kg ;
       <https://w3id.org/italia/onto/MU/value> 50 .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+:hasMeasureAggregator rdfs:label "measure aggregator"@en .
 
 
 #################################################################
