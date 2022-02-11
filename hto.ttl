@@ -1,6 +1,7 @@
 @prefix : <http://www.semanticweb.org/health-track-ontology#> .
 @prefix mu: <https://w3id.org/italia/onto/MU#> .
 @prefix ti: <https://w3id.org/italia/onto/TI#> .
+@prefix cpv: <https://w3id.org/italia/onto/CPV#> .
 @prefix fma: <http://purl.obolibrary.org/obo/fma.owl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -10,7 +11,9 @@
 @base <http://www.semanticweb.org/health-track-ontology#> .
 
 <http://www.semanticweb.org/health-track-ontology#> rdf:type owl:Ontology ;
-                                                     owl:imports <https://w3id.org/italia/onto/MU> ,
+                                                     owl:imports <http://purl.obolibrary.org/obo/ws-fse-prototype> ,
+                                                                 <https://w3id.org/italia/onto/CPV> ,
+                                                                 <https://w3id.org/italia/onto/MU> ,
                                                                  <https://w3id.org/italia/onto/TI> .
 
 #################################################################
@@ -114,7 +117,7 @@ ti:startTime rdf:type owl:AnnotationProperty .
 :hasEpisode rdf:type owl:ObjectProperty ;
             owl:inverseOf :isEpisodeOf ;
             rdf:type owl:InverseFunctionalProperty ;
-            rdfs:domain :Person ;
+            rdfs:domain <https://w3id.org/italia/onto/CPV/Person> ;
             rdfs:range :Episode ;
             rdfs:label "has episode" .
 
@@ -212,8 +215,7 @@ ti:startTime rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.obolibrary.org/obo/ws-fse-prototype#PersonaDataSet
-<http://purl.obolibrary.org/obo/ws-fse-prototype#PersonaDataSet> rdf:type owl:Class ;
-                                                                 owl:equivalentClass :Person .
+<http://purl.obolibrary.org/obo/ws-fse-prototype#PersonaDataSet> rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#Activity
@@ -253,8 +255,7 @@ ti:startTime rdf:type owl:AnnotationProperty .
 
 ###  http://www.semanticweb.org/health-track-ontology#Doctor
 :Doctor rdf:type owl:Class ;
-        rdfs:subClassOf :Person ,
-                        <https://w3id.org/italia/onto/RO/Role> .
+        rdfs:subClassOf <https://w3id.org/italia/onto/RO/Role> .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#Episode
@@ -262,25 +263,10 @@ ti:startTime rdf:type owl:AnnotationProperty .
          rdfs:subClassOf <https://w3id.org/italia/onto/l0/Entity> .
 
 
-###  http://www.semanticweb.org/health-track-ontology#Female
-:Female rdf:type owl:Class ;
-        rdfs:subClassOf :Person ;
-        owl:disjointWith :Male .
-
-
-###  http://www.semanticweb.org/health-track-ontology#Male
-:Male rdf:type owl:Class ;
-      rdfs:subClassOf :Person .
-
-
 ###  http://www.semanticweb.org/health-track-ontology#Measure_Aggregator
 :Measure_Aggregator rdf:type owl:Class ;
                     rdfs:comment "Aggregatori di misure (es: min/max/avg)"@it ;
                     rdfs:label "Measure Aggregator"@en .
-
-
-###  http://www.semanticweb.org/health-track-ontology#Person
-:Person rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#Snapshot
@@ -377,6 +363,24 @@ ti:TimeInstant rdf:type owl:Class .
              <https://w3id.org/italia/onto/MU/MeasurementUnit> .
 
 
+###  http://www.semanticweb.org/health-track-ontology#luca
+:luca rdf:type owl:NamedIndividual ,
+               <https://w3id.org/italia/onto/CPV/Male> ;
+      <https://w3id.org/italia/onto/CPV/dateOfBirth> "1997-06-14"^^xsd:date ;
+      <https://w3id.org/italia/onto/CPV/familyName> "Rossi"^^xsd:string ;
+      <https://w3id.org/italia/onto/CPV/givenName> "Luca"^^xsd:string ;
+      <https://w3id.org/italia/onto/CPV/taxCode> "RSSLCU97H14G479O"^^xsd:string .
+
+
+###  http://www.semanticweb.org/health-track-ontology#luigi
+:luigi rdf:type owl:NamedIndividual ,
+                <https://w3id.org/italia/onto/CPV/Male> ;
+       <https://w3id.org/italia/onto/CPV/dateOfBirth> "1991-01-12"^^xsd:date ;
+       <https://w3id.org/italia/onto/CPV/familyName> "Rossi"^^xsd:string ;
+       <https://w3id.org/italia/onto/CPV/givenName> "Luigi"^^xsd:string ;
+       <https://w3id.org/italia/onto/CPV/taxCode> "RSSLGU91A12G479L"^^xsd:string .
+
+
 ###  http://www.semanticweb.org/health-track-ontology#m
 :m rdf:type owl:NamedIndividual ,
             <https://w3id.org/italia/onto/MU/MeasurementUnit> .
@@ -384,11 +388,18 @@ ti:TimeInstant rdf:type owl:Class .
 
 ###  http://www.semanticweb.org/health-track-ontology#mario
 :mario rdf:type owl:NamedIndividual ,
-                :Male ;
+                <https://w3id.org/italia/onto/CPV/Male> ;
        :hasEpisode _:genid9 ,
                    _:genid12 ,
                    _:genid15 ,
-                   _:genid18 .
+                   _:genid18 ;
+       <https://w3id.org/italia/onto/CPV/hasRelationshipWith> :luca ,
+                                                              :luigi ;
+       <https://w3id.org/italia/onto/CPV/dateOfBirth> "1990-01-01"^^xsd:date ;
+       <https://w3id.org/italia/onto/CPV/familyName> "Rossi"^^xsd:string ;
+       <https://w3id.org/italia/onto/CPV/givenName> "Mario"^^xsd:string ;
+       <https://w3id.org/italia/onto/CPV/personID> "RSSMRA90A01L500A"^^xsd:string ;
+       <https://w3id.org/italia/onto/CPV/taxCode> "RSSMRA90A01L500A"^^xsd:string .
 
 _:genid9 rdf:type :Snapshot ;
           :atTimeInstant [ ti:date "2022-01-29T11:04:00"^^xsd:dateTime
@@ -440,15 +451,15 @@ _:genid18 rdf:type :Snapshot ;
                                ti:startTime "2022-01-08T11:04:00"^^xsd:dateTime
                              ] .
 
-_:genid21 :hasMeasureAggregator :max ;
-           mu:hasMeasureType :Frequency ;
-           mu:hasMeasurementUnit :bpm ;
-           mu:value 145 .
-
-_:genid22 :hasMeasureAggregator :min ;
+_:genid21 :hasMeasureAggregator :min ;
            mu:hasMeasureType :Frequency ;
            mu:hasMeasurementUnit :bpm ;
            mu:value 70 .
+
+_:genid22 :hasMeasureAggregator :max ;
+           mu:hasMeasureType :Frequency ;
+           mu:hasMeasurementUnit :bpm ;
+           mu:value 145 .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#marioActivity0002
@@ -473,18 +484,18 @@ _:genid25 :hasMeasureAggregator :max ;
                    :isEpisodeOf :mario ;
                    :isTrackedBy :marioFitnessTracker ;
                    :steps 12000 ;
-                   mu:hasValue _:genid27 ,
-                               [ mu:hasMeasureType :Length ;
+                   mu:hasValue [ mu:hasMeasureType :Length ;
                                  mu:hasMeasurementUnit :km ;
                                  mu:value 6
                                ] ,
+                               _:genid28 ,
                                _:genid29 ,
                                _:genid30 ;
                    ti:atTime [ ti:endTime "2022-01-08T13:04:00"^^xsd:dateTime ;
                                ti:startTime "2022-01-08T11:04:00"^^xsd:dateTime
                              ] .
 
-_:genid27 :hasMeasureAggregator :min ;
+_:genid28 :hasMeasureAggregator :min ;
            mu:hasMeasureType :Frequency ;
            mu:hasMeasurementUnit :bpm ;
            mu:value 65 .

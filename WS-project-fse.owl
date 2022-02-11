@@ -1,0 +1,1619 @@
+@prefix : <http://purl.obolibrary.org/obo/ws-fse-prototype#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://purl.obolibrary.org/obo/ws-fse-prototype> .
+
+<http://purl.obolibrary.org/obo/ws-fse-prototype> rdf:type owl:Ontology ;
+                                                   owl:imports <http://purl.obolibrary.org/obo/doid/releases/2021-04-29/doid.owl> ,
+                                                               <https://w3id.org/italia/onto/AccessCondition> ,
+                                                               <https://w3id.org/italia/onto/CLV> ,
+                                                               <https://w3id.org/italia/onto/COV> ,
+                                                               <https://w3id.org/italia/onto/CPV> ,
+                                                               <https://w3id.org/italia/onto/TI> ,
+                                                               <https://w3id.org/italia/onto/l0> ;
+                                                   <http://www.geneontology.org/formats/oboInOwl#hasOBOFormatVersion> "1.2"^^xsd:string .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#hasResidence2
+:hasResidence2 rdf:type owl:AnnotationProperty .
+
+
+###  http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled
+<http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.geneontology.org/formats/oboInOwl#hasOBOFormatVersion
+<http://www.geneontology.org/formats/oboInOwl#hasOBOFormatVersion> rdf:type owl:AnnotationProperty ;
+                                                                   rdfs:label "has_obo_format_version"^^xsd:string .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://purl.obolibrary.org/obo/doid#has_symptom
+<http://purl.obolibrary.org/obo/doid#has_symptom> owl:inverseOf :is_symptom_of ;
+                                                  rdfs:domain <http://purl.obolibrary.org/obo/DOID_4> ;
+                                                  rdfs:range <http://purl.obolibrary.org/obo/SYMP_0000462> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#canHaveAirTrasmittedDisease
+:canHaveAirTrasmittedDisease rdf:type owl:ObjectProperty ;
+                             rdfs:domain :DiseaseRecord ;
+                             rdfs:range <http://purl.obolibrary.org/obo/DOID_4> ;
+                             rdfs:comment """A relation that holds between a person's disease record and a disease.
+This relation asserts that a person can have some type of disease that can be trasmitted by air because it has the same residence of an infected person."""^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#canHaveDisease
+:canHaveDisease rdf:type owl:ObjectProperty ;
+                rdfs:domain :DiseaseRecord ;
+                rdfs:range <http://purl.obolibrary.org/obo/DOID_4> ;
+                owl:propertyChainAxiom ( :isDiseaseRecordOf
+                                         :hasSymptomRecord
+                                         :personHasSymptom
+                                         :is_symptom_of
+                                       ) ;
+                rdfs:comment """A relation that holds between a person's disease record and a disease.
+This relation asserts that a person's disease record can have a disease becouse the person has some symptoms of that disease."""^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#canHaveParentGeneticalDisease
+:canHaveParentGeneticalDisease rdf:type owl:ObjectProperty ;
+                               rdfs:domain :DiseaseRecord ;
+                               rdfs:range <http://purl.obolibrary.org/obo/DOID_4> ;
+                               rdfs:comment """A relation that holds between a person's disease record and a disease.
+This relation asserts that a person can have a parental genetical disease if one of his parent is a bearer of a genetic disease that is trasmissible via X or Y chromosome."""^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#canHaveSymptom
+:canHaveSymptom rdf:type owl:ObjectProperty ;
+                rdfs:domain :SymptomRecord ;
+                rdfs:range <http://purl.obolibrary.org/obo/SYMP_0000462> ;
+                owl:propertyChainAxiom ( :isSymptomRecordOf
+                                         :hasDiseaseRecord
+                                         :hasDisease
+                                         <http://purl.obolibrary.org/obo/doid#has_symptom>
+                                       ) ;
+                rdfs:comment """A relation that holds between a person's symptom record and a symptom.
+This relation asserts that a person's symptom record can have a symptom caused by a certain disease."""^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#daughterHasFather
+:daughterHasFather rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf :hasFather ;
+                   owl:inverseOf :isFatherOfDaughter ;
+                   rdfs:domain <https://w3id.org/italia/onto/CPV/Female> ;
+                   rdfs:range <https://w3id.org/italia/onto/CPV/Male> ;
+                   rdfs:comment "A relation that holds between a person and a person, asseting that a female person have a male father."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#daughterHasMother
+:daughterHasMother rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf :hasMother ;
+                   owl:inverseOf :isMotherOfDaughter ;
+                   rdfs:domain <https://w3id.org/italia/onto/CPV/Female> ;
+                   rdfs:range <https://w3id.org/italia/onto/CPV/Female> ;
+                   rdfs:comment "A relation that holds between a person and a person, asserting that a female person has a female person mother."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#examinationDiseaseReport
+:examinationDiseaseReport rdf:type owl:ObjectProperty ;
+                          rdfs:domain :MedicalExamination ;
+                          rdfs:range <http://purl.obolibrary.org/obo/DOID_4> ;
+                          rdfs:comment """A relation that holds between a examination and a disease.
+This relation asserts that a person has a disease diagnosed by a doctor on a medical examination."""^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#examinationIsDoneBy
+:examinationIsDoneBy rdf:type owl:ObjectProperty ;
+                     owl:inverseOf :hasDoneExamination ;
+                     rdf:type owl:FunctionalProperty ;
+                     rdfs:domain :MedicalExamination ;
+                     rdfs:range :JobRecord ;
+                     rdfs:comment """A relation that holds between an examination and a doctor's job record.
+This relation asserts that a medical examination is done by a certain doctor."""^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#examinationSymptomReport
+:examinationSymptomReport rdf:type owl:ObjectProperty ;
+                          rdfs:domain :MedicalExamination ;
+                          rdfs:range <http://purl.obolibrary.org/obo/SYMP_0000462> ;
+                          rdfs:comment """A relation that holds between an examination and a symptom.
+This relation asserts that a person has a certain symptom diagnosed by a doctor during an examination."""^^rdfs:Literal ;
+                          rdfs:label "examinationSymptomReport" .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#hasBrother
+:hasBrother rdf:type owl:ObjectProperty ;
+            owl:inverseOf :isBrotherOf ;
+            rdfs:domain <https://w3id.org/italia/onto/CPV/Person> ;
+            rdfs:range <https://w3id.org/italia/onto/CPV/Male> ;
+            rdfs:comment "A relation that holds between two people asserting tha one of the is the brother of the other one."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#hasDisease
+:hasDisease rdf:type owl:ObjectProperty ;
+            owl:inverseOf :isDiseaseOf ;
+            rdfs:domain :DiseaseRecord ;
+            rdfs:range <http://purl.obolibrary.org/obo/DOID_4> ;
+            owl:propertyChainAxiom ( :isDiseaseRecordOf
+                                     :hasExaminationRecord
+                                     :hasMedicalExamination
+                                     :examinationDiseaseReport
+                                   ) ;
+            rdfs:comment "A relation that holds between a Person's disease record  and a disease, specifying that  person has some type of disease."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#hasDiseaseRecord
+:hasDiseaseRecord rdf:type owl:ObjectProperty ;
+                  owl:inverseOf :isDiseaseRecordOf ;
+                  rdf:type owl:FunctionalProperty ;
+                  rdfs:domain :MedicalRecord ;
+                  rdfs:range :DiseaseRecord ;
+                  rdfs:comment "A relation that holds between a person's medical record and a disease record which holds all person's diases"^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#hasDoneExamination
+:hasDoneExamination rdf:type owl:ObjectProperty ,
+                             owl:InverseFunctionalProperty ;
+                    rdfs:domain :JobRecord ;
+                    rdfs:range :MedicalExamination ;
+                    rdfs:comment "A relation that holds between a doctor's job record and an examination, asserting that a doctor has done a specific examination."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#hasEmployee
+:hasEmployee rdf:type owl:ObjectProperty ;
+             owl:inverseOf :isEmployeeOf ;
+             rdfs:domain <https://w3id.org/italia/onto/COV/Organization> ;
+             rdfs:range <https://w3id.org/italia/onto/CPV/Person> ;
+             rdfs:comment "A relation that holds between an organization and a person, asserting that a certain organization has an employee."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#hasExaminationRecord
+:hasExaminationRecord rdf:type owl:ObjectProperty ;
+                      owl:inverseOf :isExaminationRecordOf ;
+                      rdf:type owl:FunctionalProperty ;
+                      rdfs:domain :MedicalRecord ;
+                      rdfs:range :ExaminationRecord ;
+                      rdfs:comment "A relation that holds between a person 's medical record and an examination record, asserting that a person's medical record has an examination record."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#hasFather
+:hasFather rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf <https://w3id.org/italia/onto/CPV/isChildOf> ;
+           owl:inverseOf :isFatherOf ;
+           rdfs:domain <https://w3id.org/italia/onto/CPV/Person> ;
+           rdfs:range <https://w3id.org/italia/onto/CPV/Male> ;
+           rdfs:comment "A relation that holds between a person and a person, asseting that person has a father."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#hasFatherGeneticDisease
+:hasFatherGeneticDisease rdf:type owl:ObjectProperty ;
+                         rdfs:domain :DiseaseRecord ;
+                         rdfs:range <http://purl.obolibrary.org/obo/DOID_4> ;
+                         rdfs:comment "A relation that holds between a person's disease record and a disease, asserting that a person has a certain genetic disease trasmitted by the father in the Y chromosome."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#hasJobRecord
+:hasJobRecord rdf:type owl:ObjectProperty ;
+              owl:inverseOf :isJobRecordOf ;
+              rdf:type owl:FunctionalProperty ;
+              rdfs:domain <https://w3id.org/italia/onto/CPV/Person> ;
+              rdfs:range :JobRecord ;
+              rdfs:comment "A relation that holds between a doctor and a job record, asserting that a certain doctor has a job record were he registers all of his done examinations."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#hasMedicalExamination
+:hasMedicalExamination rdf:type owl:ObjectProperty ;
+                       owl:inverseOf :isMedicalExaminationOf ;
+                       rdf:type owl:FunctionalProperty ;
+                       rdfs:domain :ExaminationRecord ;
+                       rdfs:range :MedicalExamination ;
+                       rdfs:comment "A relation that holds between a person examination record and an examination, asserting that a person has done an examination."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#hasMedicalRecord
+:hasMedicalRecord rdf:type owl:ObjectProperty ;
+                  owl:inverseOf :isMedicalRecordOf ;
+                  rdf:type owl:FunctionalProperty ;
+                  rdfs:domain <https://w3id.org/italia/onto/CPV/Person> ;
+                  rdfs:range :MedicalRecord ;
+                  rdfs:comment "A relation that holds between a person and a medical record, asserting that a person has a medical record."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#hasMother
+:hasMother rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf <https://w3id.org/italia/onto/CPV/isChildOf> ;
+           owl:inverseOf :isMotherOf ;
+           rdfs:domain <https://w3id.org/italia/onto/CPV/Person> ;
+           rdfs:range <https://w3id.org/italia/onto/CPV/Female> ;
+           rdfs:comment "A relation that holds between a person and a person, asserting that a person has a mother."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#hasResidenceDataset
+:hasResidenceDataset rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf <https://w3id.org/italia/onto/CPV/hasCurrentResidence> ;
+                     rdfs:domain :PersonaDataSet ;
+                     rdfs:range <https://w3id.org/italia/onto/CLV/Address> ;
+                     rdfs:comment "This property relates a person of an external dataset to an adress, asserting that a person has an adress." ;
+                     rdfs:label "hasResidenceDataset" .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#hasRole
+:hasRole rdf:type owl:ObjectProperty ;
+         owl:inverseOf :isRoleOf ;
+         rdfs:domain <https://w3id.org/italia/onto/CPV/Alive> ;
+         rdfs:range <https://w3id.org/italia/onto/RO/Role> ;
+         rdfs:comment "A relation that holds between a person and a role, asserting that a person can have a specific role."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#hasSister
+:hasSister rdf:type owl:ObjectProperty ;
+           owl:inverseOf :isSisterOf ;
+           rdfs:domain <https://w3id.org/italia/onto/CPV/Person> ;
+           rdfs:range <https://w3id.org/italia/onto/CPV/Female> ;
+           rdfs:comment "A relation that holds between a person and a person, asserting that one person is the sister of the other one."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#hasSymptom
+:hasSymptom rdf:type owl:ObjectProperty ;
+            rdfs:domain :SymptomRecord ;
+            rdfs:range <http://purl.obolibrary.org/obo/SYMP_0000462> ;
+            owl:propertyChainAxiom ( :isSymptomRecordOf
+                                     :hasExaminationRecord
+                                     :hasMedicalExamination
+                                     :examinationSymptomRecord
+                                   ) ;
+            rdfs:comment "A relation that holds between a person's symptom record and a symptom, asserting that a person has a certain symptom maybe caused by a certain disease."^^rdfs:Literal ;
+            rdfs:label "hasSymptom" .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#hasSymptomRecord
+:hasSymptomRecord rdf:type owl:ObjectProperty ;
+                  owl:inverseOf :isSymptomRecordOf ;
+                  rdf:type owl:FunctionalProperty ;
+                  rdfs:domain :MedicalRecord ;
+                  rdfs:range :SymptomRecord ;
+                  rdfs:comment "A relation that holds between a person and a symptom record, asserting that a person has a symptom record."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#isBrotherOf
+:isBrotherOf rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :isSiblingOf ;
+             rdfs:domain <https://w3id.org/italia/onto/CPV/Male> ;
+             rdfs:range <https://w3id.org/italia/onto/CPV/Person> ;
+             rdfs:comment "A relation that holds between a person and a person, asserting that a male person is brother of a person."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#isComposedOf
+:isComposedOf rdf:type owl:ObjectProperty ;
+              rdfs:domain <https://w3id.org/italia/onto/COV/Organization> ;
+              rdfs:range <https://w3id.org/italia/onto/RO/Role> ;
+              owl:propertyChainAxiom ( :hasEmployee
+                                       :hasRole
+                                     ) ;
+              rdfs:comment "A relation that holds between a organization and a role, asserting that an organization is composed of certain roles."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#isDiseaseOf
+:isDiseaseOf rdf:type owl:ObjectProperty ;
+             rdfs:domain <http://purl.obolibrary.org/obo/DOID_4> ;
+             rdfs:range :DiseaseRecord ;
+             rdfs:comment "A relation that holds between a disease and a person's disease record, asserting that a disease is related to a person."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#isDiseaseRecordOf
+:isDiseaseRecordOf rdf:type owl:ObjectProperty ,
+                            owl:InverseFunctionalProperty ;
+                   rdfs:domain :DiseaseRecord ;
+                   rdfs:range :MedicalRecord ;
+                   rdfs:comment "A relation that holds between a person's medical record and a disease record, asserting that a person's medical record has a disease record."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#isEmployeeOf
+:isEmployeeOf rdf:type owl:ObjectProperty ;
+              rdfs:domain <https://w3id.org/italia/onto/CPV/Person> ;
+              rdfs:range <https://w3id.org/italia/onto/COV/Organization> ;
+              rdfs:comment "A relation that holds between a person and an organization, asserting that a person is an employee of and organization."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#isExaminationRecordOf
+:isExaminationRecordOf rdf:type owl:ObjectProperty ,
+                                owl:InverseFunctionalProperty ;
+                       rdfs:domain :ExaminationRecord ;
+                       rdfs:range :MedicalRecord ;
+                       rdfs:comment "A relation that holds between a person's examination record and a medical record, asserting that an examination record is linked to a person's medical record."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#isFatherOf
+:isFatherOf rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf <https://w3id.org/italia/onto/CPV/isParentOf> ;
+            rdfs:domain <https://w3id.org/italia/onto/CPV/Male> ;
+            rdfs:range <https://w3id.org/italia/onto/CPV/Person> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#isFatherOfDaughter
+:isFatherOfDaughter rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :isFatherOf ;
+                    rdfs:domain <https://w3id.org/italia/onto/CPV/Male> ;
+                    rdfs:range <https://w3id.org/italia/onto/CPV/Female> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#isFatherOfSon
+:isFatherOfSon rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :isFatherOf ;
+               owl:inverseOf :sonHasFather ;
+               rdfs:domain <https://w3id.org/italia/onto/CPV/Male> ;
+               rdfs:range <https://w3id.org/italia/onto/CPV/Male> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#isJobRecordOf
+:isJobRecordOf rdf:type owl:ObjectProperty ,
+                        owl:InverseFunctionalProperty ;
+               rdfs:domain :JobRecord ;
+               rdfs:range <https://w3id.org/italia/onto/CPV/Person> ;
+               rdfs:comment "A relation that holds between a job record and a doctor, asserting that a job record is oa a certain person."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#isMedicalExaminationOf
+:isMedicalExaminationOf rdf:type owl:ObjectProperty ,
+                                 owl:InverseFunctionalProperty ;
+                        rdfs:domain :MedicalExamination ;
+                        rdfs:range :ExaminationRecord ;
+                        rdfs:comment "A relation that holds between a medical examination and an examination record, asserting that a medical record have some exmination record."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#isMedicalRecordOf
+:isMedicalRecordOf rdf:type owl:ObjectProperty ,
+                            owl:InverseFunctionalProperty ;
+                   rdfs:domain :MedicalRecord ;
+                   rdfs:range <https://w3id.org/italia/onto/CPV/Person> ;
+                   rdfs:comment "A relation that holds between a person and a medical record, asserting that a person can have a medical record that contains disease, symptom and examination records."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#isMotherOf
+:isMotherOf rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf <https://w3id.org/italia/onto/CPV/isParentOf> ;
+            rdfs:domain <https://w3id.org/italia/onto/CPV/Female> ;
+            rdfs:range <https://w3id.org/italia/onto/CPV/Person> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#isMotherOfDaughter
+:isMotherOfDaughter rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :isMotherOf ;
+                    rdfs:domain <https://w3id.org/italia/onto/CPV/Female> ;
+                    rdfs:range <https://w3id.org/italia/onto/CPV/Female> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#isMotherOfSon
+:isMotherOfSon rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :isMotherOf ;
+               owl:inverseOf :sonHasMother ;
+               rdfs:domain <https://w3id.org/italia/onto/CPV/Female> ;
+               rdfs:range <https://w3id.org/italia/onto/CPV/Male> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#isRoleOf
+:isRoleOf rdf:type owl:ObjectProperty ;
+          rdfs:domain <https://w3id.org/italia/onto/RO/Role> ;
+          rdfs:range <https://w3id.org/italia/onto/CPV/Alive> ;
+          rdfs:comment "A relation that holds between a role and a person, asserting that a role is associated to a person."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#isSiblingOf
+:isSiblingOf rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf <https://w3id.org/italia/onto/CPV/hasParentalRelationshipWith> ;
+             rdfs:domain <https://w3id.org/italia/onto/CPV/Person> ;
+             rdfs:range <https://w3id.org/italia/onto/CPV/Person> ;
+             rdfs:comment "A relation that holds between a person and a person, asserting that a person is another person sibling."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#isSisterOf
+:isSisterOf rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :isSiblingOf ;
+            rdfs:domain <https://w3id.org/italia/onto/CPV/Female> ;
+            rdfs:range <https://w3id.org/italia/onto/CPV/Person> ;
+            rdfs:comment "A relation that holds between a person and a person, asserting that a  female person is a sister of a person."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#isSymptomOfPerson
+:isSymptomOfPerson rdf:type owl:ObjectProperty ;
+                   owl:inverseOf :personHasSymptom ;
+                   rdfs:domain <http://purl.obolibrary.org/obo/SYMP_0000462> ;
+                   rdfs:range :SymptomRecord ;
+                   rdfs:comment "A relation that holds between a symptom and a person's sympotm record, asserting that a symptom is contained in a person's symptom record."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#isSymptomRecordOf
+:isSymptomRecordOf rdf:type owl:ObjectProperty ,
+                            owl:InverseFunctionalProperty ;
+                   rdfs:domain :SymptomRecord ;
+                   rdfs:range :MedicalRecord ;
+                   rdfs:comment "A relation that holds between a person's symptom record and a person's medical record, asserting that a syptom record is cotained in a person's medical record."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#is_symptom_of
+:is_symptom_of rdf:type owl:ObjectProperty ;
+               rdfs:domain <http://purl.obolibrary.org/obo/SYMP_0000462> ;
+               rdfs:range <http://purl.obolibrary.org/obo/DOID_4> ;
+               rdfs:comment "A relation that holds between a symptom and a disease, asserting that a certain symptom is related to some disease."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#personHasSymptom
+:personHasSymptom rdf:type owl:ObjectProperty ;
+                  rdfs:domain :SymptomRecord ;
+                  rdfs:range <http://purl.obolibrary.org/obo/SYMP_0000462> ;
+                  rdfs:comment "This properti relates a person's symptom record and a symptom, asserting that a person has a certain symptom caused by a disease." .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#sonHasFather
+:sonHasFather rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :hasFather ;
+              rdfs:domain <https://w3id.org/italia/onto/CPV/Male> ;
+              rdfs:range <https://w3id.org/italia/onto/CPV/Male> ;
+              rdfs:comment "A relation that holds between a person and a person, asserting that a male person has a father."^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#sonHasMother
+:sonHasMother rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :hasMother ;
+              rdfs:domain <https://w3id.org/italia/onto/CPV/Male> ;
+              rdfs:range <https://w3id.org/italia/onto/CPV/Female> ;
+              rdfs:comment "A relation that holds between a person and a person, asserting that a male person has a female person mother."^^rdfs:Literal .
+
+
+###  https://w3id.org/italia/onto/CPV/residentIn
+<https://w3id.org/italia/onto/CPV/residentIn> rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#medicalReport
+:medicalReport rdf:type owl:DatatypeProperty ;
+               rdfs:range rdfs:Literal ;
+               rdfs:comment "a data property that describe the report issued by a doctor due to an examination" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://purl.obolibrary.org/obo/DOID_2524
+<http://purl.obolibrary.org/obo/DOID_2524> rdfs:subClassOf <http://purl.obolibrary.org/obo/DOID_122> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#DiseaseRecord
+:DiseaseRecord rdf:type owl:Class ;
+               rdfs:subClassOf :MedicalRecord ;
+               rdfs:comment "A class that describe a disease record where  disease can be noted" .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#ExaminationRecord
+:ExaminationRecord rdf:type owl:Class ;
+                   rdfs:subClassOf :MedicalRecord ;
+                   rdfs:comment "A class that describe a examination record where examination can be noted" .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#JobRecord
+:JobRecord rdf:type owl:Class .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#MedicalExamination
+:MedicalExamination rdf:type owl:Class ;
+                    rdfs:subClassOf <https://w3id.org/italia/onto/TI/TimeIndexedEvent> ;
+                    rdfs:comment "A class that describe a medical examination related on a person's examination record and a doctor job record, it rapresents all the information about an examination." .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#MedicalRecord
+:MedicalRecord rdf:type owl:Class ;
+               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                 owl:onProperty :isMedicalRecordOf ;
+                                 owl:someValuesFrom <https://w3id.org/italia/onto/CPV/Person>
+                               ] ;
+               rdfs:comment "A class that describe a medical record (electronic health record ) related on a person where symptom, disease and examination can be noted" .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#PersonaDataSet
+:PersonaDataSet rdf:type owl:Class ;
+                owl:equivalentClass <https://w3id.org/italia/onto/CPV/Person> ;
+                rdfs:comment "A class that describe the concept of person modelled by an external dataset where we suppose that the property of residence is updated" .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#SymptomRecord
+:SymptomRecord rdf:type owl:Class ;
+               rdfs:subClassOf :MedicalRecord ;
+               rdfs:comment "A class that describe a symptom record where symptom can be noted" .
+
+
+###  https://w3id.org/italia/onto/CPV/Person
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Airborne
+:Airborne rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Anatoliy
+:Anatoliy rdf:type owl:NamedIndividual ;
+          :hasMedicalRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Anatoliy's_medical_record> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Anatoliy_examination_record
+:Anatoliy_examination_record rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Angelica
+:Angelica rdf:type owl:NamedIndividual ;
+          :daughterHasFather :Ivan ;
+          :daughterHasMother :Simona ;
+          :hasMedicalRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Angelic's_medical_record> ;
+          <https://w3id.org/italia/onto/CPV/hasCurrentResidence> :Via_Monte_Bianco_2 ;
+          <https://w3id.org/italia/onto/CPV/isGrandChildOf> :Aurora ,
+                                                            :Mario ,
+                                                            :Massimo ,
+                                                            :Pasquina .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Aurora
+:Aurora rdf:type owl:NamedIndividual ;
+        :hasMedicalRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Aurora's_medical_record> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Cesena
+:Cesena rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Covid-19
+:Covid-19 rdf:type owl:NamedIndividual ;
+          <http://purl.obolibrary.org/obo/RO_0002451> :Airborne ;
+          <http://purl.obolibrary.org/obo/doid#has_symptom> :asma .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Danon_Disease
+:Danon_Disease rdf:type owl:NamedIndividual ,
+                        <http://purl.obolibrary.org/obo/DOID_0080009> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Doctor
+:Doctor rdf:type owl:NamedIndividual ;
+        rdfs:label "Doctor" .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Domagnano
+:Domagnano rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Elia
+:Elia rdf:type owl:NamedIndividual ;
+      :hasMedicalRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Elia's_medical_record> ;
+      :sonHasFather :Ivan ;
+      :sonHasMother :Simona ;
+      <https://w3id.org/italia/onto/CPV/isGrandChildOf> :Aurora ,
+                                                        :Mario ,
+                                                        :Massimo ,
+                                                        :Pasquina ;
+      <https://w3id.org/italia/onto/CPV/age> 23 ;
+      <https://w3id.org/italia/onto/CPV/taxCode> "PSQLEI97H02Z130E"^^rdfs:Literal .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Examination0003
+:Examination0003 rdf:type owl:NamedIndividual ;
+                 :examinationDiseaseReport :Covid-19 ;
+                 :isMedicalExaminationOf <http://purl.obolibrary.org/obo/ws-fse-prototype#Tania's_examination_record> ;
+                 :medicalReport "Il paziente presenta il sintomo del vomito, deduco che secondo un mio parere personale il paziente soffre di appendicite"^^rdfs:Literal ;
+                 <https://w3id.org/italia/onto/TI/date> "2021-05-25"^^xsd:date ;
+                 :examinationSymptomRecord :inflammation .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Examination0004
+:Examination0004 rdf:type owl:NamedIndividual ;
+                 :examinationDiseaseReport :duodenum_disease ;
+                 :isMedicalExaminationOf <http://purl.obolibrary.org/obo/ws-fse-prototype#Ivan's_examination_record> ;
+                 :medicalReport "Il paziente presenta il sintomo del vomito, deduco che secondo un mio parere personale il paziente soffre di appendicite"^^rdfs:Literal ;
+                 <https://w3id.org/italia/onto/TI/date> "2021-03-23"^^xsd:date .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Examination0005
+:Examination0005 rdf:type owl:NamedIndividual ;
+                 :examinationDiseaseReport :colonic_disease ;
+                 :isMedicalExaminationOf <http://purl.obolibrary.org/obo/ws-fse-prototype#Simona's_examination_record> ;
+                 :medicalReport "Il paziente presenta il sintomo del vomito, deduco che secondo un mio parere personale il paziente soffre di appendicite"^^rdfs:Literal ;
+                 <https://w3id.org/italia/onto/TI/date> "2021-04-24"^^xsd:date .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Francesca
+:Francesca rdf:type owl:NamedIndividual ;
+           :hasJobRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Francesca's_job_record> ;
+           :hasMedicalRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Francesca's_medical_record> ;
+           :hasRole :Doctor ;
+           :isEmployeeOf :Ospedale .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Irina
+:Irina rdf:type owl:NamedIndividual ;
+       :hasMedicalRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Irina's_medical_record> ;
+       :isSisterOf :Oleg .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Italia
+:Italia rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Ivan
+:Ivan rdf:type owl:NamedIndividual ;
+      :hasMedicalRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Ivan's_medical_record> ;
+      :sonHasFather :Mario ;
+      :sonHasMother :Aurora ;
+      <https://w3id.org/italia/onto/CPV/hasCurrentResidence> :Via_Monte_Bianco_2 ;
+      <https://w3id.org/italia/onto/CPV/age> 56 .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Mario
+:Mario rdf:type owl:NamedIndividual ;
+       :hasMedicalRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Mario's_medical_record> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Massimo
+:Massimo rdf:type owl:NamedIndividual ;
+         :hasMedicalRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Massimo's_medical_record> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Nadia
+:Nadia rdf:type owl:NamedIndividual ;
+       :hasMedicalRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Nadia's_medical_record> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Nelson
+:Nelson rdf:type owl:NamedIndividual ;
+        :hasJobRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Nelson's_job_record> ;
+        :hasMedicalRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Nelson's_medical_record> ;
+        :hasRole :Doctor ;
+        <https://w3id.org/italia/onto/CPV/hasCurrentResidence> :Via_Romolo_Murri_10 .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Oleg
+:Oleg rdf:type owl:NamedIndividual ;
+      :sonHasMother :Tania ;
+      <https://w3id.org/italia/onto/CPV/isGrandChildOf> :Anatoliy ,
+                                                        :Nadia .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Ospedale
+:Ospedale rdf:type owl:NamedIndividual ;
+          :hasEmployee :Nelson ;
+          <https://w3id.org/italia/onto/CLV/hasAddress> :Viale_Giovanni_Ghirotti_286 ;
+          rdfs:label "Hospital" .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#PSQLEI97H02Z130E
+:PSQLEI97H02Z130E rdf:type owl:NamedIndividual ,
+                           :PersonaDataSet ;
+                  <https://w3id.org/italia/onto/CPV/hasCurrentResidence> :Via_Monte_Bianco_2 ;
+                  <https://w3id.org/italia/onto/CPV/dateOfBirth> "1997-06-02"^^xsd:date ;
+                  <https://w3id.org/italia/onto/CPV/familyName> "Pasqualini"^^rdfs:Literal ;
+                  <https://w3id.org/italia/onto/CPV/taxCode> "PSQLEI97H02Z130E"^^rdfs:Literal ;
+                  <https://w3id.org/italia/onto/l0/name> "Elia"^^rdfs:Literal ;
+                  :hasResidence2 :Via_Monte_Bianco_2 .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Pasquina
+:Pasquina rdf:type owl:NamedIndividual ;
+          :hasMedicalRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Pasquina's_medical_record> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Pesaro
+:Pesaro rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#San_Marino
+:San_Marino rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Simona
+:Simona rdf:type owl:NamedIndividual ;
+        :daughterHasFather :Massimo ;
+        :daughterHasMother :Pasquina ;
+        :hasMedicalRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Simona's_medical_record> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Tania
+:Tania rdf:type owl:NamedIndividual ;
+       :daughterHasFather :Anatoliy ;
+       :daughterHasMother :Nadia ;
+       :hasMedicalRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Tania's_medical_record> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Via_Monte_Bianco_2
+:Via_Monte_Bianco_2 rdf:type owl:NamedIndividual ;
+                    <https://w3id.org/italia/onto/CLV/hasCity> :Pesaro ;
+                    <https://w3id.org/italia/onto/CLV/hasCountry> :Italia .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Via_Romolo_Murri_10
+:Via_Romolo_Murri_10 rdf:type owl:NamedIndividual ;
+                     <https://w3id.org/italia/onto/CLV/hasCity> :Domagnano ;
+                     <https://w3id.org/italia/onto/CLV/hasCountry> :San_Marino .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Viale_Giovanni_Ghirotti_286
+:Viale_Giovanni_Ghirotti_286 rdf:type owl:NamedIndividual ;
+                             <https://w3id.org/italia/onto/CLV/hasCountry> :Italia .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Y-linked_deafness
+:Y-linked_deafness rdf:type owl:NamedIndividual ,
+                            <http://purl.obolibrary.org/obo/DOID_0050738> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#allergic_contact_dermatitis
+:allergic_contact_dermatitis rdf:type owl:NamedIndividual ,
+                                      <http://purl.obolibrary.org/obo/DOID_3042> ;
+                             <http://purl.obolibrary.org/obo/doid#has_symptom> :allergic_reaction .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#allergic_reaction
+:allergic_reaction rdf:type owl:NamedIndividual ,
+                            <http://purl.obolibrary.org/obo/SYMP_0000900> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#appendicitis
+:appendicitis rdf:type owl:NamedIndividual ,
+                       <http://purl.obolibrary.org/obo/DOID_8337> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#asma
+:asma rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#caritlage_disease
+:caritlage_disease rdf:type owl:NamedIndividual ,
+                            <http://purl.obolibrary.org/obo/DOID_1222> ;
+                   <http://purl.obolibrary.org/obo/doid#has_symptom> :inflammation .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#celiac_disease
+:celiac_disease rdf:type owl:NamedIndividual ,
+                         <http://purl.obolibrary.org/obo/DOID_10608> ;
+                <http://purl.obolibrary.org/obo/doid#has_symptom> :constipation ,
+                                                                  :diarrhea ,
+                                                                  :nausea ,
+                                                                  :vomiting .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#colonic_disease
+:colonic_disease rdf:type owl:NamedIndividual ,
+                          <http://purl.obolibrary.org/obo/DOID_5353> ;
+                 <http://purl.obolibrary.org/obo/doid#has_symptom> :inflammation .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#constipation
+:constipation rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#cough
+:cough rdf:type owl:NamedIndividual ,
+                <http://purl.obolibrary.org/obo/SYMP_0000614> ;
+       :is_symptom_of :Covid-19 .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#diarrhea
+:diarrhea rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#duodenum_disease
+:duodenum_disease rdf:type owl:NamedIndividual ,
+                           <http://purl.obolibrary.org/obo/DOID_4072> ;
+                  <http://purl.obolibrary.org/obo/doid#has_symptom> :inflammation .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#examination0001
+:examination0001 rdf:type owl:NamedIndividual ;
+                 :examinationDiseaseReport :appendicitis ;
+                 :isMedicalExaminationOf <http://purl.obolibrary.org/obo/ws-fse-prototype#Elia's_examination_record> ;
+                 :medicalReport "Il paziente presenta il sintomo del vomito, deduco che secondo un mio parere personale il paziente soffre di appendicite"^^rdfs:Literal ;
+                 <https://w3id.org/italia/onto/TI/date> "2021-05-28"^^xsd:date ;
+                 :examinationSymptomRecord :vomiting ;
+                 rdfs:label "examination0001" .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#examination0002
+:examination0002 rdf:type owl:NamedIndividual ;
+                 :examinationDiseaseReport :Covid-19 ;
+                 :isMedicalExaminationOf <http://purl.obolibrary.org/obo/ws-fse-prototype#Oleg's_examination_record> ;
+                 :medicalReport "Il paziente presenta il sintomo del vomito, deduco che secondo un mio parere personale il paziente soffre di appendicite"^^rdfs:Literal ;
+                 <https://w3id.org/italia/onto/TI/date> "2021-05-30"^^xsd:date ;
+                 :examinationSymptomRecord :cough .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#examination0006
+:examination0006 rdf:type owl:NamedIndividual ;
+                 :isMedicalExaminationOf <http://purl.obolibrary.org/obo/ws-fse-prototype#Angelica's_examination_record> ;
+                 :medicalReport "Il paziente presenta il sintomo del vomito, deduco che secondo un mio parere personale il paziente soffre di appendicite"^^rdfs:Literal ;
+                 <https://w3id.org/italia/onto/TI/date> "2021-04-20"^^xsd:date ;
+                 :examinationSymptomRecord :diarrhea .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#inflammation
+:inflammation rdf:type owl:NamedIndividual ,
+                       <http://purl.obolibrary.org/obo/SYMP_0000061> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#insomnia
+:insomnia rdf:type owl:NamedIndividual ,
+                   <http://purl.obolibrary.org/obo/SYMP_0000571> ;
+          <http://purl.obolibrary.org/obo/doid#has_symptom> :sleep_disturbance .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#interstitial_lung_disease
+:interstitial_lung_disease rdf:type owl:NamedIndividual ,
+                                    <http://purl.obolibrary.org/obo/DOID_3082> ;
+                           :personHasSymptom :inflammation ,
+                                             :shortness_of_breath .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#lymphatic_system_disease
+:lymphatic_system_disease rdf:type owl:NamedIndividual ,
+                                   <http://purl.obolibrary.org/obo/DOID_75> ;
+                          <http://purl.obolibrary.org/obo/doid#has_symptom> :inflammation .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#nasal_cavity_disease
+:nasal_cavity_disease rdf:type owl:NamedIndividual ,
+                               <http://purl.obolibrary.org/obo/DOID_2163> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#nausea
+:nausea rdf:type owl:NamedIndividual ,
+                 <http://purl.obolibrary.org/obo/SYMP_0000458> ;
+        :is_symptom_of :appendicitis .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#shortness_of_breath
+:shortness_of_breath rdf:type owl:NamedIndividual ,
+                              <http://purl.obolibrary.org/obo/SYMP_0019153> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#sleep_disturbance
+:sleep_disturbance rdf:type owl:NamedIndividual ,
+                            <http://purl.obolibrary.org/obo/SYMP_0000566> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#stridor
+:stridor rdf:type owl:NamedIndividual ,
+                  <http://purl.obolibrary.org/obo/SYMP_0000513> ;
+         <http://purl.obolibrary.org/obo/doid#has_symptom> :stridor .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#vomiting
+:vomiting rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Anatoliy's_disease_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Anatoliy's_disease_record> rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Anatoliy's_medical_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Anatoliy's_medical_record> rdf:type owl:NamedIndividual ;
+                                                                            :hasDiseaseRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Anatoliy's_disease_record> ;
+                                                                            :hasExaminationRecord :Anatoliy_examination_record ;
+                                                                            :hasSymptomRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Anatoliy's_symptom_record> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Anatoliy's_symptom_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Anatoliy's_symptom_record> rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Angelic's_medical_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Angelic's_medical_record> rdf:type owl:NamedIndividual ;
+                                                                           :hasDiseaseRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Angelica's_disease_record> ;
+                                                                           :hasExaminationRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Angelica's_examination_record> ;
+                                                                           :hasSymptomRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Angelica's_symptom_record> ;
+                                                                           rdfs:label "Angelica's_medical_record" .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Angelica's_disease_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Angelica's_disease_record> rdf:type owl:NamedIndividual ;
+                                                                            :hasDisease :Covid-19 .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Angelica's_examination_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Angelica's_examination_record> rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Angelica's_symptom_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Angelica's_symptom_record> rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Aurora's_disease_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Aurora's_disease_record> rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Aurora's_examination_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Aurora's_examination_record> rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Aurora's_medical_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Aurora's_medical_record> rdf:type owl:NamedIndividual ;
+                                                                          :hasDiseaseRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Aurora's_disease_record> ;
+                                                                          :hasExaminationRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Aurora's_examination_record> ;
+                                                                          :hasSymptomRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Aurora's_symptom_record> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Aurora's_symptom_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Aurora's_symptom_record> rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Elia's_disease_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Elia's_disease_record> rdf:type owl:NamedIndividual ;
+                                                                        :hasDisease :Covid-19 .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Elia's_examination_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Elia's_examination_record> rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Elia's_medical_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Elia's_medical_record> rdf:type owl:NamedIndividual ;
+                                                                        :hasDiseaseRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Elia's_disease_record> ;
+                                                                        :hasExaminationRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Elia's_examination_record> ;
+                                                                        :hasSymptomRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Elia's_symptom_record> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Elia's_symptom_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Elia's_symptom_record> rdf:type owl:NamedIndividual ;
+                                                                        :personHasSymptom :diarrhea ,
+                                                                                          :inflammation ,
+                                                                                          :insomnia .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Francesca's_disease_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Francesca's_disease_record> rdf:type owl:NamedIndividual ;
+                                                                             :hasDisease :Covid-19 .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Francesca's_examination_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Francesca's_examination_record> rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Francesca's_job_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Francesca's_job_record> rdf:type owl:NamedIndividual ;
+                                                                         :hasDoneExamination :Examination0004 ,
+                                                                                             :examination0002 ,
+                                                                                             :examination0006 .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Francesca's_medical_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Francesca's_medical_record> rdf:type owl:NamedIndividual ;
+                                                                             :hasDiseaseRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Francesca's_disease_record> ;
+                                                                             :hasExaminationRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Francesca's_examination_record> ;
+                                                                             :hasSymptomRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Francesca's_symptom_record> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Francesca's_symptom_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Francesca's_symptom_record> rdf:type owl:NamedIndividual ;
+                                                                             :personHasSymptom :nausea .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Irina's_disease_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Irina's_disease_record> rdf:type owl:NamedIndividual ;
+                                                                         :hasDisease :duodenum_disease .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Irina's_examination_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Irina's_examination_record> rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Irina's_medical_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Irina's_medical_record> rdf:type owl:NamedIndividual ;
+                                                                         :hasDiseaseRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Irina's_disease_record> ;
+                                                                         :hasExaminationRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Irina's_examination_record> ;
+                                                                         :hasSymptomRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Irina's_symptom_record> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Irina's_symptom_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Irina's_symptom_record> rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Ivan's_disease_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Ivan's_disease_record> rdf:type owl:NamedIndividual ;
+                                                                        :hasDisease :Danon_Disease ,
+                                                                                    :Y-linked_deafness ,
+                                                                                    :appendicitis .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Ivan's_examination_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Ivan's_examination_record> rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Ivan's_medical_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Ivan's_medical_record> rdf:type owl:NamedIndividual ;
+                                                                        :hasDiseaseRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Ivan's_disease_record> ;
+                                                                        :hasExaminationRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Ivan's_examination_record> ;
+                                                                        :hasSymptomRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Ivan's_symptom_record> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Ivan's_symptom_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Ivan's_symptom_record> rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Mario's_disease_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Mario's_disease_record> rdf:type owl:NamedIndividual ;
+                                                                         :hasDisease :caritlage_disease .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Mario's_examination_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Mario's_examination_record> rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Mario's_medical_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Mario's_medical_record> rdf:type owl:NamedIndividual ;
+                                                                         :hasDiseaseRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Mario's_disease_record> ;
+                                                                         :hasExaminationRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Mario's_examination_record> ;
+                                                                         :hasSymptomRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Mario's_symptom_record> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Mario's_symptom_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Mario's_symptom_record> rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Massimo's_Symptom_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Massimo's_Symptom_record> rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Massimo's_disease_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Massimo's_disease_record> rdf:type owl:NamedIndividual ;
+                                                                           :hasDisease :lymphatic_system_disease .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Massimo's_examination_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Massimo's_examination_record> rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Massimo's_medical_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Massimo's_medical_record> rdf:type owl:NamedIndividual ;
+                                                                           :hasDiseaseRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Massimo's_disease_record> ;
+                                                                           :hasExaminationRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Massimo's_examination_record> ;
+                                                                           :hasSymptomRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Massimo's_Symptom_record> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Nadia's_disease_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Nadia's_disease_record> rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Nadia's_examination_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Nadia's_examination_record> rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Nadia's_medical_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Nadia's_medical_record> rdf:type owl:NamedIndividual ;
+                                                                         :hasDiseaseRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Nadia's_disease_record> ;
+                                                                         :hasExaminationRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Nadia's_examination_record> ;
+                                                                         :hasSymptomRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Nadia's_symptom_record> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Nadia's_symptom_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Nadia's_symptom_record> rdf:type owl:NamedIndividual ;
+                                                                         :personHasSymptom :inflammation ,
+                                                                                           :shortness_of_breath .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Nelson's_disease_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Nelson's_disease_record> rdf:type owl:NamedIndividual ;
+                                                                          :hasDisease :nasal_cavity_disease .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Nelson's_job_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Nelson's_job_record> rdf:type owl:NamedIndividual ;
+                                                                      :hasDoneExamination :Examination0003 ,
+                                                                                          :Examination0005 ,
+                                                                                          :examination0001 .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Nelson's_medical_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Nelson's_medical_record> rdf:type owl:NamedIndividual ;
+                                                                          :hasDiseaseRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Nelson's_disease_record> ;
+                                                                          :hasSymptomRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Nelson's_symptom_record> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Nelson's_symptom_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Nelson's_symptom_record> rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Oleg's_disease_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Oleg's_disease_record> rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Oleg's_examination_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Oleg's_examination_record> rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Oleg's_medical_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Oleg's_medical_record> rdf:type owl:NamedIndividual ;
+                                                                        :hasDiseaseRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Oleg's_disease_record> ;
+                                                                        :hasExaminationRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Oleg's_examination_record> ;
+                                                                        :hasSymptomRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Oleg's_symptom_record> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Oleg's_symptom_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Oleg's_symptom_record> rdf:type owl:NamedIndividual ;
+                                                                        :personHasSymptom :allergic_reaction .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Pasquina's_disease_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Pasquina's_disease_record> rdf:type owl:NamedIndividual ;
+                                                                            :hasDisease :interstitial_lung_disease .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Pasquina's_examination_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Pasquina's_examination_record> rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Pasquina's_medical_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Pasquina's_medical_record> rdf:type owl:NamedIndividual ;
+                                                                            :hasDiseaseRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Pasquina's_disease_record> ;
+                                                                            :hasExaminationRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Pasquina's_examination_record> ;
+                                                                            :hasSymptomRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Pasquina's_symptom_record> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Pasquina's_symptom_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Pasquina's_symptom_record> rdf:type owl:NamedIndividual ;
+                                                                            :personHasSymptom :stridor .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Simona's_disease_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Simona's_disease_record> rdf:type owl:NamedIndividual ;
+                                                                          :hasDisease :celiac_disease .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Simona's_examination_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Simona's_examination_record> rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Simona's_medical_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Simona's_medical_record> rdf:type owl:NamedIndividual ;
+                                                                          :hasDiseaseRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Simona's_disease_record> ;
+                                                                          :hasExaminationRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Simona's_examination_record> ;
+                                                                          :hasSymptomRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Simona's_symptom_record> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Simona's_symptom_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Simona's_symptom_record> rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Tania's_disease_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Tania's_disease_record> rdf:type owl:NamedIndividual ;
+                                                                         :hasDisease :colonic_disease .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Tania's_examination_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Tania's_examination_record> rdf:type owl:NamedIndividual .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Tania's_medical_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Tania's_medical_record> rdf:type owl:NamedIndividual ;
+                                                                         :hasDiseaseRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Tania's_disease_record> ;
+                                                                         :hasExaminationRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Tania's_examination_record> ;
+                                                                         :hasSymptomRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Tania's_symptom_record> .
+
+
+###  http://purl.obolibrary.org/obo/ws-fse-prototype#Tania's_symptom_record
+<http://purl.obolibrary.org/obo/ws-fse-prototype#Tania's_symptom_record> rdf:type owl:NamedIndividual .
+
+
+#################################################################
+#    Rules
+#################################################################
+
+:diseaseRecord rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:diseaseX rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:medicalRecord rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:person rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:fatherDiseaseRecord rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:father rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:fatherMedicalRecord rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:parentDiseaseRecord rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:parent rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:parentMedicalRecord rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:diseaseRecordX rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:medicalRecordX rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:personX rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:residence rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:child rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:mother rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:taxCode rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment ""^^xsd:string ;
+   rdfs:label "checkResidence"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <https://w3id.org/italia/onto/CPV/hasCurrentResidence> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :person ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :residence
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> <https://w3id.org/italia/onto/CPV/taxCode> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :person ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :taxCode
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> <https://w3id.org/italia/onto/CPV/taxCode> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :personX ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> :taxCode
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <https://w3id.org/italia/onto/CPV/hasCurrentResidence> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :personX ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :residence
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment ""^^xsd:string ;
+   rdfs:label "fatherGeneticalDisease"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :DiseaseRecord ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :diseaseRecord
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#classPredicate> <http://purl.obolibrary.org/obo/DOID_0050738> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :diseaseX
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> :isMedicalRecordOf ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :medicalRecord ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> :person
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :isDiseaseRecordOf ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :diseaseRecord ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :medicalRecord
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasDisease ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :fatherDiseaseRecord ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> :diseaseX
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasMedicalRecord ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :father ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> :fatherMedicalRecord
+                                                                                                            ] ;
+                                                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#propertyPredicate> :sonHasFather ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> :person ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument2> :father
+                                                                                                                       ] ;
+                                                                                                             rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                        rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasDiseaseRecord ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument1> :fatherMedicalRecord ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument2> :fatherDiseaseRecord
+                                                                                                                                  ] ;
+                                                                                                                        rdf:rest rdf:nil
+                                                                                                                      ]
+                                                                                                           ]
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasFatherGeneticDisease ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :diseaseRecord ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :diseaseX
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment ""^^xsd:string ;
+   rdfs:label "parentalGeneticalDisease"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasDisease ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :parentDiseaseRecord ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :diseaseX
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :isDiseaseRecordOf ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :diseaseRecord ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :medicalRecord
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> <http://purl.obolibrary.org/obo/DOID_0080009> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :diseaseX
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> <https://w3id.org/italia/onto/CPV/isChildOf> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :person ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :parent
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasDiseaseRecord ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :parentMedicalRecord ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> :parentDiseaseRecord
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> :isMedicalRecordOf ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :medicalRecord ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> :person
+                                                                                                            ] ;
+                                                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#classPredicate> :DiseaseRecord ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> :diseaseRecord
+                                                                                                                       ] ;
+                                                                                                             rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                        rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasMedicalRecord ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument1> :parent ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument2> :parentMedicalRecord
+                                                                                                                                  ] ;
+                                                                                                                        rdf:rest rdf:nil
+                                                                                                                      ]
+                                                                                                           ]
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :canHaveParentGeneticalDisease ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :diseaseRecord ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :diseaseX
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment ""^^xsd:string ;
+   rdfs:label "airTrasmissionDisease"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :DiseaseRecord ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :diseaseRecord
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://purl.obolibrary.org/obo/RO_0002451> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :diseaseX ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :Airborne
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> :isMedicalRecordOf ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :medicalRecord ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> :person
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasDisease ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :diseaseRecordX ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :diseaseX
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> :isDiseaseRecordOf ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :diseaseRecord ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> :medicalRecord
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasDiseaseRecord ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :medicalRecordX ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> :diseaseRecordX
+                                                                                                            ] ;
+                                                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DifferentIndividualsAtom> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> :personX ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument2> :person
+                                                                                                                       ] ;
+                                                                                                             rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                        rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasMedicalRecord ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument1> :personX ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument2> :medicalRecordX
+                                                                                                                                  ] ;
+                                                                                                                        rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                                   rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#propertyPredicate> <https://w3id.org/italia/onto/CPV/hasCurrentResidence> ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#argument1> :person ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#argument2> :residence
+                                                                                                                                             ] ;
+                                                                                                                                   rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                                              rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                                                                          <http://www.w3.org/2003/11/swrl#propertyPredicate> <https://w3id.org/italia/onto/CPV/hasCurrentResidence> ;
+                                                                                                                                                          <http://www.w3.org/2003/11/swrl#argument1> :personX ;
+                                                                                                                                                          <http://www.w3.org/2003/11/swrl#argument2> :residence
+                                                                                                                                                        ] ;
+                                                                                                                                              rdf:rest rdf:nil
+                                                                                                                                            ]
+                                                                                                                                 ]
+                                                                                                                      ]
+                                                                                                           ]
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :canHaveAirTrasmittedDisease ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :diseaseRecord ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :diseaseX
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment ""^^xsd:string ;
+   rdfs:label "sisterRelationship"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :isFatherOf ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :father ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :child
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :isMotherOf ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :mother ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :child
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> :daughterHasMother ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :person ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> :mother
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DifferentIndividualsAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :person ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :child
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> <https://w3id.org/italia/onto/CPV/Person> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :person
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> :daughterHasFather ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :person ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> :father
+                                                                                                            ] ;
+                                                                                                  rdf:rest rdf:nil
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :isSisterOf ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :person ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :child
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment ""^^xsd:string ;
+   rdfs:label "brotherRelationship"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :isFatherOf ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :father ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :child
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :isMotherOf ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :mother ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :child
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> :sonHasMother ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :person ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> :mother
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DifferentIndividualsAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :person ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :child
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> :sonHasFather ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :person ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> :father
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#classPredicate> <https://w3id.org/italia/onto/CPV/Person> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :person
+                                                                                                            ] ;
+                                                                                                  rdf:rest rdf:nil
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :isBrotherOf ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :person ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :child
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
