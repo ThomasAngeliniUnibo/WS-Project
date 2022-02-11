@@ -1,42 +1,25 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  Card as MuiCard,
-  CardActions,
-  CardContent,
-  Typography,
-} from "@mui/material";
-import React, { FC } from "react";
-import * as colors from "@mui/material/colors";
+import { Avatar, Box, Paper, Typography } from "@mui/material";
+import { FC } from "react";
+import { Patient } from "../model/patient";
 
-type Person = {
-  avatar: string;
-  name: string;
-};
-
-export const PatientCard: FC<Person> = ({ avatar, name }) => {
-  const colorsArray = Object.values(colors);
-  const n = avatar[0].charCodeAt(0) % colorsArray.length;
-
+export const PatientCard: FC<Patient> = ({
+  firstName,
+  lastName,
+  fiscalCode,
+  birthDate,
+}) => {
+  const avatar = firstName.charAt(0) + lastName.charAt(0);
   return (
-    <Box sx={{ minWidth: 275 }}>
-      <MuiCard variant="outlined">
-        <CardContent>
-          <Box display="flex" flexDirection="row">
-            <Avatar sx={{ mr: 2, bgcolor: colorsArray[n][600] }}>
-              {avatar}
-            </Avatar>
-            <Box>
-              <Typography>{name}</Typography>
-              <Typography variant="subtitle2">Paziente</Typography>
-            </Box>
-          </Box>
-        </CardContent>
-        <CardActions>
-          <Button size="small">Learn more</Button>
-        </CardActions>
-      </MuiCard>
-    </Box>
+    <Paper sx={{ p: 4 }}>
+      <Avatar>{avatar}</Avatar>
+      <Typography variant="caption">Fiscal code</Typography>
+      <Typography>{fiscalCode}</Typography>
+      <Typography variant="caption">First name</Typography>
+      <Typography>{firstName}</Typography>
+      <Typography variant="caption">Last name</Typography>
+      <Typography>{lastName}</Typography>
+      <Typography variant="caption">Birth date</Typography>
+      <Typography>{birthDate.toLocaleDateString("en-US")}</Typography>
+    </Paper>
   );
 };

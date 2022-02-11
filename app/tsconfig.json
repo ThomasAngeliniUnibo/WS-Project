@@ -6,6 +6,7 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "jsx": "preserve",
+    "types": ["vite/client"]
   },
   "include": ["src/**/*.tsx", "src/**/*.ts"]
 }
