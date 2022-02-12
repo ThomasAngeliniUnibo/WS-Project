@@ -166,10 +166,10 @@
               rdfs:label "is activity of"@en .
 
 
-###  http://www.semanticweb.org/health-track-ontology#isCardioActivity
-:isCardioActivity rdf:type owl:ObjectProperty ;
-                  rdfs:subPropertyOf :isActivityOf ;
-                  rdfs:label "is cardio activity of"@en .
+###  http://www.semanticweb.org/health-track-ontology#isCardioActivityOf
+:isCardioActivityOf rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :isActivityOf ;
+                    rdfs:label "is cardio activity of"@en .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#isEpisodeOf
@@ -196,10 +196,10 @@
              rdfs:label "is tracked by"@en .
 
 
-###  http://www.semanticweb.org/health-track-ontology#isWalkingActivity
-:isWalkingActivity rdf:type owl:ObjectProperty ;
-                   rdfs:subPropertyOf :isCardioActivity ;
-                   rdfs:label "is walking activty of"@en .
+###  http://www.semanticweb.org/health-track-ontology#isWalkingActivityOf
+:isWalkingActivityOf rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf :isCardioActivityOf ;
+                     rdfs:label "is walking activty of"@en .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#medicalRecordHasAnalysis
@@ -338,6 +338,11 @@
                                                                   :hasAnalysis :analysis0001 .
 
 
+###  http://www.semanticweb.org/health-track-ontology#Cardio0001
+:Cardio0001 rdf:type owl:NamedIndividual ,
+                     :Cardio .
+
+
 ###  http://www.semanticweb.org/health-track-ontology#Frequency
 :Frequency rdf:type owl:NamedIndividual ,
                     <https://w3id.org/italia/onto/MU/MeasureType> .
@@ -471,20 +476,20 @@ _:genid20 <https://w3id.org/italia/onto/MU/hasMeasureType> :Mass ;
                                                             ] ;
                    :steps 8000 .
 
-_:genid21 :hasMeasureAggregator :min ;
+_:genid21 :hasMeasureAggregator :max ;
+           <https://w3id.org/italia/onto/MU/hasMeasureType> :Frequency ;
+           <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :bpm ;
+           <https://w3id.org/italia/onto/MU/value> 145 .
+
+_:genid22 :hasMeasureAggregator :min ;
            <https://w3id.org/italia/onto/MU/hasMeasureType> :Frequency ;
            <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :bpm ;
            <https://w3id.org/italia/onto/MU/value> 70 .
 
-_:genid22 <https://w3id.org/italia/onto/MU/hasMeasureType> :Length ;
+_:genid23 <https://w3id.org/italia/onto/MU/hasMeasureType> :Length ;
            <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :km ;
            :hasMeasureAggregator 100 ;
            <https://w3id.org/italia/onto/MU/value> 4 .
-
-_:genid23 :hasMeasureAggregator :max ;
-           <https://w3id.org/italia/onto/MU/hasMeasureType> :Frequency ;
-           <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :bpm ;
-           <https://w3id.org/italia/onto/MU/value> 145 .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#marioActivity0002
@@ -593,6 +598,8 @@ _:genid30 :hasMeasureAggregator :min ;
 
 :p rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
+:c rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
 :s rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
 [ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
@@ -632,6 +639,41 @@ _:genid30 :hasMeasureAggregator :min ;
 
 [ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
    rdfs:comment ""^^xsd:string ;
+   rdfs:label "checkCardio"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Cardio ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :c
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasEpisode ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :c
+                                                                ] ;
+                                                      rdf:rest rdf:nil
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :isCardioActivityOf ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :c ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :p
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasCardioActivity ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :c
+                                                                ] ;
+                                                      rdf:rest rdf:nil
+                                                    ]
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment ""^^xsd:string ;
    rdfs:label "checkSnapshot"^^xsd:string ;
    rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
    <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
@@ -659,6 +701,41 @@ _:genid30 :hasMeasureAggregator :min ;
                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasSnapshot ;
                                                                   <http://www.w3.org/2003/11/swrl#argument1> :p ;
                                                                   <http://www.w3.org/2003/11/swrl#argument2> :s
+                                                                ] ;
+                                                      rdf:rest rdf:nil
+                                                    ]
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment ""^^xsd:string ;
+   rdfs:label "checkWalking"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Walking ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :c
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasEpisode ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :c
+                                                                ] ;
+                                                      rdf:rest rdf:nil
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :isWalkingActivityOf ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :c ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :p
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasWalkingActivity ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :c
                                                                 ] ;
                                                       rdf:rest rdf:nil
                                                     ]
