@@ -8,17 +8,18 @@ type Search = {
 };
 
 const source = ({skip, limit, query = ''}: Paginated & Search) => `
-SELECT ?firstName ?lastName 
+SELECT ?fiscalCode ?firstName ?lastName
 WHERE {
-    ?p a hto:Person ;
-    hto:firstName ?firstName ;
-    hto:lastName ?lastName .
+  ?s cpv:taxCode ?fiscalCode ;
+      cpv:givenName ?firstName ; 
+      cpv:familyName ?lastName .
+    
 
-    ${
-  query !== ''
-    ? `FILTER(regex(?firstName, "${query}", "i") || regex(?lastName, "${query}", "i")) .`
-    : ''
-}
+  ${
+query !== ''
+  ? `FILTER(REGEX(CONCAT(?firstName, " ", ?lastName), "${query}", "i"))`
+  : ''
+  }
 }
 OFFSET ${skip}
 LIMIT ${limit}
@@ -29,5 +30,4 @@ export const fetchAllPatients = (params: Paginated & Search) =>
     source,
     reasoning: true,
   }, params)
-    // .then((x) => x.map(pickValue('firstName', 'lastName', 'fiscalCode')) as Pick<Patient, 'firstName' | 'lastName' | 'fiscalCode'>[]);
-    .then((x) => x.map(pickValue('firstName', 'lastName')) as Pick<Patient, 'firstName' | 'lastName'>[]);
+    .then((x) => x.map(pickValue('firstName', 'lastName', 'fiscalCode')) as Pick<Patient, 'firstName' | 'lastName' | 'fiscalCode'>[]);

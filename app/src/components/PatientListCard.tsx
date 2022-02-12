@@ -9,9 +9,9 @@ import {
 } from "@mui/material";
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
-import * as colors from "@mui/material/colors";
 import { useHover } from "../hooks/useHover";
 import { Patient } from "../model/patient";
+import { avatarColors, avatarLetters } from "../utils/avatar";
 
 type PatientListCardProps = Pick<
   Patient,
@@ -22,15 +22,12 @@ export const PatientListCard: FC<PatientListCardProps> = ({
   lastName,
   fiscalCode,
 }) => {
-  const avatar = firstName.charAt(0) + lastName.charAt(0);
+  const avatar = avatarLetters(firstName, lastName);
+  const bgcolor = avatarColors(firstName, lastName);
   const name = firstName + " " + lastName;
-  const colorsArray = Object.values(colors);
-  const n = avatar[0].charCodeAt(0) % colorsArray.length;
   const navigate = useNavigate();
 
   const [hover, props] = useHover();
-
-  console.log(fiscalCode, hover);
 
   return (
     <Box sx={{ minWidth: 275 }}>
@@ -44,9 +41,7 @@ export const PatientListCard: FC<PatientListCardProps> = ({
       >
         <CardContent>
           <Box display="flex" flexDirection="row">
-            <Avatar sx={{ mr: 2, bgcolor: colorsArray[n][600] }}>
-              {avatar}
-            </Avatar>
+            <Avatar sx={{ mr: 2, bgcolor }}>{avatar}</Avatar>
             <Box>
               <Typography>{name}</Typography>
               <Typography variant="subtitle2">Paziente</Typography>

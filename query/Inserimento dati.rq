@@ -1,0 +1,67 @@
+INSERT DATA {
+
+    fse:Anatoliy   cpv:dateOfBirth "1950-09-28"^^xsd:date ;
+                cpv:givenName "Anatoliy" ;
+                cpv:familyName "Konchenkov" ; 
+                cpv:taxCode "KNCNTL50N28G479A" .
+    
+    fse:Oleg   cpv:dateOfBirth "1996-09-10"^^xsd:date ;
+            cpv:givenName "Oleg" ;
+            cpv:familyName "Konchenkov" ; 
+            cpv:taxCode "KNCLGO96N10G479K" .
+    
+    fse:Tania  cpv:dateOfBirth "1970-02-20"^^xsd:date ;
+            cpv:givenName "Tania" ;
+            cpv:familyName "Konchenkov" ; 
+            cpv:taxCode "KNCTNA70B60G479I" .
+    
+    fse:Nadia  cpv:dateOfBirth "1953-04-15"^^xsd:date ;
+               cpv:givenName "Nadia" ; 
+               cpv:familyName "Konchenkov" ; 
+               cpv:taxCode "KNCNDA53D55G479C" .
+    
+
+    fse:Elia cpv:dateOfBirth "1998-04-15"^^xsd:date ;
+               cpv:givenName "Elia" ; 
+               cpv:familyName "Rossi" ; 
+               cpv:taxCode "RSSLEI98D15G479C" .
+    
+    fse:Ivan cpv:dateOfBirth "1980-04-14"^^xsd:date ;
+               cpv:givenName "Ivan" ; 
+               cpv:familyName "Rossi" ; 
+               cpv:taxCode "RSSVNI80D14G479C" .
+    
+    fse:Simona cpv:dateOfBirth "1981-08-08"^^xsd:date ; 
+               cpv:givenName "Simona" ; 
+               cpv:familyName "Verdi" ; 
+               cpv:taxCode "VRDSMN81P48L500B" .
+    
+    fse:Mario  cpv:dateOfBirth "1946-01-01"^^xsd:date ; 
+               cpv:givenName "Mario" ; 
+               cpv:familyName "Rossi" ; 
+               cpv:taxCode "RSSMRA46A01G479M" .
+
+    fse:Pasquina cpv:dateOfBirth "1949-04-04"^^xsd:date ; 
+                 cpv:givenName "Pasquina" ; 
+                 cpv:familyName "Neri" ; 
+                 cpv:taxCode "NREPSQ49D44L500E" .
+
+    fse:Massimo  cpv:dateOfBirth "1951-07-08"^^xsd:date ; 
+                 cpv:givenName "Massimo" ; 
+                 cpv:familyName "Viola" ; 
+                 cpv:taxCode "VLIMSM51L08G479M" .
+
+    fse:Angelica cpv:dateOfBirth "1997-07-19"^^xsd:date ;
+              cpv:givenName "Angelica" ;
+              cpv:familyName "Rossi" ; 
+              cpv:taxCode "RSSNGL97L59G479M" .
+    
+    fse:Aurora cpv:dateOfBirth "1950-05-05"^^xsd:date ;
+            cpv:givenName "Aurora" ;
+            cpv:familyName "Bianchi" ; 
+            cpv:taxCode "BNCRRA50F45G479P" .
+    
+    fse:Elia cpv:hasCurrentResidence fse:Via_Monte_Bianco_2 .
+
+    fse:Pesaro l0:name "Pesaro" .
+}

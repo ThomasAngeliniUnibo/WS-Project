@@ -12,7 +12,6 @@ import { SnapshotCard } from "../components/SnapshotCard";
 
 export const Paziente: FC = () => {
   const { fiscalCode } = useParams();
-  const [patient, setPatient] = useState();
   const { data, status } = useQuery(["fetchPatient", fiscalCode], () =>
     fetchPatient({ fiscalCode })
   );
