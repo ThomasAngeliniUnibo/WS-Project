@@ -1,11 +1,8 @@
 import { Patient } from '../model/patient';
 import { pickValue } from '../utils/pickValue';
 import {Paginated} from './paginated';
+import { Search } from './search';
 import {stardogQuery} from './types';
-
-type Search = {
-  query?: string;
-};
 
 const source = ({skip, limit, query = ''}: Paginated & Search) => `
 SELECT ?fiscalCode ?firstName ?lastName
@@ -28,6 +25,6 @@ LIMIT ${limit}
 export const fetchAllPatients = (params: Paginated & Search) => 
   stardogQuery({
     source,
-    reasoning: true,
+    reasoning: false,
   }, params)
     .then((x) => x.map(pickValue('firstName', 'lastName', 'fiscalCode')) as Pick<Patient, 'firstName' | 'lastName' | 'fiscalCode'>[]);
