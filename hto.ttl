@@ -191,8 +191,6 @@
 
 ###  http://www.semanticweb.org/health-track-ontology#isTrackedBy
 :isTrackedBy rdf:type owl:ObjectProperty ;
-             rdfs:domain :Episode ;
-             rdfs:range :Device ;
              rdfs:label "is tracked by"@en .
 
 
@@ -476,20 +474,20 @@ _:genid20 <https://w3id.org/italia/onto/MU/hasMeasureType> :Mass ;
                                                             ] ;
                    :steps 8000 .
 
-_:genid21 :hasMeasureAggregator :max ;
-           <https://w3id.org/italia/onto/MU/hasMeasureType> :Frequency ;
-           <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :bpm ;
-           <https://w3id.org/italia/onto/MU/value> 145 .
+_:genid21 <https://w3id.org/italia/onto/MU/hasMeasureType> :Length ;
+           <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :km ;
+           :hasMeasureAggregator 100 ;
+           <https://w3id.org/italia/onto/MU/value> 4 .
 
 _:genid22 :hasMeasureAggregator :min ;
            <https://w3id.org/italia/onto/MU/hasMeasureType> :Frequency ;
            <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :bpm ;
            <https://w3id.org/italia/onto/MU/value> 70 .
 
-_:genid23 <https://w3id.org/italia/onto/MU/hasMeasureType> :Length ;
-           <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :km ;
-           :hasMeasureAggregator 100 ;
-           <https://w3id.org/italia/onto/MU/value> 4 .
+_:genid23 :hasMeasureAggregator :max ;
+           <https://w3id.org/italia/onto/MU/hasMeasureType> :Frequency ;
+           <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :bpm ;
+           <https://w3id.org/italia/onto/MU/value> 145 .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#marioActivity0002
@@ -522,24 +520,24 @@ _:genid25 :hasMeasureAggregator :max ;
                                                             ] ;
                    :steps 12000 .
 
-_:genid27 :hasMeasureAggregator :max ;
+_:genid27 :hasMeasureAggregator :min ;
            <https://w3id.org/italia/onto/MU/hasMeasureType> :Frequency ;
            <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :bpm ;
-           <https://w3id.org/italia/onto/MU/value> 135 .
+           <https://w3id.org/italia/onto/MU/value> 65 .
 
 _:genid28 :hasMeasureAggregator :avg ;
            <https://w3id.org/italia/onto/MU/hasMeasureType> :Frequency ;
            <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :bpm ;
            <https://w3id.org/italia/onto/MU/value> 96 .
 
-_:genid29 <https://w3id.org/italia/onto/MU/hasMeasureType> :Length ;
-           <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :km ;
-           <https://w3id.org/italia/onto/MU/value> 6 .
-
-_:genid30 :hasMeasureAggregator :min ;
+_:genid29 :hasMeasureAggregator :max ;
            <https://w3id.org/italia/onto/MU/hasMeasureType> :Frequency ;
            <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :bpm ;
-           <https://w3id.org/italia/onto/MU/value> 65 .
+           <https://w3id.org/italia/onto/MU/value> 135 .
+
+_:genid30 <https://w3id.org/italia/onto/MU/hasMeasureType> :Length ;
+           <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :km ;
+           <https://w3id.org/italia/onto/MU/value> 6 .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#marioFitnessTracker
