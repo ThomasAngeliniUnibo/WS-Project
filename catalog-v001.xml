@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="Imports Wizard Entry" name="https://w3id.org/italia/onto/TI/0.8" uri="https://w3id.org/italia/onto/TI"/>
+    <uri id="Imports Wizard Entry" name="https://w3id.org/italia/onto/MU/0.4" uri="https://w3id.org/italia/onto/MU"/>
+    <uri id="Imports Wizard Entry" name="https://w3id.org/italia/onto/CPV/0.7" uri="https://w3id.org/italia/onto/CPV"/>
     <uri id="User Entered Import Resolution" name="https://w3id.org/italia/onto/COV" uri="imports/WS-project-fse.owl"/>
     <uri id="User Entered Import Resolution" name="https://w3id.org/italia/onto/MU" uri="imports/WS-project-fse.owl"/>
     <uri id="User Entered Import Resolution" name="https://w3id.org/italia/onto/TI" uri="imports/ti.owl"/>

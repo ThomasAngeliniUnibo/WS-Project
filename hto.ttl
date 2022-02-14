@@ -1,7 +1,7 @@
 @prefix : <http://www.semanticweb.org/health-track-ontology#> .
-@prefix mu: <https://w3id.org/italia/onto/MU#> .
+@prefix mu: <https://w3id.org/italia/onto/MU/> .
 @prefix ti: <https://w3id.org/italia/onto/TI#> .
-@prefix cpv: <https://w3id.org/italia/onto/CPV#> .
+@prefix cpv: <https://w3id.org/italia/onto/CPV/> .
 @prefix fma: <http://purl.obolibrary.org/obo/fma.owl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -21,19 +21,19 @@
 #################################################################
 
 ###  https://w3id.org/italia/onto/MU/hasMeasureType
-<https://w3id.org/italia/onto/MU/hasMeasureType> rdf:type owl:AnnotationProperty .
+mu:hasMeasureType rdf:type owl:AnnotationProperty .
 
 
 ###  https://w3id.org/italia/onto/MU/hasMeasurementUnit
-<https://w3id.org/italia/onto/MU/hasMeasurementUnit> rdf:type owl:AnnotationProperty .
+mu:hasMeasurementUnit rdf:type owl:AnnotationProperty .
 
 
 ###  https://w3id.org/italia/onto/MU/hasValue
-<https://w3id.org/italia/onto/MU/hasValue> rdf:type owl:AnnotationProperty .
+mu:hasValue rdf:type owl:AnnotationProperty .
 
 
 ###  https://w3id.org/italia/onto/MU/value
-<https://w3id.org/italia/onto/MU/value> rdf:type owl:AnnotationProperty .
+mu:value rdf:type owl:AnnotationProperty .
 
 
 ###  https://w3id.org/italia/onto/TI/atTime
@@ -116,8 +116,7 @@
 ###  http://www.semanticweb.org/health-track-ontology#hasEpisode
 :hasEpisode rdf:type owl:ObjectProperty ;
             owl:inverseOf :isEpisodeOf ;
-            rdf:type owl:InverseFunctionalProperty ;
-            rdfs:domain <https://w3id.org/italia/onto/CPV/Person> ;
+            rdfs:domain cpv:Person ;
             rdfs:range :Episode ;
             rdfs:label "has episode" .
 
@@ -125,8 +124,9 @@
 ###  http://www.semanticweb.org/health-track-ontology#hasMeasureAggregator
 :hasMeasureAggregator rdf:type owl:ObjectProperty ;
                       rdfs:subPropertyOf owl:topObjectProperty ;
-                      rdfs:domain <https://w3id.org/italia/onto/MU/Value> ;
-                      rdfs:range :Measure_Aggregator .
+                      rdfs:domain mu:Value ;
+                      rdfs:range :Measure_Aggregator ;
+                      rdfs:label "measure aggregator"@en .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#hasPhysicalEntity
@@ -173,6 +173,13 @@
                     rdfs:label "is analysis of person"@en .
 
 
+###  http://www.semanticweb.org/health-track-ontology#isBloodAnalysisOfPerson
+:isBloodAnalysisOfPerson rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf :isAnalysisOfPerson ;
+                         rdfs:domain :BloodTest ;
+                         rdfs:label "is blood analysis of person"@en .
+
+
 ###  http://www.semanticweb.org/health-track-ontology#isCardioActivityOf
 :isCardioActivityOf rdf:type owl:ObjectProperty ;
                     rdfs:subPropertyOf :isActivityOf ;
@@ -182,7 +189,6 @@
 ###  http://www.semanticweb.org/health-track-ontology#isEpisodeOf
 :isEpisodeOf rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf owl:topObjectProperty ;
-             rdf:type owl:FunctionalProperty ;
              rdfs:label "is episode of" .
 
 
@@ -220,12 +226,19 @@
 ###  http://www.semanticweb.org/health-track-ontology#personHasAnalysis
 :personHasAnalysis rdf:type owl:ObjectProperty ;
                    rdfs:subPropertyOf :hasEpisode ;
-                   owl:propertyChainAxiom ( <http://purl.obolibrary.org/obo/ws-fse-prototype#hasJobRecord>
-                                            <http://purl.obolibrary.org/obo/ws-fse-prototype#hasDoneExamination>
+                   owl:propertyChainAxiom ( <http://purl.obolibrary.org/obo/ws-fse-prototype#hasMedicalRecord>
+                                            <http://purl.obolibrary.org/obo/ws-fse-prototype#hasExaminationRecord>
                                             <http://purl.obolibrary.org/obo/ws-fse-prototype#hasMedicalExamination>
                                             :hasAnalysis
                                           ) ;
                    rdfs:label "person has analysis"@en .
+
+
+###  http://www.semanticweb.org/health-track-ontology#personHasBloodAnalysis
+:personHasBloodAnalysis rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf :personHasAnalysis ;
+                        rdfs:range :BloodTest ;
+                        rdfs:label "person has blood analysis"@en .
 
 
 ###  https://w3id.org/italia/onto/TI/hasTemporalEntity
@@ -319,8 +332,8 @@
                             owl:someValuesFrom <https://w3id.org/italia/onto/TI/TimeInstant>
                           ] ,
                           [ rdf:type owl:Restriction ;
-                            owl:onProperty <https://w3id.org/italia/onto/MU/hasValue> ;
-                            owl:someValuesFrom <https://w3id.org/italia/onto/MU/Value>
+                            owl:onProperty mu:hasValue ;
+                            owl:someValuesFrom mu:Value
                           ] .
 
 
@@ -332,6 +345,14 @@
 ###  http://www.semanticweb.org/health-track-ontology#Walking
 :Walking rdf:type owl:Class ;
          rdfs:subClassOf :Cardio .
+
+
+###  https://w3id.org/italia/onto/MU/MeasureType
+mu:MeasureType rdf:type owl:Class .
+
+
+###  https://w3id.org/italia/onto/MU/MeasurementUnit
+mu:MeasurementUnit rdf:type owl:Class .
 
 
 ###  https://w3id.org/italia/onto/RO/Role
@@ -362,17 +383,21 @@
 
 ###  http://www.semanticweb.org/health-track-ontology#Frequency
 :Frequency rdf:type owl:NamedIndividual ,
-                    <https://w3id.org/italia/onto/MU/MeasureType> .
+                    mu:MeasureType .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#Length
 :Length rdf:type owl:NamedIndividual ,
-                 <https://w3id.org/italia/onto/MU/MeasureType> .
+                 mu:MeasureType .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#Mass
 :Mass rdf:type owl:NamedIndividual ,
-               <https://w3id.org/italia/onto/MU/MeasureType> .
+               mu:MeasureType .
+
+
+###  http://www.semanticweb.org/health-track-ontology#Snapshot0001
+:Snapshot0001 rdf:type owl:NamedIndividual .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#analysis0001
@@ -387,7 +412,7 @@
 
 ###  http://www.semanticweb.org/health-track-ontology#bpm
 :bpm rdf:type owl:NamedIndividual ,
-              <https://w3id.org/italia/onto/MU/MeasurementUnit> .
+              mu:MeasurementUnit .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#e0
@@ -395,89 +420,90 @@
              :Snapshot .
 
 
+###  http://www.semanticweb.org/health-track-ontology#g_dl
+:g_dl rdf:type owl:NamedIndividual ,
+               mu:MeasurementUnit .
+
+
 ###  http://www.semanticweb.org/health-track-ontology#kg
 :kg rdf:type owl:NamedIndividual ,
-             <https://w3id.org/italia/onto/MU/MeasurementUnit> .
+             mu:MeasurementUnit .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#km
 :km rdf:type owl:NamedIndividual ,
-             <https://w3id.org/italia/onto/MU/MeasurementUnit> .
+             mu:MeasurementUnit .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#luca
 :luca rdf:type owl:NamedIndividual ,
-               <https://w3id.org/italia/onto/CPV/Male> ;
-      <https://w3id.org/italia/onto/CPV/dateOfBirth> "1997-06-14"^^xsd:date ;
-      <https://w3id.org/italia/onto/CPV/familyName> "Rossi"^^xsd:string ;
-      <https://w3id.org/italia/onto/CPV/givenName> "Luca"^^xsd:string ;
-      <https://w3id.org/italia/onto/CPV/taxCode> "RSSLCU97H14G479O"^^xsd:string .
+               cpv:Male ;
+      cpv:dateOfBirth "1997-06-14"^^xsd:date ;
+      cpv:familyName "Rossi"^^xsd:string ;
+      cpv:givenName "Luca"^^xsd:string ;
+      cpv:taxCode "RSSLCU97H14G479O"^^xsd:string .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#luigi
 :luigi rdf:type owl:NamedIndividual ,
-                <https://w3id.org/italia/onto/CPV/Male> ;
-       <https://w3id.org/italia/onto/CPV/dateOfBirth> "1991-01-12"^^xsd:date ;
-       <https://w3id.org/italia/onto/CPV/familyName> "Rossi"^^xsd:string ;
-       <https://w3id.org/italia/onto/CPV/givenName> "Luigi"^^xsd:string ;
-       <https://w3id.org/italia/onto/CPV/taxCode> "RSSLGU91A12G479L"^^xsd:string .
+                cpv:Male ;
+       cpv:dateOfBirth "1991-01-12"^^xsd:date ;
+       cpv:familyName "Rossi"^^xsd:string ;
+       cpv:givenName "Luigi"^^xsd:string ;
+       cpv:taxCode "RSSLGU91A12G479L"^^xsd:string .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#m
 :m rdf:type owl:NamedIndividual ,
-            <https://w3id.org/italia/onto/MU/MeasurementUnit> .
+            mu:MeasurementUnit .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#mario
 :mario rdf:type owl:NamedIndividual ,
-                <https://w3id.org/italia/onto/CPV/Male> ;
+                cpv:Male ;
        :hasEpisode _:genid13 ,
                    _:genid16 ,
                    _:genid19 ,
                    _:genid22 ;
-       <https://w3id.org/italia/onto/CPV/hasRelationshipWith> :luca ,
-                                                              :luigi ;
-       <https://w3id.org/italia/onto/CPV/dateOfBirth> "1990-01-01"^^xsd:date ;
-       <https://w3id.org/italia/onto/CPV/familyName> "Rossi"^^xsd:string ;
-       <https://w3id.org/italia/onto/CPV/givenName> "Mario"^^xsd:string ;
-       <https://w3id.org/italia/onto/CPV/personID> "RSSMRA90A01L500A"^^xsd:string ;
-       <https://w3id.org/italia/onto/CPV/taxCode> "RSSMRA90A01L500A"^^xsd:string .
+       cpv:hasRelationshipWith :luca ,
+                               :luigi ;
+       cpv:dateOfBirth "1990-01-01"^^xsd:date ;
+       cpv:familyName "Rossi"^^xsd:string ;
+       cpv:givenName "Mario"^^xsd:string ;
+       cpv:personID "RSSMRA90A01L500A"^^xsd:string ;
+       cpv:taxCode "RSSMRA90A01L500A"^^xsd:string .
 
 _:genid13 rdf:type :Snapshot ;
            :atTimeInstant [ <https://w3id.org/italia/onto/TI/date> "2022-01-29T11:04:00"^^xsd:dateTime
                           ] ;
-           <https://w3id.org/italia/onto/MU/hasValue> _:genid15 .
+           mu:hasValue [ mu:hasMeasureType :Mass ;
+                         mu:hasMeasurementUnit :kg ;
+                         mu:value 90
+                       ] .
 
 _:genid16 rdf:type :Snapshot ;
            :atTimeInstant [ <https://w3id.org/italia/onto/TI/date> "2022-01-22T11:04:00"^^xsd:dateTime
                           ] ;
-           <https://w3id.org/italia/onto/MU/hasValue> _:genid18 .
+           mu:hasValue [ mu:hasMeasureType :Mass ;
+                         mu:hasMeasurementUnit :kg ;
+                         mu:value 92
+                       ] .
 
 _:genid19 rdf:type :Snapshot ;
            :atTimeInstant [ <https://w3id.org/italia/onto/TI/date> "2022-01-15T11:04:00"^^xsd:dateTime
                           ] ;
-           <https://w3id.org/italia/onto/MU/hasValue> _:genid21 .
+           mu:hasValue [ mu:hasMeasureType :Mass ;
+                         mu:hasMeasurementUnit :kg ;
+                         mu:value 93
+                       ] .
 
 _:genid22 rdf:type :Snapshot ;
            :atTimeInstant [ <https://w3id.org/italia/onto/TI/date> "2022-01-08T11:04:00"^^xsd:dateTime
                           ] ;
-           <https://w3id.org/italia/onto/MU/hasValue> _:genid24 .
-
-_:genid15 <https://w3id.org/italia/onto/MU/hasMeasureType> :Mass ;
-           <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :kg ;
-           <https://w3id.org/italia/onto/MU/value> 90 .
-
-_:genid18 <https://w3id.org/italia/onto/MU/hasMeasureType> :Mass ;
-           <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :kg ;
-           <https://w3id.org/italia/onto/MU/value> 92 .
-
-_:genid21 <https://w3id.org/italia/onto/MU/hasMeasureType> :Mass ;
-           <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :kg ;
-           <https://w3id.org/italia/onto/MU/value> 93 .
-
-_:genid24 <https://w3id.org/italia/onto/MU/hasMeasureType> :Mass ;
-           <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :kg ;
-           <https://w3id.org/italia/onto/MU/value> 93.5 .
+           mu:hasValue [ mu:hasMeasureType :Mass ;
+                         mu:hasMeasurementUnit :kg ;
+                         mu:value 93.5
+                       ] .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#marioActivity0001
@@ -485,28 +511,32 @@ _:genid24 <https://w3id.org/italia/onto/MU/hasMeasureType> :Mass ;
                             :Walking ;
                    :isEpisodeOf :mario ;
                    :isTrackedBy :marioFitnessTracker ;
-                   <https://w3id.org/italia/onto/MU/hasValue> _:genid25 ,
-                                                              _:genid26 ,
-                                                              _:genid27 ;
                    <https://w3id.org/italia/onto/TI/atTime> [ <https://w3id.org/italia/onto/TI/endTime> "2022-01-08T12:14:00"^^xsd:dateTime ;
                                                               <https://w3id.org/italia/onto/TI/startTime> "2022-01-08T11:04:00"^^xsd:dateTime
                                                             ] ;
-                   :steps 8000 .
+                   :steps 8000 ;
+                   mu:hasValue _:genid26 ,
+                               _:genid27 ,
+                               _:genid28 ,
+                               [ mu:hasMeasureType :Length ;
+                                 mu:hasMeasurementUnit :km ;
+                                 mu:value 4
+                               ] .
 
-_:genid25 <https://w3id.org/italia/onto/MU/hasMeasureType> :Length ;
-           <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :km ;
-           :hasMeasureAggregator 100 ;
-           <https://w3id.org/italia/onto/MU/value> 4 .
+_:genid26 :hasMeasureAggregator :avg ;
+           mu:hasMeasureType :Frequency ;
+           mu:hasMeasurementUnit :bpm ;
+           mu:value 100 .
 
-_:genid26 :hasMeasureAggregator :min ;
-           <https://w3id.org/italia/onto/MU/hasMeasureType> :Frequency ;
-           <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :bpm ;
-           <https://w3id.org/italia/onto/MU/value> 70 .
+_:genid27 :hasMeasureAggregator :min ;
+           mu:hasMeasureType :Frequency ;
+           mu:hasMeasurementUnit :bpm ;
+           mu:value 70 .
 
-_:genid27 :hasMeasureAggregator :max ;
-           <https://w3id.org/italia/onto/MU/hasMeasureType> :Frequency ;
-           <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :bpm ;
-           <https://w3id.org/italia/onto/MU/value> 145 .
+_:genid28 :hasMeasureAggregator :max ;
+           mu:hasMeasureType :Frequency ;
+           mu:hasMeasurementUnit :bpm ;
+           mu:value 145 .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#marioActivity0002
@@ -514,15 +544,15 @@ _:genid27 :hasMeasureAggregator :max ;
                             :Cardio ;
                    :isEpisodeOf :mario ;
                    :isTrackedBy :marioFitnessTracker ;
-                   <https://w3id.org/italia/onto/MU/hasValue> _:genid29 ;
                    <https://w3id.org/italia/onto/TI/atTime> [ <https://w3id.org/italia/onto/TI/endTime> "2022-01-10T11:40:00"^^xsd:dateTime ;
                                                               <https://w3id.org/italia/onto/TI/startTime> "2022-01-10T11:04:00"^^xsd:dateTime
-                                                            ] .
+                                                            ] ;
+                   mu:hasValue _:genid31 .
 
-_:genid29 :hasMeasureAggregator :max ;
-           <https://w3id.org/italia/onto/MU/hasMeasureType> :Length ;
-           <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :km ;
-           <https://w3id.org/italia/onto/MU/value> 6 .
+_:genid31 :hasMeasureAggregator :max ;
+           mu:hasMeasureType :Length ;
+           mu:hasMeasurementUnit :km ;
+           mu:value 6 .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#marioActivity0003
@@ -530,33 +560,32 @@ _:genid29 :hasMeasureAggregator :max ;
                             :Walking ;
                    :isEpisodeOf :mario ;
                    :isTrackedBy :marioFitnessTracker ;
-                   <https://w3id.org/italia/onto/MU/hasValue> _:genid31 ,
-                                                              _:genid32 ,
-                                                              _:genid33 ,
-                                                              _:genid34 ;
                    <https://w3id.org/italia/onto/TI/atTime> [ <https://w3id.org/italia/onto/TI/endTime> "2022-01-08T13:04:00"^^xsd:dateTime ;
                                                               <https://w3id.org/italia/onto/TI/startTime> "2022-01-08T11:04:00"^^xsd:dateTime
                                                             ] ;
-                   :steps 12000 .
+                   :steps 12000 ;
+                   mu:hasValue _:genid33 ,
+                               _:genid34 ,
+                               _:genid35 ,
+                               [ mu:hasMeasureType :Length ;
+                                 mu:hasMeasurementUnit :km ;
+                                 mu:value 6
+                               ] .
 
-_:genid31 :hasMeasureAggregator :min ;
-           <https://w3id.org/italia/onto/MU/hasMeasureType> :Frequency ;
-           <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :bpm ;
-           <https://w3id.org/italia/onto/MU/value> 65 .
+_:genid33 :hasMeasureAggregator :min ;
+           mu:hasMeasureType :Frequency ;
+           mu:hasMeasurementUnit :bpm ;
+           mu:value 65 .
 
-_:genid32 :hasMeasureAggregator :avg ;
-           <https://w3id.org/italia/onto/MU/hasMeasureType> :Frequency ;
-           <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :bpm ;
-           <https://w3id.org/italia/onto/MU/value> 96 .
+_:genid34 :hasMeasureAggregator :avg ;
+           mu:hasMeasureType :Frequency ;
+           mu:hasMeasurementUnit :bpm ;
+           mu:value 96 .
 
-_:genid33 :hasMeasureAggregator :max ;
-           <https://w3id.org/italia/onto/MU/hasMeasureType> :Frequency ;
-           <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :bpm ;
-           <https://w3id.org/italia/onto/MU/value> 135 .
-
-_:genid34 <https://w3id.org/italia/onto/MU/hasMeasureType> :Length ;
-           <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :km ;
-           <https://w3id.org/italia/onto/MU/value> 6 .
+_:genid35 :hasMeasureAggregator :max ;
+           mu:hasMeasureType :Frequency ;
+           mu:hasMeasurementUnit :bpm ;
+           mu:value 135 .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#marioFitnessTracker
@@ -574,6 +603,17 @@ _:genid34 <https://w3id.org/italia/onto/MU/hasMeasureType> :Length ;
               :Measure_Aggregator .
 
 
+###  http://www.semanticweb.org/health-track-ontology#mm_c3
+:mm_c3 rdf:type owl:NamedIndividual ,
+                mu:MeasurementUnit .
+
+
+###  http://www.semanticweb.org/health-track-ontology#snapshot0001
+:snapshot0001 rdf:type owl:NamedIndividual ,
+                       :Snapshot ;
+              mu:hasValue :value0001 .
+
+
 ###  http://www.semanticweb.org/health-track-ontology#t0
 :t0 rdf:type owl:NamedIndividual ,
              <https://w3id.org/italia/onto/TI/TimeInstant> ;
@@ -582,27 +622,18 @@ _:genid34 <https://w3id.org/italia/onto/MU/hasMeasureType> :Length ;
 
 ###  http://www.semanticweb.org/health-track-ontology#val1
 :val1 rdf:type owl:NamedIndividual ,
-               <https://w3id.org/italia/onto/MU/Value> ;
-      <https://w3id.org/italia/onto/MU/hasMeasureType> :Mass ;
-      <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :kg ;
-      <https://w3id.org/italia/onto/MU/value> 50 .
+               mu:Value ;
+      mu:hasMeasureType :Mass ;
+      mu:hasMeasurementUnit :kg ;
+      mu:value 50 .
 
 
-###  http://www.semanticweb.org/health-track-ontology#g/dl
-<http://www.semanticweb.org/health-track-ontology#g/dl> rdf:type owl:NamedIndividual ,
-                                                                 <https://w3id.org/italia/onto/MU/MeasurementUnit> .
-
-
-###  http://www.semanticweb.org/health-track-ontology#mm/c3
-<http://www.semanticweb.org/health-track-ontology#mm/c3> rdf:type owl:NamedIndividual ,
-                                                                  <https://w3id.org/italia/onto/MU/MeasurementUnit> .
-
-
-#################################################################
-#    Annotations
-#################################################################
-
-:hasMeasureAggregator rdfs:label "measure aggregator"@en .
+###  http://www.semanticweb.org/health-track-ontology#value0001
+:value0001 rdf:type owl:NamedIndividual ,
+                    mu:Value ;
+           mu:hasMeasureType :Mass ;
+           mu:hasMeasurementUnit :kg ;
+           mu:value 82 .
 
 
 #################################################################
