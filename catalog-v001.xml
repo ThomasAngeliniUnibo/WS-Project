@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="User Entered Import Resolution" name="https://w3id.org/italia/onto/COV" uri="imports/WS-project-fse.owl"/>
+    <uri id="User Entered Import Resolution" name="https://w3id.org/italia/onto/MU" uri="imports/WS-project-fse.owl"/>
+    <uri id="User Entered Import Resolution" name="https://w3id.org/italia/onto/TI" uri="imports/ti.owl"/>
+    <uri id="User Entered Import Resolution" name="https://w3id.org/italia/onto/CLV" uri="imports/cpv.rdf"/>
     <uri id="Imports Wizard Entry" name="http://purl.obolibrary.org/obo/ws-fse-prototype" uri="imports/WS-project-fse.owl"/>
     <uri id="Imports Wizard Entry" name="http://purl.obolibrary.org/obo/fma/releases/2020-04-13/fma.owl" uri="http://purl.obolibrary.org/obo/fma.owl"/>
     <uri id="Imports Wizard Entry" name="https://w3id.org/italia/onto/TI/0.8" uri="https://w3id.org/italia/onto/TI/"/>
@@ -11,7 +15,7 @@
     <uri id="Imports Wizard Entry" name="https://w3id.org/italia/onto/SM/0.7" uri="https://w3id.org/italia/onto/SM"/>
     <uri id="Imports Wizard Entry" name="https://w3id.org/italia/onto/MU/0.4" uri="https://w3id.org/italia/onto/MU#"/>
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1644663713308" name="https://w3id.org/italia/onto/CPV/" uri="imports/cpv.rdf"/>
-        <uri id="Automatically generated entry, Timestamp=1644663713308" name="https://w3id.org/italia/onto/TI/" uri="imports/ti.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1644676665791" name="https://w3id.org/italia/onto/CPV/" uri="imports/cpv.rdf"/>
+        <uri id="Automatically generated entry, Timestamp=1644676665791" name="https://w3id.org/italia/onto/TI/" uri="imports/ti.owl"/>
     </group>
 </catalog>
