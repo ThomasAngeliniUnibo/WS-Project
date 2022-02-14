@@ -166,6 +166,13 @@
               rdfs:label "is activity of"@en .
 
 
+###  http://www.semanticweb.org/health-track-ontology#isAnalysisOfPerson
+:isAnalysisOfPerson rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :isEpisodeOf ;
+                    owl:inverseOf :personHasAnalysis ;
+                    rdfs:label "is analysis of person"@en .
+
+
 ###  http://www.semanticweb.org/health-track-ontology#isCardioActivityOf
 :isCardioActivityOf rdf:type owl:ObjectProperty ;
                     rdfs:subPropertyOf :isActivityOf ;
@@ -175,6 +182,7 @@
 ###  http://www.semanticweb.org/health-track-ontology#isEpisodeOf
 :isEpisodeOf rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf owl:topObjectProperty ;
+             rdf:type owl:FunctionalProperty ;
              rdfs:label "is episode of" .
 
 
@@ -207,6 +215,17 @@
                                                    :hasAnalysis
                                                  ) ;
                           rdfs:label "medical record has analysis"@en .
+
+
+###  http://www.semanticweb.org/health-track-ontology#personHasAnalysis
+:personHasAnalysis rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf :hasEpisode ;
+                   owl:propertyChainAxiom ( <http://purl.obolibrary.org/obo/ws-fse-prototype#hasJobRecord>
+                                            <http://purl.obolibrary.org/obo/ws-fse-prototype#hasDoneExamination>
+                                            <http://purl.obolibrary.org/obo/ws-fse-prototype#hasMedicalExamination>
+                                            :hasAnalysis
+                                          ) ;
+                   rdfs:label "person has analysis"@en .
 
 
 ###  https://w3id.org/italia/onto/TI/hasTemporalEntity
@@ -412,10 +431,10 @@
 ###  http://www.semanticweb.org/health-track-ontology#mario
 :mario rdf:type owl:NamedIndividual ,
                 <https://w3id.org/italia/onto/CPV/Male> ;
-       :hasEpisode _:genid9 ,
-                   _:genid12 ,
-                   _:genid15 ,
-                   _:genid18 ;
+       :hasEpisode _:genid13 ,
+                   _:genid16 ,
+                   _:genid19 ,
+                   _:genid22 ;
        <https://w3id.org/italia/onto/CPV/hasRelationshipWith> :luca ,
                                                               :luigi ;
        <https://w3id.org/italia/onto/CPV/dateOfBirth> "1990-01-01"^^xsd:date ;
@@ -424,39 +443,39 @@
        <https://w3id.org/italia/onto/CPV/personID> "RSSMRA90A01L500A"^^xsd:string ;
        <https://w3id.org/italia/onto/CPV/taxCode> "RSSMRA90A01L500A"^^xsd:string .
 
-_:genid9 rdf:type :Snapshot ;
-          :atTimeInstant [ <https://w3id.org/italia/onto/TI/date> "2022-01-29T11:04:00"^^xsd:dateTime
-                         ] ;
-          <https://w3id.org/italia/onto/MU/hasValue> _:genid11 .
+_:genid13 rdf:type :Snapshot ;
+           :atTimeInstant [ <https://w3id.org/italia/onto/TI/date> "2022-01-29T11:04:00"^^xsd:dateTime
+                          ] ;
+           <https://w3id.org/italia/onto/MU/hasValue> _:genid15 .
 
-_:genid12 rdf:type :Snapshot ;
+_:genid16 rdf:type :Snapshot ;
            :atTimeInstant [ <https://w3id.org/italia/onto/TI/date> "2022-01-22T11:04:00"^^xsd:dateTime
                           ] ;
-           <https://w3id.org/italia/onto/MU/hasValue> _:genid14 .
+           <https://w3id.org/italia/onto/MU/hasValue> _:genid18 .
 
-_:genid15 rdf:type :Snapshot ;
+_:genid19 rdf:type :Snapshot ;
            :atTimeInstant [ <https://w3id.org/italia/onto/TI/date> "2022-01-15T11:04:00"^^xsd:dateTime
                           ] ;
-           <https://w3id.org/italia/onto/MU/hasValue> _:genid17 .
+           <https://w3id.org/italia/onto/MU/hasValue> _:genid21 .
 
-_:genid18 rdf:type :Snapshot ;
+_:genid22 rdf:type :Snapshot ;
            :atTimeInstant [ <https://w3id.org/italia/onto/TI/date> "2022-01-08T11:04:00"^^xsd:dateTime
                           ] ;
-           <https://w3id.org/italia/onto/MU/hasValue> _:genid20 .
+           <https://w3id.org/italia/onto/MU/hasValue> _:genid24 .
 
-_:genid11 <https://w3id.org/italia/onto/MU/hasMeasureType> :Mass ;
+_:genid15 <https://w3id.org/italia/onto/MU/hasMeasureType> :Mass ;
            <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :kg ;
            <https://w3id.org/italia/onto/MU/value> 90 .
 
-_:genid14 <https://w3id.org/italia/onto/MU/hasMeasureType> :Mass ;
+_:genid18 <https://w3id.org/italia/onto/MU/hasMeasureType> :Mass ;
            <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :kg ;
            <https://w3id.org/italia/onto/MU/value> 92 .
 
-_:genid17 <https://w3id.org/italia/onto/MU/hasMeasureType> :Mass ;
+_:genid21 <https://w3id.org/italia/onto/MU/hasMeasureType> :Mass ;
            <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :kg ;
            <https://w3id.org/italia/onto/MU/value> 93 .
 
-_:genid20 <https://w3id.org/italia/onto/MU/hasMeasureType> :Mass ;
+_:genid24 <https://w3id.org/italia/onto/MU/hasMeasureType> :Mass ;
            <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :kg ;
            <https://w3id.org/italia/onto/MU/value> 93.5 .
 
@@ -466,25 +485,25 @@ _:genid20 <https://w3id.org/italia/onto/MU/hasMeasureType> :Mass ;
                             :Walking ;
                    :isEpisodeOf :mario ;
                    :isTrackedBy :marioFitnessTracker ;
-                   <https://w3id.org/italia/onto/MU/hasValue> _:genid21 ,
-                                                              _:genid22 ,
-                                                              _:genid23 ;
+                   <https://w3id.org/italia/onto/MU/hasValue> _:genid25 ,
+                                                              _:genid26 ,
+                                                              _:genid27 ;
                    <https://w3id.org/italia/onto/TI/atTime> [ <https://w3id.org/italia/onto/TI/endTime> "2022-01-08T12:14:00"^^xsd:dateTime ;
                                                               <https://w3id.org/italia/onto/TI/startTime> "2022-01-08T11:04:00"^^xsd:dateTime
                                                             ] ;
                    :steps 8000 .
 
-_:genid21 <https://w3id.org/italia/onto/MU/hasMeasureType> :Length ;
+_:genid25 <https://w3id.org/italia/onto/MU/hasMeasureType> :Length ;
            <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :km ;
            :hasMeasureAggregator 100 ;
            <https://w3id.org/italia/onto/MU/value> 4 .
 
-_:genid22 :hasMeasureAggregator :min ;
+_:genid26 :hasMeasureAggregator :min ;
            <https://w3id.org/italia/onto/MU/hasMeasureType> :Frequency ;
            <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :bpm ;
            <https://w3id.org/italia/onto/MU/value> 70 .
 
-_:genid23 :hasMeasureAggregator :max ;
+_:genid27 :hasMeasureAggregator :max ;
            <https://w3id.org/italia/onto/MU/hasMeasureType> :Frequency ;
            <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :bpm ;
            <https://w3id.org/italia/onto/MU/value> 145 .
@@ -495,12 +514,12 @@ _:genid23 :hasMeasureAggregator :max ;
                             :Cardio ;
                    :isEpisodeOf :mario ;
                    :isTrackedBy :marioFitnessTracker ;
-                   <https://w3id.org/italia/onto/MU/hasValue> _:genid25 ;
+                   <https://w3id.org/italia/onto/MU/hasValue> _:genid29 ;
                    <https://w3id.org/italia/onto/TI/atTime> [ <https://w3id.org/italia/onto/TI/endTime> "2022-01-10T11:40:00"^^xsd:dateTime ;
                                                               <https://w3id.org/italia/onto/TI/startTime> "2022-01-10T11:04:00"^^xsd:dateTime
                                                             ] .
 
-_:genid25 :hasMeasureAggregator :max ;
+_:genid29 :hasMeasureAggregator :max ;
            <https://w3id.org/italia/onto/MU/hasMeasureType> :Length ;
            <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :km ;
            <https://w3id.org/italia/onto/MU/value> 6 .
@@ -511,31 +530,31 @@ _:genid25 :hasMeasureAggregator :max ;
                             :Walking ;
                    :isEpisodeOf :mario ;
                    :isTrackedBy :marioFitnessTracker ;
-                   <https://w3id.org/italia/onto/MU/hasValue> _:genid27 ,
-                                                              _:genid28 ,
-                                                              _:genid29 ,
-                                                              _:genid30 ;
+                   <https://w3id.org/italia/onto/MU/hasValue> _:genid31 ,
+                                                              _:genid32 ,
+                                                              _:genid33 ,
+                                                              _:genid34 ;
                    <https://w3id.org/italia/onto/TI/atTime> [ <https://w3id.org/italia/onto/TI/endTime> "2022-01-08T13:04:00"^^xsd:dateTime ;
                                                               <https://w3id.org/italia/onto/TI/startTime> "2022-01-08T11:04:00"^^xsd:dateTime
                                                             ] ;
                    :steps 12000 .
 
-_:genid27 :hasMeasureAggregator :min ;
+_:genid31 :hasMeasureAggregator :min ;
            <https://w3id.org/italia/onto/MU/hasMeasureType> :Frequency ;
            <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :bpm ;
            <https://w3id.org/italia/onto/MU/value> 65 .
 
-_:genid28 :hasMeasureAggregator :avg ;
+_:genid32 :hasMeasureAggregator :avg ;
            <https://w3id.org/italia/onto/MU/hasMeasureType> :Frequency ;
            <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :bpm ;
            <https://w3id.org/italia/onto/MU/value> 96 .
 
-_:genid29 :hasMeasureAggregator :max ;
+_:genid33 :hasMeasureAggregator :max ;
            <https://w3id.org/italia/onto/MU/hasMeasureType> :Frequency ;
            <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :bpm ;
            <https://w3id.org/italia/onto/MU/value> 135 .
 
-_:genid30 <https://w3id.org/italia/onto/MU/hasMeasureType> :Length ;
+_:genid34 <https://w3id.org/italia/onto/MU/hasMeasureType> :Length ;
            <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :km ;
            <https://w3id.org/italia/onto/MU/value> 6 .
 
@@ -567,6 +586,16 @@ _:genid30 <https://w3id.org/italia/onto/MU/hasMeasureType> :Length ;
       <https://w3id.org/italia/onto/MU/hasMeasureType> :Mass ;
       <https://w3id.org/italia/onto/MU/hasMeasurementUnit> :kg ;
       <https://w3id.org/italia/onto/MU/value> 50 .
+
+
+###  http://www.semanticweb.org/health-track-ontology#g/dl
+<http://www.semanticweb.org/health-track-ontology#g/dl> rdf:type owl:NamedIndividual ,
+                                                                 <https://w3id.org/italia/onto/MU/MeasurementUnit> .
+
+
+###  http://www.semanticweb.org/health-track-ontology#mm/c3
+<http://www.semanticweb.org/health-track-ontology#mm/c3> rdf:type owl:NamedIndividual ,
+                                                                  <https://w3id.org/italia/onto/MU/MeasurementUnit> .
 
 
 #################################################################
@@ -690,18 +719,11 @@ _:genid30 <https://w3id.org/italia/onto/MU/hasMeasureType> :Length ;
                                          ] ;
    <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :isSnapshotOf ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> :s ;
-                                                       <http://www.w3.org/2003/11/swrl#argument2> :p
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasSnapshot ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :s
                                                      ] ;
-                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasSnapshot ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument2> :s
-                                                                ] ;
-                                                      rdf:rest rdf:nil
-                                                    ]
+                                           rdf:rest rdf:nil
                                          ]
  ] .
 
