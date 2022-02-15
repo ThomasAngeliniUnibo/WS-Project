@@ -12,9 +12,7 @@
 
 <http://www.semanticweb.org/health-track-ontology#> rdf:type owl:Ontology ;
                                                      owl:imports <http://purl.obolibrary.org/obo/ws-fse-prototype> ,
-                                                                 <https://w3id.org/italia/onto/CPV> ,
-                                                                 <https://w3id.org/italia/onto/MU> ,
-                                                                 <https://w3id.org/italia/onto/TI> .
+                                                                 <https://w3id.org/italia/onto/CPV> .
 
 #################################################################
 #    Annotation properties
@@ -176,6 +174,7 @@ mu:value rdf:type owl:AnnotationProperty .
 ###  http://www.semanticweb.org/health-track-ontology#isBloodAnalysisOfPerson
 :isBloodAnalysisOfPerson rdf:type owl:ObjectProperty ;
                          rdfs:subPropertyOf :isAnalysisOfPerson ;
+                         owl:inverseOf :personHasBloodAnalysis ;
                          rdfs:domain :BloodTest ;
                          rdfs:label "is blood analysis of person"@en .
 
@@ -515,28 +514,28 @@ _:genid22 rdf:type :Snapshot ;
                                                               <https://w3id.org/italia/onto/TI/startTime> "2022-01-08T11:04:00"^^xsd:dateTime
                                                             ] ;
                    :steps 8000 ;
-                   mu:hasValue _:genid26 ,
-                               _:genid27 ,
-                               _:genid28 ,
-                               [ mu:hasMeasureType :Length ;
+                   mu:hasValue [ mu:hasMeasureType :Length ;
                                  mu:hasMeasurementUnit :km ;
                                  mu:value 4
-                               ] .
+                               ] ,
+                               _:genid27 ,
+                               _:genid28 ,
+                               _:genid29 .
 
-_:genid26 :hasMeasureAggregator :avg ;
+_:genid27 :hasMeasureAggregator :max ;
            mu:hasMeasureType :Frequency ;
            mu:hasMeasurementUnit :bpm ;
-           mu:value 100 .
+           mu:value 145 .
 
-_:genid27 :hasMeasureAggregator :min ;
+_:genid28 :hasMeasureAggregator :min ;
            mu:hasMeasureType :Frequency ;
            mu:hasMeasurementUnit :bpm ;
            mu:value 70 .
 
-_:genid28 :hasMeasureAggregator :max ;
+_:genid29 :hasMeasureAggregator :avg ;
            mu:hasMeasureType :Frequency ;
            mu:hasMeasurementUnit :bpm ;
-           mu:value 145 .
+           mu:value 100 .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#marioActivity0002
@@ -564,28 +563,28 @@ _:genid31 :hasMeasureAggregator :max ;
                                                               <https://w3id.org/italia/onto/TI/startTime> "2022-01-08T11:04:00"^^xsd:dateTime
                                                             ] ;
                    :steps 12000 ;
-                   mu:hasValue _:genid33 ,
-                               _:genid34 ,
-                               _:genid35 ,
-                               [ mu:hasMeasureType :Length ;
+                   mu:hasValue [ mu:hasMeasureType :Length ;
                                  mu:hasMeasurementUnit :km ;
                                  mu:value 6
-                               ] .
+                               ] ,
+                               _:genid34 ,
+                               _:genid35 ,
+                               _:genid36 .
 
-_:genid33 :hasMeasureAggregator :min ;
+_:genid34 :hasMeasureAggregator :max ;
            mu:hasMeasureType :Frequency ;
            mu:hasMeasurementUnit :bpm ;
-           mu:value 65 .
+           mu:value 135 .
 
-_:genid34 :hasMeasureAggregator :avg ;
+_:genid35 :hasMeasureAggregator :avg ;
            mu:hasMeasureType :Frequency ;
            mu:hasMeasurementUnit :bpm ;
            mu:value 96 .
 
-_:genid35 :hasMeasureAggregator :max ;
+_:genid36 :hasMeasureAggregator :min ;
            mu:hasMeasureType :Frequency ;
            mu:hasMeasurementUnit :bpm ;
-           mu:value 135 .
+           mu:value 65 .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#marioFitnessTracker
@@ -656,6 +655,8 @@ _:genid35 :hasMeasureAggregator :max ;
 
 :p rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
+:bt rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
 :c rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
 :s rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
@@ -692,6 +693,62 @@ _:genid35 :hasMeasureAggregator :max ;
                                                                 ] ;
                                                       rdf:rest rdf:nil
                                                     ]
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment ""^^xsd:string ;
+   rdfs:label "checkPersonHasAnalysis"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Analysis ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :a
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasEpisode ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :a
+                                                                ] ;
+                                                      rdf:rest rdf:nil
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :personHasAnalysis ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :a
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment ""^^xsd:string ;
+   rdfs:label "checkBloodAnalysis"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :BloodTest ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :bt
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasEpisode ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :bt
+                                                                ] ;
+                                                      rdf:rest rdf:nil
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :personHasBloodAnalysis ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :bt
+                                                     ] ;
+                                           rdf:rest rdf:nil
                                          ]
  ] .
 
