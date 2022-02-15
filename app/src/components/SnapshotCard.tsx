@@ -1,14 +1,5 @@
-import {
-  Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  Paper,
-  Typography,
-} from "@mui/material";
+import { Box, Card, Paper, Typography } from "@mui/material";
 import React, { FC } from "react";
-import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import { deepPurple, red } from "@mui/material/colors";
 import { diff, zip, zipWith } from "../utils/arrays";
 import {
@@ -22,6 +13,7 @@ import {
   Bar,
 } from "recharts";
 import { SnapshotRecord } from "../api/fetchSnapshots";
+import { randomColor } from "../utils/avatar";
 
 interface SnapshotCardProps {
   readonly records: SnapshotRecord[];
@@ -43,6 +35,7 @@ export const SnapshotCard: FC<SnapshotCardProps> = ({
   uom,
   valueType,
 }) => {
+  const color = randomColor(800, valueType.charCodeAt(0));
   const makeTooltip: (
     uom: string
   ) => FC<{ active?: boolean; payload?: any[] }> =
@@ -116,7 +109,7 @@ export const SnapshotCard: FC<SnapshotCardProps> = ({
             <YAxis />
             <Tooltip content={<CustomTooltip />} cursor={{ fill: "#0001" }} />
             <Legend />
-            <Bar dataKey={valueType} barSize={20} fill={deepPurple[300]} />
+            <Bar dataKey={valueType} barSize={20} fill={color} />
             <Bar dataKey="differential" barSize={20} fill={red[300]} />
           </BarChart>
         </ResponsiveContainer>
@@ -140,7 +133,7 @@ export const SnapshotCard: FC<SnapshotCardProps> = ({
             <YAxis />
             <Tooltip content={<CustomTooltip />} cursor={{ fill: "#0001" }} />
             <Legend />
-            <Bar dataKey={valueType} barSize={20} fill={deepPurple[300]} />
+            <Bar dataKey={valueType} barSize={20} fill={color} />
           </BarChart>
         </ResponsiveContainer>
       </Card>

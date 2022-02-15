@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { Paziente } from "./pages/Paziente";
 import { PazienteExaminationRecord } from "./pages/PazienteExaminationRecord";
+import PazienteAnalysis from "./pages/PazienteAnalysis";
 
 const queryClient = new QueryClient();
 
@@ -23,7 +24,10 @@ export const App = () => (
           path="/patients/:fiscalCode/examination"
           element={<PazienteExaminationRecord />}
         />
-        <Route path="/registra" element={<Registra />} />
+        <Route
+          path="/patients/:fiscalCode/analysis"
+          element={<PazienteAnalysis />}
+        />
         <Route path="/query" element={<Query />} />
       </Routes>
     </QueryClientProvider>

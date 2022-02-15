@@ -11,6 +11,7 @@ import {
 } from "../api/fetchMedicalRecord";
 import { fetchPatient } from "../api/fetchPatient";
 import { stardogQuery } from "../api/types";
+import AnalysisCard from "../components/AnalysisCard";
 import { DocumentCard } from "../components/DocumentCard";
 import FrequencyCard from "../components/FrequencyCard";
 import { Layout } from "../components/Layout";
@@ -60,10 +61,9 @@ export const Paziente: FC = () => {
                 />
               </Grid>
               <Grid item xs={4}>
-                <MedicalRecordCard
-                  title="Symptom"
+                <AnalysisCard
                   count={data[2]}
-                  link={`/patients/${fiscalCode}/examination`}
+                  link={`/patients/${fiscalCode}/analysis`}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -76,7 +76,7 @@ export const Paziente: FC = () => {
               )}
               {data[5].length > 0 && (
                 <Grid item xs={12}>
-                  <FrequencyCard records={data[4]} />
+                  <FrequencyCard records={data[5]} />
                 </Grid>
               )}
             </Grid>
