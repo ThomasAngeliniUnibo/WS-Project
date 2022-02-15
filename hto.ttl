@@ -437,7 +437,7 @@ ti:TimeInstant rdf:type owl:Class .
 ###  http://www.semanticweb.org/health-track-ontology#luca
 :luca rdf:type owl:NamedIndividual ,
                cpv:Male ;
-      cpv:dateOfBirth "1997-06-14"^^xsd:date ;
+      cpv:dateOfBirth "1997-06-14T00:00:00"^^xsd:dateTime ;
       cpv:familyName "Rossi"^^xsd:string ;
       cpv:givenName "Luca"^^xsd:string ;
       cpv:taxCode "RSSLCU97H14G479O"^^xsd:string .
@@ -446,7 +446,7 @@ ti:TimeInstant rdf:type owl:Class .
 ###  http://www.semanticweb.org/health-track-ontology#luigi
 :luigi rdf:type owl:NamedIndividual ,
                 cpv:Male ;
-       cpv:dateOfBirth "1991-01-12"^^xsd:date ;
+       cpv:dateOfBirth "1991-01-12T00:00:00"^^xsd:dateTime ;
        cpv:familyName "Rossi"^^xsd:string ;
        cpv:givenName "Luigi"^^xsd:string ;
        cpv:taxCode "RSSLGU91A12G479L"^^xsd:string .
@@ -466,7 +466,7 @@ ti:TimeInstant rdf:type owl:Class .
                    _:genid22 ;
        cpv:hasRelationshipWith :luca ,
                                :luigi ;
-       cpv:dateOfBirth "1990-01-01"^^xsd:date ;
+       cpv:dateOfBirth "1990-01-01T00:00:00"^^xsd:dateTime ;
        cpv:familyName "Rossi"^^xsd:string ;
        cpv:givenName "Mario"^^xsd:string ;
        cpv:personID "RSSMRA90A01L500A"^^xsd:string ;
