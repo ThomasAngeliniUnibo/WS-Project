@@ -130,7 +130,7 @@ ti:startTime rdf:type owl:AnnotationProperty .
 ###  http://www.semanticweb.org/health-track-ontology#hasPhysicalEntity
 :hasPhysicalEntity rdf:type owl:ObjectProperty ;
                    owl:inverseOf :isPhysicalEntityOfAnalysis ;
-                   rdfs:domain :Analysis ;
+                   rdfs:domain mu:Value ;
                    rdfs:range <http://purl.obolibrary.org/obo/FMA_61775> ;
                    rdfs:label "has physical entity"@en .
 
@@ -175,7 +175,6 @@ ti:startTime rdf:type owl:AnnotationProperty .
 :isBloodAnalysisOfPerson rdf:type owl:ObjectProperty ;
                          rdfs:subPropertyOf :isAnalysisOfPerson ;
                          owl:inverseOf :personHasBloodAnalysis ;
-                         rdfs:domain :BloodTest ;
                          rdfs:label "is blood analysis of person"@en .
 
 
@@ -475,38 +474,34 @@ ti:TimeInstant rdf:type owl:Class .
 _:genid13 rdf:type :Snapshot ;
            :atTimeInstant [ ti:date "2022-01-29T11:04:00"^^xsd:dateTime
                           ] ;
-           mu:hasValue _:genid15 .
+           mu:hasValue [ mu:hasMeasureType :Mass ;
+                         mu:hasMeasurementUnit :kg ;
+                         mu:value 90
+                       ] .
 
 _:genid16 rdf:type :Snapshot ;
            :atTimeInstant [ ti:date "2022-01-22T11:04:00"^^xsd:dateTime
                           ] ;
-           mu:hasValue _:genid18 .
+           mu:hasValue [ mu:hasMeasureType :Mass ;
+                         mu:hasMeasurementUnit :kg ;
+                         mu:value 92
+                       ] .
 
 _:genid19 rdf:type :Snapshot ;
            :atTimeInstant [ ti:date "2022-01-15T11:04:00"^^xsd:dateTime
                           ] ;
-           mu:hasValue _:genid21 .
+           mu:hasValue [ mu:hasMeasureType :Mass ;
+                         mu:hasMeasurementUnit :kg ;
+                         mu:value 93
+                       ] .
 
 _:genid22 rdf:type :Snapshot ;
            :atTimeInstant [ ti:date "2022-01-08T11:04:00"^^xsd:dateTime
                           ] ;
-           mu:hasValue _:genid24 .
-
-_:genid15 mu:hasMeasureType :Mass ;
-           mu:hasMeasurementUnit :kg ;
-           mu:value 90 .
-
-_:genid18 mu:hasMeasureType :Mass ;
-           mu:hasMeasurementUnit :kg ;
-           mu:value 92 .
-
-_:genid21 mu:hasMeasureType :Mass ;
-           mu:hasMeasurementUnit :kg ;
-           mu:value 93 .
-
-_:genid24 mu:hasMeasureType :Mass ;
-           mu:hasMeasurementUnit :kg ;
-           mu:value 93.5 .
+           mu:hasValue [ mu:hasMeasureType :Mass ;
+                         mu:hasMeasurementUnit :kg ;
+                         mu:value 93.5
+                       ] .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#marioActivity0001
@@ -514,18 +509,17 @@ _:genid24 mu:hasMeasureType :Mass ;
                             :Walking ;
                    :isEpisodeOf :mario ;
                    :isTrackedBy :marioFitnessTracker ;
-                   mu:hasValue _:genid25 ,
+                   :steps 8000 ;
+                   mu:hasValue [ mu:hasMeasureType :Length ;
+                                 mu:hasMeasurementUnit :km ;
+                                 mu:value 4
+                               ] ,
                                _:genid26 ,
                                _:genid27 ,
                                _:genid28 ;
                    ti:atTime [ ti:endTime "2022-01-08T12:14:00"^^xsd:dateTime ;
                                ti:startTime "2022-01-08T11:04:00"^^xsd:dateTime
-                             ] ;
-                   :steps 8000 .
-
-_:genid25 mu:hasMeasureType :Length ;
-           mu:hasMeasurementUnit :km ;
-           mu:value 4 .
+                             ] .
 
 _:genid26 :hasMeasureAggregator :avg ;
            mu:hasMeasureType :Frequency ;
@@ -564,18 +558,17 @@ _:genid30 :hasMeasureAggregator :max ;
                             :Walking ;
                    :isEpisodeOf :mario ;
                    :isTrackedBy :marioFitnessTracker ;
-                   mu:hasValue _:genid32 ,
+                   :steps 12000 ;
+                   mu:hasValue [ mu:hasMeasureType :Length ;
+                                 mu:hasMeasurementUnit :km ;
+                                 mu:value 6
+                               ] ,
                                _:genid33 ,
                                _:genid34 ,
                                _:genid35 ;
                    ti:atTime [ ti:endTime "2022-01-08T13:04:00"^^xsd:dateTime ;
                                ti:startTime "2022-01-08T11:04:00"^^xsd:dateTime
-                             ] ;
-                   :steps 12000 .
-
-_:genid32 mu:hasMeasureType :Length ;
-           mu:hasMeasurementUnit :km ;
-           mu:value 6 .
+                             ] .
 
 _:genid33 :hasMeasureAggregator :min ;
            mu:hasMeasureType :Frequency ;
