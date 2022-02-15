@@ -630,6 +630,11 @@ _:genid35 :hasMeasureAggregator :avg ;
                           <http://purl.obolibrary.org/obo/DOID_1588> .
 
 
+###  http://www.semanticweb.org/health-track-ontology#trombocitosi
+:trombocitosi rdf:type owl:NamedIndividual ,
+                       <http://purl.obolibrary.org/obo/DOID_2228> .
+
+
 ###  http://www.semanticweb.org/health-track-ontology#val1
 :val1 rdf:type owl:NamedIndividual ,
                mu:Value ;
@@ -839,7 +844,7 @@ _:genid35 :hasMeasureAggregator :avg ;
 
 [ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
    rdfs:comment ""^^xsd:string ;
-   rdfs:label "checkGreaterBloodTrombocitopenia"^^xsd:string ;
+   rdfs:label "checkTrombocitopenia"^^xsd:string ;
    rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
    <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
@@ -906,7 +911,7 @@ _:genid35 :hasMeasureAggregator :avg ;
 
 [ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
    rdfs:comment ""^^xsd:string ;
-   rdfs:label "checkLowerBloodTrombocitopenia"^^xsd:string ;
+   rdfs:label "checkThrombocytosis"^^xsd:string ;
    rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
    <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
@@ -965,7 +970,7 @@ _:genid35 :hasMeasureAggregator :avg ;
                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://purl.obolibrary.org/obo/ws-fse-prototype#canHaveDisease> ;
                                                        <http://www.w3.org/2003/11/swrl#argument1> :p ;
-                                                       <http://www.w3.org/2003/11/swrl#argument2> :trombocitopenia
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :trombocitosi
                                                      ] ;
                                            rdf:rest rdf:nil
                                          ]
