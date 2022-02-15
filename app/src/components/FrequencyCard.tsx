@@ -1,19 +1,18 @@
 import { SnapshotRecord } from "../api/fetchSnapshots";
 import { SnapshotCard } from "./SnapshotCard";
 
-interface MassCardProps {
+interface FrequencyCardProps {
   readonly records: SnapshotRecord[];
 }
-function MassCard({ records }: MassCardProps) {
+function FrequencyCard({ records }: FrequencyCardProps) {
   return (
     <SnapshotCard
-      differential
       records={records}
-      uom="Kg"
-      valueType="weight"
-      title="Weight"
+      uom="bpm"
+      valueType="rate"
+      title="Heart rate"
     />
   );
 }
 
-export default MassCard;
+export default FrequencyCard;

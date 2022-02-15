@@ -2,6 +2,7 @@ import { Box, Grid, Typography } from "@mui/material";
 import React, { FC, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router";
+import { fetchFrequencySnapshots } from "../api/fetchFrequencySnapshots";
 import { fetchMassSnapshots } from "../api/fetchMassSnapshots";
 import {
   fetchDiseaseRecord,
@@ -11,6 +12,7 @@ import {
 import { fetchPatient } from "../api/fetchPatient";
 import { stardogQuery } from "../api/types";
 import { DocumentCard } from "../components/DocumentCard";
+import FrequencyCard from "../components/FrequencyCard";
 import { Layout } from "../components/Layout";
 import MassCard from "../components/MassCard";
 import MedicalRecordCard from "../components/MedicalRecordCard";
@@ -27,6 +29,7 @@ export const Paziente: FC = () => {
       fetchSymptomRecord({ fiscalCode }),
       fetchPatient({ fiscalCode }),
       fetchMassSnapshots({ fiscalCode }),
+      fetchFrequencySnapshots({ fiscalCode }),
     ])
   );
 
@@ -69,6 +72,11 @@ export const Paziente: FC = () => {
               {data[4].length > 0 && (
                 <Grid item xs={12}>
                   <MassCard records={data[4]} />
+                </Grid>
+              )}
+              {data[5].length > 0 && (
+                <Grid item xs={12}>
+                  <FrequencyCard records={data[4]} />
                 </Grid>
               )}
             </Grid>

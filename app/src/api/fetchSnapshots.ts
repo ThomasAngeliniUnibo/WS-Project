@@ -13,7 +13,6 @@ const source = ({ fiscalCode, mu }: Params) => `
 SELECT ?dateTime ?value
 WHERE
 {
-
     [
         cpv:taxCode "${fiscalCode}" ;
         :hasEpisode [
