@@ -10,7 +10,7 @@ import { QueryContent } from "../components/QueryContent";
 import { useDebounce } from "use-debounce";
 import { countAllPatients } from "../api/countAllPatients";
 
-const PER_PAGE = 5;
+const PER_PAGE = 10;
 
 export const Pazienti = () => {
   const [page, setPage] = useState(1);
@@ -45,7 +45,7 @@ export const Pazienti = () => {
         <QueryContent data={data} status={status}>
           {(d) =>
             d.map((patient) => (
-              <Grid key={patient.fiscalCode} item xs={12} md={3}>
+              <Grid key={patient.fiscalCode} item xs={12} sm={4}>
                 <PatientListCard {...patient} />
               </Grid>
             ))

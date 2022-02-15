@@ -9,13 +9,16 @@ import {
 } from "@mui/material";
 import { green, red, blue } from "@mui/material/colors";
 import FolderIcon from "@mui/icons-material/Folder";
+import { To, useNavigate } from "react-router";
 
 interface MedicalRecordCardProps {
   readonly count: number;
+  readonly link: To;
   readonly title: "Examination" | "Symptom" | "Disease";
 }
 
-function MedicalRecordCard({ count, title }: MedicalRecordCardProps) {
+function MedicalRecordCard({ count, link, title }: MedicalRecordCardProps) {
+  const navigate = useNavigate();
   const color =
     title === "Examination"
       ? red[300]
@@ -23,7 +26,7 @@ function MedicalRecordCard({ count, title }: MedicalRecordCardProps) {
       ? green[300]
       : blue[300];
   return (
-    <Card>
+    <Card sx={{ height: "100%" }}>
       <CardContent>
         <Stack direction="row" justifyContent="space-between">
           <Box>
@@ -42,7 +45,11 @@ function MedicalRecordCard({ count, title }: MedicalRecordCardProps) {
         </Stack>
       </CardContent>
       <CardActions>
-        <Button size="small">View</Button>
+        {title === "Examination" && (
+          <Button size="small" onClick={() => navigate(link)}>
+            View
+          </Button>
+        )}
       </CardActions>
     </Card>
   );

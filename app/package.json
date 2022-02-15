@@ -45,6 +45,7 @@
     "react-query": "^3.34.14",
     "react-router": "^6.2.1",
     "react-router-dom": "^6.2.1",
+    "recharts": "^2.1.9",
     "stardog": "^3.3.0",
     "use-debounce": "^7.0.1"
   }

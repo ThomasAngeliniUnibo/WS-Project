@@ -35,9 +35,25 @@ WHERE
 }
 `;
 
-export const fetchMedicalRecords = (params: Pick<PatientBasicInfo, 'fiscalCode'>) =>
+export const fetchExaminationRecord = (params: Pick<PatientBasicInfo, 'fiscalCode'>) =>
   stardogQuery({
       source: examinationSource,
+      reasoning: true,
+  }, params)
+    .then((x) => x.map(pickValue('count')) as [{ count: number }])
+    .then((x) => x[0].count);
+
+export const fetchSymptomRecord = (params: Pick<PatientBasicInfo, 'fiscalCode'>) =>
+  stardogQuery({
+      source: symptomSource,
+      reasoning: true,
+  }, params)
+    .then((x) => x.map(pickValue('count')) as [{ count: number }])
+    .then((x) => x[0].count);
+
+export const fetchDiseaseRecord = (params: Pick<PatientBasicInfo, 'fiscalCode'>) =>
+  stardogQuery({
+      source: diseaseSource,
       reasoning: true,
   }, params)
     .then((x) => x.map(pickValue('count')) as [{ count: number }])

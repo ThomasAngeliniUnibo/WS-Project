@@ -53,7 +53,7 @@ export const PatientListCard: FC<PatientListCardProps> = ({
             size="small"
             onClick={() => navigate(`/patients/${fiscalCode}`)}
           >
-            Learn more
+            View
           </Button>
         </CardActions>
       </MuiCard>

@@ -48,7 +48,6 @@ export const fetchPatient = (parameters: {fiscalCode: string}): Promise<Patient>
     source,
     reasoning: true,
   }, parameters)
-    .then(x => { console.log(x); return x})
     .then(x => (x as any[]).map(pickValue('firstName', 'lastName', 'birthDate', 'relativeFiscalCodes', 'relativeFirstNames', 'relativeLastNames', 'city'))[0])
     .then(({ firstName, lastName, birthDate, relativeFirstNames, relativeFiscalCodes, relativeLastNames, city }) => {
 

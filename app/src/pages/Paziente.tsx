@@ -1,12 +1,18 @@
-import { Grid, Typography } from "@mui/material";
-import React, { FC, useState } from "react";
+import { Box, Grid, Typography } from "@mui/material";
+import React, { FC, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router";
-import { fetchMedicalRecords } from "../api/fetchMedicalRecord";
+import { fetchMassSnapshots } from "../api/fetchMassSnapshots";
+import {
+  fetchDiseaseRecord,
+  fetchExaminationRecord,
+  fetchSymptomRecord,
+} from "../api/fetchMedicalRecord";
 import { fetchPatient } from "../api/fetchPatient";
 import { stardogQuery } from "../api/types";
 import { DocumentCard } from "../components/DocumentCard";
 import { Layout } from "../components/Layout";
+import MassCard from "../components/MassCard";
 import MedicalRecordCard from "../components/MedicalRecordCard";
 import { PatientCard } from "../components/PatientCard";
 import { Loading } from "../components/QueryContent/Loading";
@@ -15,20 +21,21 @@ import { SnapshotCard } from "../components/SnapshotCard";
 export const Paziente: FC = () => {
   const { fiscalCode } = useParams();
   const { data, status } = useQuery(["fetchPatient", fiscalCode], () =>
-    fetchPatient({ fiscalCode })
+    Promise.all([
+      fetchExaminationRecord({ fiscalCode }),
+      fetchDiseaseRecord({ fiscalCode }),
+      fetchSymptomRecord({ fiscalCode }),
+      fetchPatient({ fiscalCode }),
+      fetchMassSnapshots({ fiscalCode }),
+    ])
   );
 
-  const { data: examinationRecordData, status: examinationRecordStatus } =
-    useQuery(["fetchExaminationRecord", fiscalCode], () =>
-      fetchMedicalRecords({ fiscalCode })
-    );
-
-  if (status === "success" && examinationRecordStatus === "success") {
+  if (status === "success") {
     return (
       <Layout>
         <Grid container spacing={2}>
           <Grid item xs={12} md={3}>
-            <PatientCard {...data} />
+            <PatientCard {...data[3]} />
           </Grid>
           <Grid item xs={12} md={9}>
             <Grid container spacing={2}>
@@ -38,23 +45,32 @@ export const Paziente: FC = () => {
               <Grid item xs={4}>
                 <MedicalRecordCard
                   title="Examination"
-                  count={examinationRecordData}
+                  link={`/patients/${fiscalCode}/examination`}
+                  count={data[0]}
                 />
               </Grid>
               <Grid item xs={4}>
-                <MedicalRecordCard title="Disease" count={4} />
+                <MedicalRecordCard
+                  title="Disease"
+                  count={data[1]}
+                  link={`/patients/${fiscalCode}/examination`}
+                />
               </Grid>
               <Grid item xs={4}>
-                <MedicalRecordCard title="Symptom" count={4} />
+                <MedicalRecordCard
+                  title="Symptom"
+                  count={data[2]}
+                  link={`/patients/${fiscalCode}/examination`}
+                />
               </Grid>
               <Grid item xs={12}>
                 <Typography variant="h6">Snapshots</Typography>
               </Grid>
-              {[0, 1, 2].map((x) => (
-                <Grid item xs={4}>
-                  <SnapshotCard />
+              {data[4].length > 0 && (
+                <Grid item xs={12}>
+                  <MassCard records={data[4]} />
                 </Grid>
-              ))}
+              )}
             </Grid>
           </Grid>
         </Grid>
