@@ -1,8 +1,11 @@
 @prefix : <http://www.semanticweb.org/health-track-ontology#> .
+@prefix l0: <https://w3id.org/italia/onto/l0/> .
 @prefix mu: <https://w3id.org/italia/onto/MU/> .
 @prefix ti: <https://w3id.org/italia/onto/TI/> .
+@prefix clv: <https://w3id.org/italia/onto/CLV/> .
 @prefix cpv: <https://w3id.org/italia/onto/CPV/> .
 @prefix fma: <http://purl.obolibrary.org/obo/fma.owl#> .
+@prefix fse: <http://purl.obolibrary.org/obo/ws-fse-prototype#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
@@ -55,15 +58,15 @@ ti:startTime rdf:type owl:AnnotationProperty .
 #################################################################
 
 ###  http://purl.obolibrary.org/obo/ws-fse-prototype#hasDoneExamination
-<http://purl.obolibrary.org/obo/ws-fse-prototype#hasDoneExamination> rdf:type owl:ObjectProperty .
+fse:hasDoneExamination rdf:type owl:ObjectProperty .
 
 
 ###  http://purl.obolibrary.org/obo/ws-fse-prototype#hasExaminationRecord
-<http://purl.obolibrary.org/obo/ws-fse-prototype#hasExaminationRecord> rdf:type owl:ObjectProperty .
+fse:hasExaminationRecord rdf:type owl:ObjectProperty .
 
 
 ###  http://purl.obolibrary.org/obo/ws-fse-prototype#hasMedicalExamination
-<http://purl.obolibrary.org/obo/ws-fse-prototype#hasMedicalExamination> rdf:type owl:ObjectProperty .
+fse:hasMedicalExamination rdf:type owl:ObjectProperty .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#analysisHasDoctor
@@ -83,7 +86,7 @@ ti:startTime rdf:type owl:AnnotationProperty .
 
 ###  http://www.semanticweb.org/health-track-ontology#doctorHasDoneAnalysis
 :doctorHasDoneAnalysis rdf:type owl:ObjectProperty ;
-                       owl:propertyChainAxiom ( <http://purl.obolibrary.org/obo/ws-fse-prototype#hasDoneExamination>
+                       owl:propertyChainAxiom ( fse:hasDoneExamination
                                                 :hasAnalysis
                                               ) ;
                        rdfs:label "doctor has done analysis"@en .
@@ -99,7 +102,7 @@ ti:startTime rdf:type owl:AnnotationProperty .
 ###  http://www.semanticweb.org/health-track-ontology#hasAnalysis
 :hasAnalysis rdf:type owl:ObjectProperty ,
                       owl:InverseFunctionalProperty ;
-             rdfs:domain <http://purl.obolibrary.org/obo/ws-fse-prototype#MedicalExamination> ;
+             rdfs:domain fse:MedicalExamination ;
              rdfs:range :Analysis ;
              rdfs:label "has analysis"@en .
 
@@ -215,8 +218,8 @@ ti:startTime rdf:type owl:AnnotationProperty .
 
 ###  http://www.semanticweb.org/health-track-ontology#medicalRecordHasAnalysis
 :medicalRecordHasAnalysis rdf:type owl:ObjectProperty ;
-                          owl:propertyChainAxiom ( <http://purl.obolibrary.org/obo/ws-fse-prototype#hasExaminationRecord>
-                                                   <http://purl.obolibrary.org/obo/ws-fse-prototype#hasMedicalExamination>
+                          owl:propertyChainAxiom ( fse:hasExaminationRecord
+                                                   fse:hasMedicalExamination
                                                    :hasAnalysis
                                                  ) ;
                           rdfs:label "medical record has analysis"@en .
@@ -225,9 +228,9 @@ ti:startTime rdf:type owl:AnnotationProperty .
 ###  http://www.semanticweb.org/health-track-ontology#personHasAnalysis
 :personHasAnalysis rdf:type owl:ObjectProperty ;
                    rdfs:subPropertyOf :hasEpisode ;
-                   owl:propertyChainAxiom ( <http://purl.obolibrary.org/obo/ws-fse-prototype#hasMedicalRecord>
-                                            <http://purl.obolibrary.org/obo/ws-fse-prototype#hasExaminationRecord>
-                                            <http://purl.obolibrary.org/obo/ws-fse-prototype#hasMedicalExamination>
+                   owl:propertyChainAxiom ( fse:hasMedicalRecord
+                                            fse:hasExaminationRecord
+                                            fse:hasMedicalExamination
                                             :hasAnalysis
                                           ) ;
                    rdfs:label "person has analysis"@en .
@@ -264,11 +267,11 @@ ti:hasTemporalEntity rdf:type owl:ObjectProperty .
 
 
 ###  http://purl.obolibrary.org/obo/ws-fse-prototype#MedicalExamination
-<http://purl.obolibrary.org/obo/ws-fse-prototype#MedicalExamination> rdf:type owl:Class .
+fse:MedicalExamination rdf:type owl:Class .
 
 
 ###  http://purl.obolibrary.org/obo/ws-fse-prototype#PersonaDataSet
-<http://purl.obolibrary.org/obo/ws-fse-prototype#PersonaDataSet> rdf:type owl:Class .
+fse:PersonaDataSet rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#Activity
@@ -313,7 +316,7 @@ ti:hasTemporalEntity rdf:type owl:ObjectProperty .
 
 ###  http://www.semanticweb.org/health-track-ontology#Episode
 :Episode rdf:type owl:Class ;
-         rdfs:subClassOf <https://w3id.org/italia/onto/l0/Entity> .
+         rdfs:subClassOf l0:Entity .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#Measure_Aggregator
@@ -325,7 +328,7 @@ ti:hasTemporalEntity rdf:type owl:ObjectProperty .
 ###  http://www.semanticweb.org/health-track-ontology#Snapshot
 :Snapshot rdf:type owl:Class ;
           rdfs:subClassOf :Episode ,
-                          <https://w3id.org/italia/onto/l0/Characteristic> ,
+                          l0:Characteristic ,
                           [ rdf:type owl:Restriction ;
                             owl:onProperty :atTimeInstant ;
                             owl:someValuesFrom ti:TimeInstant
@@ -371,8 +374,8 @@ ti:TimeInstant rdf:type owl:Class .
 #################################################################
 
 ###  http://purl.obolibrary.org/obo/ws-fse-prototype#examination0001
-<http://purl.obolibrary.org/obo/ws-fse-prototype#examination0001> rdf:type owl:NamedIndividual ;
-                                                                  :hasAnalysis :analysis0001 .
+fse:examination0001 rdf:type owl:NamedIndividual ;
+                    :hasAnalysis :analysis0001 .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#Cardio0001
@@ -523,9 +526,10 @@ _:genid24 mu:hasMeasureType :Mass ;
                              ] ;
                    :steps 8000 .
 
-_:genid25 mu:hasMeasureType :Length ;
-           mu:hasMeasurementUnit :km ;
-           mu:value 4 .
+_:genid25 :hasMeasureAggregator :min ;
+           mu:hasMeasureType :Frequency ;
+           mu:hasMeasurementUnit :bpm ;
+           mu:value 70 .
 
 _:genid26 :hasMeasureAggregator :avg ;
            mu:hasMeasureType :Frequency ;
@@ -537,10 +541,9 @@ _:genid27 :hasMeasureAggregator :max ;
            mu:hasMeasurementUnit :bpm ;
            mu:value 145 .
 
-_:genid28 :hasMeasureAggregator :min ;
-           mu:hasMeasureType :Frequency ;
-           mu:hasMeasurementUnit :bpm ;
-           mu:value 70 .
+_:genid28 mu:hasMeasureType :Length ;
+           mu:hasMeasurementUnit :km ;
+           mu:value 4 .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#marioActivity0002
@@ -573,19 +576,19 @@ _:genid30 :hasMeasureAggregator :max ;
                              ] ;
                    :steps 12000 .
 
-_:genid32 mu:hasMeasureType :Length ;
-           mu:hasMeasurementUnit :km ;
-           mu:value 6 .
-
-_:genid33 :hasMeasureAggregator :min ;
+_:genid32 :hasMeasureAggregator :min ;
            mu:hasMeasureType :Frequency ;
            mu:hasMeasurementUnit :bpm ;
            mu:value 65 .
 
-_:genid34 :hasMeasureAggregator :max ;
+_:genid33 :hasMeasureAggregator :max ;
            mu:hasMeasureType :Frequency ;
            mu:hasMeasurementUnit :bpm ;
            mu:value 135 .
+
+_:genid34 mu:hasMeasureType :Length ;
+           mu:hasMeasurementUnit :km ;
+           mu:value 6 .
 
 _:genid35 :hasMeasureAggregator :avg ;
            mu:hasMeasureType :Frequency ;
@@ -901,7 +904,7 @@ _:genid35 :hasMeasureAggregator :avg ;
                                          ] ;
    <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://purl.obolibrary.org/obo/ws-fse-prototype#canHaveDisease> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> fse:canHaveDisease ;
                                                        <http://www.w3.org/2003/11/swrl#argument1> :p ;
                                                        <http://www.w3.org/2003/11/swrl#argument2> :trombocitopenia
                                                      ] ;
@@ -968,7 +971,7 @@ _:genid35 :hasMeasureAggregator :avg ;
                                          ] ;
    <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://purl.obolibrary.org/obo/ws-fse-prototype#canHaveDisease> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> fse:canHaveDisease ;
                                                        <http://www.w3.org/2003/11/swrl#argument1> :p ;
                                                        <http://www.w3.org/2003/11/swrl#argument2> :trombocitosi
                                                      ] ;

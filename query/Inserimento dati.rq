@@ -1,67 +1,250 @@
 INSERT DATA {
 
-    fse:Anatoliy   cpv:dateOfBirth "1950-09-28"^^xsd:date ;
+        fse:Anatoliy   cpv:dateOfBirth "1950-09-28"^^xsd:date ;
                 cpv:givenName "Anatoliy" ;
-                cpv:familyName "Konchenkov" ; 
+                cpv:familyName "Konchenkov" ;
                 cpv:taxCode "KNCNTL50N28G479A" .
-    
-    fse:Oleg   cpv:dateOfBirth "1996-09-10"^^xsd:date ;
-            cpv:givenName "Oleg" ;
-            cpv:familyName "Konchenkov" ; 
-            cpv:taxCode "KNCLGO96N10G479K" .
-    
-    fse:Tania  cpv:dateOfBirth "1970-02-20"^^xsd:date ;
-            cpv:givenName "Tania" ;
-            cpv:familyName "Konchenkov" ; 
-            cpv:taxCode "KNCTNA70B60G479I" .
-    
-    fse:Nadia  cpv:dateOfBirth "1953-04-15"^^xsd:date ;
-               cpv:givenName "Nadia" ; 
-               cpv:familyName "Konchenkov" ; 
-               cpv:taxCode "KNCNDA53D55G479C" .
-    
 
-    fse:Elia cpv:dateOfBirth "1998-04-15"^^xsd:date ;
-               cpv:givenName "Elia" ; 
-               cpv:familyName "Rossi" ; 
+        fse:Oleg   cpv:dateOfBirth "1996-09-10"^^xsd:date ;
+            cpv:givenName "Oleg" ;
+            cpv:familyName "Konchenkov" ;
+            cpv:taxCode "KNCLGO96N10G479K" .
+
+        fse:Tania  cpv:dateOfBirth "1970-02-20"^^xsd:date ;
+            cpv:givenName "Tania" ;
+            cpv:familyName "Konchenkov" ;
+            cpv:taxCode "KNCTNA70B60G479I" .
+
+        fse:Nadia  cpv:dateOfBirth "1953-04-15"^^xsd:date ;
+               cpv:givenName "Nadia" ;
+               cpv:familyName "Konchenkov" ;
+               cpv:taxCode "KNCNDA53D55G479C" .
+
+         fse:Elia cpv:dateOfBirth "1998-04-15"^^xsd:date ;
+               cpv:givenName "Elia" ;
+               cpv:familyName "Rossi" ;
                cpv:taxCode "RSSLEI98D15G479C" .
-    
-    fse:Ivan cpv:dateOfBirth "1980-04-14"^^xsd:date ;
-               cpv:givenName "Ivan" ; 
-               cpv:familyName "Rossi" ; 
+
+        fse:Ivan cpv:dateOfBirth "1980-04-14"^^xsd:date ;
+               cpv:givenName "Ivan" ;
+               cpv:familyName "Rossi" ;
                cpv:taxCode "RSSVNI80D14G479C" .
-    
-    fse:Simona cpv:dateOfBirth "1981-08-08"^^xsd:date ; 
-               cpv:givenName "Simona" ; 
-               cpv:familyName "Verdi" ; 
+
+        fse:Simona cpv:dateOfBirth "1981-08-08"^^xsd:date ;
+               cpv:givenName "Simona" ;
+               cpv:familyName "Verdi" ;
                cpv:taxCode "VRDSMN81P48L500B" .
-    
-    fse:Mario  cpv:dateOfBirth "1946-01-01"^^xsd:date ; 
-               cpv:givenName "Mario" ; 
-               cpv:familyName "Rossi" ; 
+
+        fse:Mario  cpv:dateOfBirth "1946-01-01"^^xsd:date ;
+               cpv:givenName "Mario" ;
+               cpv:familyName "Rossi" ;
                cpv:taxCode "RSSMRA46A01G479M" .
 
-    fse:Pasquina cpv:dateOfBirth "1949-04-04"^^xsd:date ; 
-                 cpv:givenName "Pasquina" ; 
-                 cpv:familyName "Neri" ; 
+        fse:Pasquina cpv:dateOfBirth "1949-04-04"^^xsd:date ;
+                 cpv:givenName "Pasquina" ;
+                 cpv:familyName "Neri" ;
                  cpv:taxCode "NREPSQ49D44L500E" .
 
-    fse:Massimo  cpv:dateOfBirth "1951-07-08"^^xsd:date ; 
-                 cpv:givenName "Massimo" ; 
-                 cpv:familyName "Viola" ; 
+        fse:Massimo  cpv:dateOfBirth "1951-07-08"^^xsd:date ;
+                 cpv:givenName "Massimo" ;
+                 cpv:familyName "Viola" ;
                  cpv:taxCode "VLIMSM51L08G479M" .
 
-    fse:Angelica cpv:dateOfBirth "1997-07-19"^^xsd:date ;
-              cpv:givenName "Angelica" ;
-              cpv:familyName "Rossi" ; 
-              cpv:taxCode "RSSNGL97L59G479M" .
-    
-    fse:Aurora cpv:dateOfBirth "1950-05-05"^^xsd:date ;
-            cpv:givenName "Aurora" ;
-            cpv:familyName "Bianchi" ; 
-            cpv:taxCode "BNCRRA50F45G479P" .
-    
-    fse:Elia cpv:hasCurrentResidence fse:Via_Monte_Bianco_2 .
+         fse:Angelica cpv:dateOfBirth "1997-07-19"^^xsd:date ;
+                cpv:givenName "Angelica" ;
+                cpv:familyName "Rossi" ;
+                cpv:taxCode "RSSNGL97L59G479M" .
 
-    fse:Pesaro l0:name "Pesaro" .
+        fse:Aurora cpv:dateOfBirth "1950-05-05"^^xsd:date ;
+                cpv:givenName "Aurora" ;
+                cpv:familyName "Bianchi" ;
+                cpv:taxCode "BNCRRA50F45G479P" .
+
+        fse:Elia cpv:hasCurrentResidence fse:Via_Monte_Bianco_2 .
+
+        fse:Pesaro l0:name "Pesaro" .
+
+        :EliaFitnessTracker a :Device .
+
+        :km_h a mu:MeasurementUnit .
+
+        :Speed a mu:MeasureType .
+
+        :Snapshot0001 a :Snapshot ;
+                :isEpisodeOf fse:Elia;
+                :atTimeInstant
+                [
+                        ti:dateTime "2021-01-29T11:04:00"^^xsd:dateTime
+                ] ;
+                mu:hasValue
+                [
+                        mu:hasMeasureType :Mass ;
+                        mu:hasMeasurementUnit :kg ;
+                        mu:value 80
+                ] .
+
+        :Snapshot0002 a :Snapshot ;
+                :isEpisodeOf fse:Elia;
+                :atTimeInstant
+                [
+                        ti:dateTime "2020-09-01T11:04:00"^^xsd:dateTime
+                ] ;
+                mu:hasValue [
+                        mu:hasMeasureType :Mass ;
+                        mu:hasMeasurementUnit :kg ;
+                        mu:value 82
+                ] .
+
+
+        :Snapshot0003 a :Snapshot ;
+                :isEpisodeOf fse:Elia;
+                :atTimeInstant
+                [
+                        ti:dateTime "2021-02-28T11:04:00"^^xsd:dateTime
+                ] ;
+                mu:hasValue [
+                        mu:hasMeasureType :Mass ;
+                        mu:hasMeasurementUnit :kg ;
+                        mu:value 85
+                ] .
+
+        :Snapshot0004 a :Snapshot ;
+                :isEpisodeOf fse:Elia;
+                :atTimeInstant
+                [
+                        ti:dateTime "2021-08-12T11:04:00"^^xsd:dateTime
+                ] ;
+                mu:hasValue [
+                        mu:hasMeasureType :Mass ;
+                        mu:hasMeasurementUnit :kg ;
+                        mu:value 80
+                ] .
+
+        :Snapshot0005 a :Snapshot ;
+                :isEpisodeOf fse:Elia ;
+                :atTimeInstant
+                [
+                        ti:dateTime "2021-08-12T11:04:00"^^xsd:dateTime
+                ] ;
+                mu:hasValue [
+                        mu:hasMeasureType :Frequency ;
+                        mu:hasMeasurementUnit :bpm ;
+                        mu:value 72
+                ] .
+
+        :Snapshot0006 a :Snapshot ;
+                :isEpisodeOf fse:Elia ;
+                :atTimeInstant
+                [
+                        ti:dateTime "2021-10-12T11:04:00"^^xsd:dateTime
+                ] ;
+                mu:hasValue [
+                        mu:hasMeasureType :Frequency ;
+                        mu:hasMeasurementUnit :bpm ;
+                        mu:value 75
+                ] .
+
+        :Snapshot0007 a :Snapshot ;
+                :isEpisodeOf fse:Elia ;
+                :atTimeInstant
+                [
+                        ti:dateTime "2021-12-12T11:04:00"^^xsd:dateTime
+                ] ;
+                mu:hasValue [
+                        mu:hasMeasureType :Frequency ;
+                        mu:hasMeasurementUnit :bpm ;
+                        mu:value 71
+                ] .
+
+        :Activity0001 a :Activity;
+                :isActivityOf fse:Elia;
+                ti:atTime [
+                        ti:startTime "2022-01-10T11:00:00"^^xsd:dateTime;
+                        ti:endTime "2022-01-10T11:00:12"^^xsd:dateTime
+                ];
+                mu:hasValue [
+                        mu:hasMeasureType :Speed;
+                        mu:hasMeasurementUnit :km_h;
+                        mu:value 30;
+                        :hasMeasureAggregator :avg
+                ],
+                [
+                        mu:hasMeasureType :Length;
+                        mu:hasMeasurementUnit :m;
+                        mu:value 100
+                ].
+
+        :Cardio0001 a :Cardio ;
+                :isCardioActivityOf fse:Elia ;
+                :isTrackedBy :marioFitnessTracker ;
+                ti:atTime [
+                        ti:startTime "2022-01-10T11:00:00"^^xsd:dateTime;
+                        ti:endTime "2022-01-10T12:00:00"^^xsd:dateTime
+                ];
+                mu:hasValue [
+                        mu:hasMeasureType :Frequency;
+                        mu:hasMeasurementUnit :bpm;
+                        mu:value 100;
+                        :hasMeasureAggregator :avg
+                ],
+                [
+                        mu:hasMeasureType :Frequency;
+                        mu:hasMeasurementUnit :bpm;
+                        mu:value 145;
+                        :hasMeasureAggregator :max
+                ],
+                [
+                        mu:hasMeasureType :Frequency;
+                        mu:hasMeasurementUnit :bpm;
+                        mu:value 55;
+                        :hasMeasureAggregator :min
+                ],
+                [
+                        mu:hasMeasureType :Length;
+                        mu:hasMeasurementUnit :km;
+                        mu:value 8
+                ].
+
+        :mm_c3 a mu:MeasurementUnit .
+
+        :g_dl a mu:MeasurementUnit .
+
+        :Walking0001 a :Walking ;
+                :isWalkingActivityOf fse:Elia ;
+                :steps 80000 ;
+                :isTrackedBy :marioFitnessTracker ;
+                ti:atTime [
+                        ti:startTime "2022-01-11T11:00:00"^^xsd:dateTime;
+                        ti:endTime "2022-01-11T12:00:00"^^xsd:dateTime;
+                        mu:hasMeasureType :Frequency;
+                        mu:hasMeasurementUnit :bpm;
+                        mu:value 80;
+                        :hasMeasureAggregator :avg
+                ].
+
+
+        :BloodTest0001 a :BloodTest ;
+                mu:hasValue
+                [
+                        :isBloodAnalysisOfPerson fse:Elia;
+                        mu:hasMeasurementUnit :mm_c3;
+                        mu:value 450000
+                ].
+
+        :BloodTest0002 a :BloodTest ;
+                mu:hasValue
+                [
+                        :isBloodAnalysisOfPerson fse:Elia;
+                        mu:hasMeasurementUnit :mm_c3;
+                        mu:value 120000
+                ].
+
+        :BloodTest0003 a :BloodTest ;
+                mu:hasValue
+                [
+                        :isBloodAnalysisOfPerson fse:Elia;
+                        mu:hasMeasurementUnit :mm_c3;
+                        mu:value 250000
+                ].
+
 }
