@@ -672,7 +672,7 @@ _:genid19 a owl:Restriction ;
 	:sonHasMother :Simona ;
 	<https://w3id.org/italia/onto/CPV/isGrandChildOf> :Aurora , :Mario , :Massimo , :Pasquina ;
 	<https://w3id.org/italia/onto/CPV/age> "24"^^xsd:integer ;
-	<https://w3id.org/italia/onto/CPV/taxCode> "PSQLEI97H02Z130E"^^rdfs:Literal .
+	<https://w3id.org/italia/onto/CPV/taxCode> "PSQLEI97H02Z130E"^^xsd:string .
 # 
 # http://purl.obolibrary.org/obo/ws-fse-prototype#Examination0003
 
@@ -766,10 +766,10 @@ _:genid19 a owl:Restriction ;
 
 :PSQLEI97H02Z130E a owl:NamedIndividual , :PersonaDataSet ;
 	<https://w3id.org/italia/onto/CPV/hasCurrentResidence> :Via_Monte_Bianco_2 ;
-	<https://w3id.org/italia/onto/CPV/dateOfBirth> "1997-06-02"^^xsd:date ;
-	<https://w3id.org/italia/onto/CPV/familyName> "Pasqualini"^^rdfs:Literal ;
-	<https://w3id.org/italia/onto/CPV/taxCode> "PSQLEI97H02Z130E"^^rdfs:Literal ;
-	<https://w3id.org/italia/onto/l0/name> "Elia"^^rdfs:Literal ;
+	<https://w3id.org/italia/onto/CPV/dateOfBirth> "1997-06-02T00:00:00"^^xsd:dateTime ;
+	<https://w3id.org/italia/onto/CPV/familyName> "Pasqualini"^^xsd:string ;
+	<https://w3id.org/italia/onto/CPV/taxCode> "PSQLEI97H02Z130E"^^xsd:string ;
+	<https://w3id.org/italia/onto/l0/name> "Elia"^^xsd:string ;
 	:hasResidence2 :Via_Monte_Bianco_2 .
 # 
 # http://purl.obolibrary.org/obo/ws-fse-prototype#Pasquina
