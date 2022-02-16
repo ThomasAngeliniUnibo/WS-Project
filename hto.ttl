@@ -3,6 +3,7 @@
 @prefix mu: <https://w3id.org/italia/onto/MU/> .
 @prefix ti: <https://w3id.org/italia/onto/TI/> .
 @prefix clv: <https://w3id.org/italia/onto/CLV/> .
+@prefix cmo: <http://purl.obolibrary.org/obo/cmo.owl#> .
 @prefix cpv: <https://w3id.org/italia/onto/CPV/> .
 @prefix fma: <http://purl.obolibrary.org/obo/fma.owl#> .
 @prefix fse: <http://purl.obolibrary.org/obo/ws-fse-prototype#> .
@@ -15,6 +16,7 @@
 
 <http://www.semanticweb.org/health-track-ontology#> rdf:type owl:Ontology ;
                                                      owl:imports <http://purl.obolibrary.org/obo/ws-fse-prototype> ,
+                                                                 <http://purl.obolibrary.org/obo/cmo/releases/2019-02-19/cmo.owl> ,
                                                                  <https://w3id.org/italia/onto/CPV> .
 
 #################################################################
@@ -105,6 +107,12 @@ fse:hasMedicalExamination rdf:type owl:ObjectProperty .
              rdfs:domain fse:MedicalExamination ;
              rdfs:range :Analysis ;
              rdfs:label "has analysis"@en .
+
+
+###  http://www.semanticweb.org/health-track-ontology#hasBloodMeasurement
+:hasBloodMeasurement rdf:type owl:ObjectProperty ;
+                     rdfs:domain :BloodTest ;
+                     rdfs:range <http://purl.obolibrary.org/obo/CMO_0000035> .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#hasCardioActivity
@@ -477,34 +485,38 @@ fse:examination0001 rdf:type owl:NamedIndividual ;
 _:genid13 rdf:type :Snapshot ;
            :atTimeInstant [ ti:date "2022-01-29T11:04:00"^^xsd:dateTime
                           ] ;
-           mu:hasValue [ mu:hasMeasureType :Mass ;
-                         mu:hasMeasurementUnit :kg ;
-                         mu:value 90
-                       ] .
+           mu:hasValue _:genid15 .
 
 _:genid16 rdf:type :Snapshot ;
            :atTimeInstant [ ti:date "2022-01-22T11:04:00"^^xsd:dateTime
                           ] ;
-           mu:hasValue [ mu:hasMeasureType :Mass ;
-                         mu:hasMeasurementUnit :kg ;
-                         mu:value 92
-                       ] .
+           mu:hasValue _:genid18 .
 
 _:genid19 rdf:type :Snapshot ;
            :atTimeInstant [ ti:date "2022-01-15T11:04:00"^^xsd:dateTime
                           ] ;
-           mu:hasValue [ mu:hasMeasureType :Mass ;
-                         mu:hasMeasurementUnit :kg ;
-                         mu:value 93
-                       ] .
+           mu:hasValue _:genid21 .
 
 _:genid22 rdf:type :Snapshot ;
            :atTimeInstant [ ti:date "2022-01-08T11:04:00"^^xsd:dateTime
                           ] ;
-           mu:hasValue [ mu:hasMeasureType :Mass ;
-                         mu:hasMeasurementUnit :kg ;
-                         mu:value 93.5
-                       ] .
+           mu:hasValue _:genid24 .
+
+_:genid15 mu:hasMeasureType :Mass ;
+           mu:hasMeasurementUnit :kg ;
+           mu:value 90 .
+
+_:genid18 mu:hasMeasureType :Mass ;
+           mu:hasMeasurementUnit :kg ;
+           mu:value 92 .
+
+_:genid21 mu:hasMeasureType :Mass ;
+           mu:hasMeasurementUnit :kg ;
+           mu:value 93 .
+
+_:genid24 mu:hasMeasureType :Mass ;
+           mu:hasMeasurementUnit :kg ;
+           mu:value 93.5 .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#marioActivity0001
@@ -512,31 +524,32 @@ _:genid22 rdf:type :Snapshot ;
                             :Walking ;
                    :isEpisodeOf :mario ;
                    :isTrackedBy :marioFitnessTracker ;
-                   :steps 8000 ;
-                   mu:hasValue [ mu:hasMeasureType :Length ;
-                                 mu:hasMeasurementUnit :km ;
-                                 mu:value 4
-                               ] ,
+                   mu:hasValue _:genid25 ,
                                _:genid26 ,
                                _:genid27 ,
                                _:genid28 ;
                    ti:atTime [ ti:endTime "2022-01-08T12:14:00"^^xsd:dateTime ;
                                ti:startTime "2022-01-08T11:04:00"^^xsd:dateTime
-                             ] .
+                             ] ;
+                   :steps 8000 .
 
-_:genid26 :hasMeasureAggregator :avg ;
+_:genid25 :hasMeasureAggregator :avg ;
            mu:hasMeasureType :Frequency ;
            mu:hasMeasurementUnit :bpm ;
            mu:value 100 .
 
-_:genid27 :hasMeasureAggregator :max ;
+_:genid26 mu:hasMeasureType :Length ;
+           mu:hasMeasurementUnit :km ;
+           mu:value 4 .
+
+_:genid27 mu:hasMeasureType :Length ;
+           mu:hasMeasurementUnit :km ;
+           mu:value 4 .
+
+_:genid28 :hasMeasureAggregator :max ;
            mu:hasMeasureType :Frequency ;
            mu:hasMeasurementUnit :bpm ;
            mu:value 145 .
-
-_:genid28 mu:hasMeasureType :Length ;
-           mu:hasMeasurementUnit :km ;
-           mu:value 4 .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#marioActivity0002
@@ -560,36 +573,34 @@ _:genid30 :hasMeasureAggregator :max ;
                             :Walking ;
                    :isEpisodeOf :mario ;
                    :isTrackedBy :marioFitnessTracker ;
-                   :steps 12000 ;
-                   mu:hasValue [ mu:hasMeasureType :Length ;
-                                 mu:hasMeasurementUnit :km ;
-                                 mu:value 6
-                               ] ,
+                   mu:hasValue _:genid32 ,
                                _:genid33 ,
                                _:genid34 ,
                                _:genid35 ;
                    ti:atTime [ ti:endTime "2022-01-08T13:04:00"^^xsd:dateTime ;
                                ti:startTime "2022-01-08T11:04:00"^^xsd:dateTime
-                             ] .
+                             ] ;
+                   :steps 12000 .
 
-_:genid33 :hasMeasureAggregator :min ;
+_:genid32 :hasMeasureAggregator :max ,
+                                 :min ;
            mu:hasMeasureType :Frequency ;
            mu:hasMeasurementUnit :bpm ;
-           mu:value 65 .
+           mu:value 135 ,
+                    65 .
 
-_:genid33 :hasMeasureAggregator :max ;
+_:genid33 :hasMeasureAggregator :avg ;
            mu:hasMeasureType :Frequency ;
            mu:hasMeasurementUnit :bpm ;
-           mu:value 135 .
+           mu:value 96 .
 
 _:genid34 mu:hasMeasureType :Length ;
            mu:hasMeasurementUnit :km ;
            mu:value 6 .
 
-_:genid35 :hasMeasureAggregator :avg ;
-           mu:hasMeasureType :Frequency ;
-           mu:hasMeasurementUnit :bpm ;
-           mu:value 96 .
+_:genid35 mu:hasMeasureType :Length ;
+           mu:hasMeasurementUnit :km ;
+           mu:value 6 .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#marioFitnessTracker
