@@ -4,7 +4,6 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  SelectChangeEvent,
   Stack,
   Typography,
 } from "@mui/material";
@@ -12,6 +11,7 @@ import React, { FC, useState } from "react";
 import { useQuery } from "react-query";
 import { useLocation, useNavigate, useParams } from "react-router";
 import { Aggregator, fetchAnalysis } from "../api/fetchAnalysis";
+import { fetchBloodTests } from "../api/fetchBloodTests";
 import { fetchPatient } from "../api/fetchPatient";
 import { Layout } from "../components/Layout";
 import { PatientCard } from "../components/PatientCard";
@@ -20,44 +20,44 @@ import { Loading } from "../components/QueryContent/Loading";
 import { SnapshotCard } from "../components/SnapshotCard";
 import { useSelect } from "../hooks/useSelect";
 
-const aggregatorText = (aggregator: Aggregator) =>
-  aggregator === "max"
-    ? "maximum"
-    : aggregator === "min"
-    ? "minimum"
-    : "average";
-
-const physicalEntities = {
-  heart: {
-    ref: "fma:FMA_7088",
-    title: "Heart rate",
-    uom: "bpm",
-    valueType: "frequency",
+const bloodMeasurements = {
+  redCells: {
+    ref: "CMO_0000025",
+    title: "Red cells count",
+    uom: "no./µL",
+    valueType: "count",
   },
-  body: {
-    ref: "fma:FMA_67811",
-    title: "Height",
-    uom: "m",
-    valueType: "length",
-    aggregators: false,
+  whiteCells: {
+    ref: "CMO_0000027",
+    title: "White cells count",
+    uom: "no./µL",
+    valueType: "count",
+  },
+  hematocrit: {
+    ref: "CMO_0000037",
+    title: "Hematocrit",
+    uom: "%",
+    valueType: "hematocrit percentage",
+  },
+  tsh: {
+    ref: "CMO_0001248",
+    title: "Thyroid stimulating hormone",
+    uom: "µU/mL",
+    valueType: "tsh",
   },
 };
-type PhysicalEntity = keyof typeof physicalEntities;
+type BloodMeasurement = keyof typeof bloodMeasurements;
 
-const PazienteAnalysis: FC = () => {
+export const PazienteBloodTests: FC = () => {
   const { fiscalCode } = useParams();
-  const navigate = useNavigate();
-  const [aggregator, handleChangeAggregator] = useSelect<Aggregator>("max");
   const [physicalEntity, handleChangePhysicalEntity] =
-    useSelect<PhysicalEntity>("heart");
-  const { ref, title, uom, valueType } = physicalEntities[physicalEntity];
-  const { data, status } = useQuery(
-    ["fetchPatientAnalysis", fiscalCode, aggregator, physicalEntities],
-    () =>
-      Promise.all([
-        fetchPatient({ fiscalCode }),
-        fetchAnalysis(aggregator, ref)({ fiscalCode }),
-      ])
+    useSelect<BloodMeasurement>("redCells");
+  const { ref, title, uom, valueType } = bloodMeasurements[physicalEntity];
+  const { data, status } = useQuery(["fetchBloodTests", fiscalCode, ref], () =>
+    Promise.all([
+      fetchPatient({ fiscalCode }),
+      fetchBloodTests(ref)({ fiscalCode }),
+    ])
   );
 
   return (
@@ -68,7 +68,7 @@ const PazienteAnalysis: FC = () => {
         </Grid>
         <Grid item xs={12} md={9}>
           <Stack spacing={2}>
-            <Typography variant="h6">Analysis</Typography>
+            <Typography variant="h6">Blood test</Typography>
             <FormControl fullWidth>
               <InputLabel id="select-physical-entity">
                 Physical entity
@@ -80,33 +80,20 @@ const PazienteAnalysis: FC = () => {
                 label="Aggregator"
                 onChange={handleChangePhysicalEntity}
               >
-                {Object.keys(physicalEntities).map((value) => (
+                {Object.keys(bloodMeasurements).map((value) => (
                   <MenuItem value={value} key={value}>
-                    {capitalize(value)}
+                    {capitalize(bloodMeasurements[value].title)}
                   </MenuItem>
                 ))}
-              </Select>
-            </FormControl>
-            <FormControl fullWidth>
-              <InputLabel id="select-aggregator">Aggregator</InputLabel>
-              <Select
-                labelId="select-aggregator-label"
-                id="select-aggregator"
-                value={aggregator}
-                label="Aggregator"
-                onChange={handleChangeAggregator}
-              >
-                <MenuItem value="max">Max</MenuItem>
-                <MenuItem value="min">Min</MenuItem>
-                <MenuItem value="avg">Avg</MenuItem>
               </Select>
             </FormControl>
             <QueryContent status={status} data={data}>
               {([_, data]) =>
                 data.length > 0 ? (
                   <SnapshotCard
+                    differential
                     records={data}
-                    title={`${aggregatorText(aggregator)} ${title}`}
+                    title={title}
                     uom={uom}
                     valueType={valueType}
                   />
@@ -123,5 +110,3 @@ const PazienteAnalysis: FC = () => {
     </Layout>
   );
 };
-
-export default PazienteAnalysis;
