@@ -713,6 +713,10 @@ _:genid35 :hasMeasureAggregator :avg ;
 
 :p rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
+:med rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:dis rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
 :v rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
 :val rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
@@ -734,57 +738,71 @@ _:genid35 :hasMeasureAggregator :avg ;
                                                      ] ;
                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :personHasAnalysis ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> fse:hasMedicalRecord ;
                                                                   <http://www.w3.org/2003/11/swrl#argument1> :p ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument2> :a
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :med
                                                                 ] ;
                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :BloodTest ;
-                                                                             <http://www.w3.org/2003/11/swrl#argument1> :a
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> fse:hasDiseaseRecord ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :med ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> :dis
                                                                            ] ;
                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasBloodMeasurement ;
-                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :a ;
-                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :tsh
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :personHasAnalysis ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :a
                                                                                       ] ;
                                                                             rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:hasValue ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :a ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> :v
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> :BloodTest ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :a
                                                                                                  ] ;
                                                                                        rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                                                                   rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:hasMeasureType ;
-                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :v ;
-                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> :Count
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasBloodMeasurement ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :a ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> :tsh
                                                                                                             ] ;
                                                                                                   rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                                                                              rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                                         <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:hasMeasurementUnit ;
-                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> :v ;
-                                                                                                                         <http://www.w3.org/2003/11/swrl#argument2> :microU_L
+                                                                                                                         <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:hasValue ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> :a ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument2> :v
                                                                                                                        ] ;
                                                                                                              rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                                        rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
-                                                                                                                                    <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:value ;
+                                                                                                                        rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:hasMeasureType ;
                                                                                                                                     <http://www.w3.org/2003/11/swrl#argument1> :v ;
-                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument2> :val
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument2> :Count
                                                                                                                                   ] ;
                                                                                                                         rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                                                   rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
-                                                                                                                                               <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#greaterThan> ;
-                                                                                                                                               <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
-                                                                                                                                                                                            rdf:first :val ;
-                                                                                                                                                                                            rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                                                                       rdf:first 4 ;
-                                                                                                                                                                                                       rdf:rest rdf:nil
-                                                                                                                                                                                                     ]
-                                                                                                                                                                                          ]
+                                                                                                                                   rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:hasMeasurementUnit ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#argument1> :v ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#argument2> :microU_L
                                                                                                                                              ] ;
-                                                                                                                                   rdf:rest rdf:nil
+                                                                                                                                   rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                                              rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                                                                          <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:value ;
+                                                                                                                                                          <http://www.w3.org/2003/11/swrl#argument1> :v ;
+                                                                                                                                                          <http://www.w3.org/2003/11/swrl#argument2> :val
+                                                                                                                                                        ] ;
+                                                                                                                                              rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                                                         rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                                                                                                                     <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#greaterThan> ;
+                                                                                                                                                                     <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                                                                                                                  rdf:first :val ;
+                                                                                                                                                                                                                  rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                             rdf:first 4 ;
+                                                                                                                                                                                                                             rdf:rest rdf:nil
+                                                                                                                                                                                                                           ]
+                                                                                                                                                                                                                ]
+                                                                                                                                                                   ] ;
+                                                                                                                                                         rdf:rest rdf:nil
+                                                                                                                                                       ]
+                                                                                                                                            ]
                                                                                                                                  ]
                                                                                                                       ]
                                                                                                            ]
@@ -797,7 +815,7 @@ _:genid35 :hasMeasureAggregator :avg ;
    <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> fse:canHaveDisease ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :dis ;
                                                        <http://www.w3.org/2003/11/swrl#argument2> :Hypothyroidism
                                                      ] ;
                                            rdf:rest rdf:nil
@@ -815,57 +833,71 @@ _:genid35 :hasMeasureAggregator :avg ;
                                                      ] ;
                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :personHasAnalysis ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> fse:hasMedicalRecord ;
                                                                   <http://www.w3.org/2003/11/swrl#argument1> :p ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument2> :a
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :med
                                                                 ] ;
                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :BloodTest ;
-                                                                             <http://www.w3.org/2003/11/swrl#argument1> :a
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> fse:hasDiseaseRecord ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :med ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> :dis
                                                                            ] ;
                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasBloodMeasurement ;
-                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :a ;
-                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :tsh
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :personHasAnalysis ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :a
                                                                                       ] ;
                                                                             rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:hasValue ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :a ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> :v
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> :BloodTest ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :a
                                                                                                  ] ;
                                                                                        rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                                                                   rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:hasMeasureType ;
-                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :v ;
-                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> :Count
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasBloodMeasurement ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :a ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> :tsh
                                                                                                             ] ;
                                                                                                   rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                                                                              rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                                         <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:hasMeasurementUnit ;
-                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> :v ;
-                                                                                                                         <http://www.w3.org/2003/11/swrl#argument2> :microU_L
+                                                                                                                         <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:hasValue ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> :a ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument2> :v
                                                                                                                        ] ;
                                                                                                              rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                                        rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
-                                                                                                                                    <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:value ;
+                                                                                                                        rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:hasMeasureType ;
                                                                                                                                     <http://www.w3.org/2003/11/swrl#argument1> :v ;
-                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument2> :val
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument2> :Count
                                                                                                                                   ] ;
                                                                                                                         rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                                                   rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
-                                                                                                                                               <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#lessThan> ;
-                                                                                                                                               <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
-                                                                                                                                                                                            rdf:first :val ;
-                                                                                                                                                                                            rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                                                                       rdf:first 0.35 ;
-                                                                                                                                                                                                       rdf:rest rdf:nil
-                                                                                                                                                                                                     ]
-                                                                                                                                                                                          ]
+                                                                                                                                   rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:hasMeasurementUnit ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#argument1> :v ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#argument2> :microU_L
                                                                                                                                              ] ;
-                                                                                                                                   rdf:rest rdf:nil
+                                                                                                                                   rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                                              rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                                                                          <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:value ;
+                                                                                                                                                          <http://www.w3.org/2003/11/swrl#argument1> :v ;
+                                                                                                                                                          <http://www.w3.org/2003/11/swrl#argument2> :val
+                                                                                                                                                        ] ;
+                                                                                                                                              rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                                                         rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                                                                                                                     <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#lessThan> ;
+                                                                                                                                                                     <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                                                                                                                  rdf:first :val ;
+                                                                                                                                                                                                                  rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                             rdf:first 0.35 ;
+                                                                                                                                                                                                                             rdf:rest rdf:nil
+                                                                                                                                                                                                                           ]
+                                                                                                                                                                                                                ]
+                                                                                                                                                                   ] ;
+                                                                                                                                                         rdf:rest rdf:nil
+                                                                                                                                                       ]
+                                                                                                                                            ]
                                                                                                                                  ]
                                                                                                                       ]
                                                                                                            ]
@@ -878,7 +910,7 @@ _:genid35 :hasMeasureAggregator :avg ;
    <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> fse:canHaveDisease ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :dis ;
                                                        <http://www.w3.org/2003/11/swrl#argument2> :Hyperthyroidism
                                                      ] ;
                                            rdf:rest rdf:nil
@@ -1085,57 +1117,71 @@ _:genid35 :hasMeasureAggregator :avg ;
                                                      ] ;
                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :personHasAnalysis ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> fse:hasMedicalRecord ;
                                                                   <http://www.w3.org/2003/11/swrl#argument1> :p ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument2> :a
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :med
                                                                 ] ;
                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:hasMeasureType ;
-                                                                             <http://www.w3.org/2003/11/swrl#argument1> :v ;
-                                                                             <http://www.w3.org/2003/11/swrl#argument2> :Count
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> fse:hasDiseaseRecord ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :med ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> :dis
                                                                            ] ;
                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                                                        <http://www.w3.org/2003/11/swrl#classPredicate> :BloodTest ;
-                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :a
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :personHasAnalysis ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :a
                                                                                       ] ;
                                                                             rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                                                        rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:hasValue ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :a ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> :v
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:hasMeasureType ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :v ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> :Count
                                                                                                  ] ;
                                                                                        rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasBloodMeasurement ;
-                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :a ;
-                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> :platelet_count
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#classPredicate> :BloodTest ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :a
                                                                                                             ] ;
                                                                                                   rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
-                                                                                                                         <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:value ;
-                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> :v ;
-                                                                                                                         <http://www.w3.org/2003/11/swrl#argument2> :val
+                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:hasValue ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> :a ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument2> :v
                                                                                                                        ] ;
                                                                                                              rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                                                                                         rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                                                    <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:hasMeasurementUnit ;
-                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument1> :v ;
-                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument2> :mm_c3
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasBloodMeasurement ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument1> :a ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument2> :platelet_count
                                                                                                                                   ] ;
                                                                                                                         rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                                                   rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
-                                                                                                                                               <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#greaterThan> ;
-                                                                                                                                               <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
-                                                                                                                                                                                            rdf:first :val ;
-                                                                                                                                                                                            rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                                                                       rdf:first 450000 ;
-                                                                                                                                                                                                       rdf:rest rdf:nil
-                                                                                                                                                                                                     ]
-                                                                                                                                                                                          ]
+                                                                                                                                   rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:value ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#argument1> :v ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#argument2> :val
                                                                                                                                              ] ;
-                                                                                                                                   rdf:rest rdf:nil
+                                                                                                                                   rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                                              rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                                                                          <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:hasMeasurementUnit ;
+                                                                                                                                                          <http://www.w3.org/2003/11/swrl#argument1> :v ;
+                                                                                                                                                          <http://www.w3.org/2003/11/swrl#argument2> :mm_c3
+                                                                                                                                                        ] ;
+                                                                                                                                              rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                                                         rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                                                                                                                     <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#greaterThan> ;
+                                                                                                                                                                     <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                                                                                                                  rdf:first :val ;
+                                                                                                                                                                                                                  rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                                                             rdf:first 450000 ;
+                                                                                                                                                                                                                             rdf:rest rdf:nil
+                                                                                                                                                                                                                           ]
+                                                                                                                                                                                                                ]
+                                                                                                                                                                   ] ;
+                                                                                                                                                         rdf:rest rdf:nil
+                                                                                                                                                       ]
+                                                                                                                                            ]
                                                                                                                                  ]
                                                                                                                       ]
                                                                                                            ]
@@ -1148,7 +1194,7 @@ _:genid35 :hasMeasureAggregator :avg ;
    <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> fse:canHaveDisease ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :dis ;
                                                        <http://www.w3.org/2003/11/swrl#argument2> :Thrombocytopenia
                                                      ] ;
                                            rdf:rest rdf:nil
@@ -1166,57 +1212,71 @@ _:genid35 :hasMeasureAggregator :avg ;
                                                      ] ;
                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :personHasAnalysis ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> fse:hasMedicalRecord ;
                                                                   <http://www.w3.org/2003/11/swrl#argument1> :p ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument2> :a
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :med
                                                                 ] ;
                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:hasMeasureType ;
-                                                                             <http://www.w3.org/2003/11/swrl#argument1> :v ;
-                                                                             <http://www.w3.org/2003/11/swrl#argument2> :Count
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> fse:hasDiseaseRecord ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :med ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> :dis
                                                                            ] ;
                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                                                        <http://www.w3.org/2003/11/swrl#classPredicate> :BloodTest ;
-                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :a
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :personHasAnalysis ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :a
                                                                                       ] ;
                                                                             rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                                                        rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:hasValue ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :a ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> :v
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:hasMeasureType ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :v ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> :Count
                                                                                                  ] ;
                                                                                        rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
-                                                                                                              <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#lessThan> ;
-                                                                                                              <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
-                                                                                                                                                           rdf:first :val ;
-                                                                                                                                                           rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                                      rdf:first 150000 ;
-                                                                                                                                                                      rdf:rest rdf:nil
-                                                                                                                                                                    ]
-                                                                                                                                                         ]
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#classPredicate> :BloodTest ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> :a
                                                                                                             ] ;
                                                                                                   rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                                                                              rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                                         <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasBloodMeasurement ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:hasValue ;
                                                                                                                          <http://www.w3.org/2003/11/swrl#argument1> :a ;
-                                                                                                                         <http://www.w3.org/2003/11/swrl#argument2> :platelet_count
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument2> :v
                                                                                                                        ] ;
                                                                                                              rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                                        rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
-                                                                                                                                    <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:value ;
-                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument1> :v ;
-                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument2> :val
+                                                                                                                        rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#lessThan> ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                                                                                 rdf:first :val ;
+                                                                                                                                                                                 rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                                            rdf:first 150000 ;
+                                                                                                                                                                                            rdf:rest rdf:nil
+                                                                                                                                                                                          ]
+                                                                                                                                                                               ]
                                                                                                                                   ] ;
                                                                                                                         rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                                                                                                    rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                                                               <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:hasMeasurementUnit ;
-                                                                                                                                               <http://www.w3.org/2003/11/swrl#argument1> :v ;
-                                                                                                                                               <http://www.w3.org/2003/11/swrl#argument2> :mm_c3
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasBloodMeasurement ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#argument1> :a ;
+                                                                                                                                               <http://www.w3.org/2003/11/swrl#argument2> :platelet_count
                                                                                                                                              ] ;
-                                                                                                                                   rdf:rest rdf:nil
+                                                                                                                                   rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                                              rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                                                                          <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:value ;
+                                                                                                                                                          <http://www.w3.org/2003/11/swrl#argument1> :v ;
+                                                                                                                                                          <http://www.w3.org/2003/11/swrl#argument2> :val
+                                                                                                                                                        ] ;
+                                                                                                                                              rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                                                         rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                                                                                     <http://www.w3.org/2003/11/swrl#propertyPredicate> mu:hasMeasurementUnit ;
+                                                                                                                                                                     <http://www.w3.org/2003/11/swrl#argument1> :v ;
+                                                                                                                                                                     <http://www.w3.org/2003/11/swrl#argument2> :mm_c3
+                                                                                                                                                                   ] ;
+                                                                                                                                                         rdf:rest rdf:nil
+                                                                                                                                                       ]
+                                                                                                                                            ]
                                                                                                                                  ]
                                                                                                                       ]
                                                                                                            ]
@@ -1229,7 +1289,7 @@ _:genid35 :hasMeasureAggregator :avg ;
    <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> fse:canHaveDisease ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :dis ;
                                                        <http://www.w3.org/2003/11/swrl#argument2> :Thrombocytosis
                                                      ] ;
                                            rdf:rest rdf:nil
