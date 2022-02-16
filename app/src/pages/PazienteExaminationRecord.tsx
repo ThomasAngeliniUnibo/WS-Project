@@ -1,5 +1,6 @@
 import {
   Container,
+  Grid,
   Paper,
   Table,
   TableBody,
@@ -15,19 +16,25 @@ import {
   ExaminationRecord,
   fetchExaminationRecordData,
 } from "../api/fetchExaminationRecord";
+import { fetchPatient } from "../api/fetchPatient";
 import { Layout } from "../components/Layout";
+import { PatientCard } from "../components/PatientCard";
 import { Loading } from "../components/QueryContent/Loading";
 
 export const PazienteExaminationRecord: FC = () => {
   const { fiscalCode } = useParams();
   const { data, status } = useQuery(
     ["fetchExaminationRecordData", fiscalCode],
-    () => fetchExaminationRecordData({ fiscalCode })
+    () =>
+      Promise.all([
+        fetchPatient({ fiscalCode }),
+        fetchExaminationRecordData({ fiscalCode }),
+      ])
   );
 
   const renderRow = ({ date, disease, report, symptom }: ExaminationRecord) => {
-    const diseaseName = disease.split("#")[1];
-    const symptomName = symptom.split("#")[1];
+    const diseaseName = disease?.split("#")[1];
+    const symptomName = symptom?.split("#")[1];
     return (
       <TableRow>
         <TableCell>{date.toLocaleString("en-US")}</TableCell>
@@ -47,21 +54,27 @@ export const PazienteExaminationRecord: FC = () => {
   if (status === "success") {
     return (
       <Layout>
-        <Container>
-          <TableContainer component={Paper}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Date</TableCell>
-                  <TableCell>Medical report</TableCell>
-                  <TableCell>Symptom</TableCell>
-                  <TableCell>Disease</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>{data.map(renderRow)}</TableBody>
-            </Table>
-          </TableContainer>
-        </Container>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={3}>
+            <PatientCard {...data[0]} />
+          </Grid>
+
+          <Grid item xs={12} md={9}>
+            <TableContainer component={Paper}>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Date</TableCell>
+                    <TableCell>Medical report</TableCell>
+                    <TableCell>Symptom</TableCell>
+                    <TableCell>Disease</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>{data[1].map(renderRow)}</TableBody>
+              </Table>
+            </TableContainer>
+          </Grid>
+        </Grid>
       </Layout>
     );
   } else {

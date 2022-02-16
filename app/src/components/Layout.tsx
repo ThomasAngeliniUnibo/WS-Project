@@ -29,9 +29,6 @@ export const Layout: FC<{ children: React.ReactNode }> = ({ children }) => (
             <MuiLink component={Link} to="/" sx={linkSx}>
               Home
             </MuiLink>
-            <MuiLink component={Link} to="/query" sx={linkSx}>
-              Query
-            </MuiLink>
           </Box>
         </Toolbar>
       </Container>

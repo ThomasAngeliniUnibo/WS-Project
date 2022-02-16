@@ -2,6 +2,7 @@ import { Box, Grid, Typography } from "@mui/material";
 import React, { FC, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router";
+import { fetchBloodTestCount } from "../api/fetchBloodTestCount";
 import { fetchFrequencySnapshots } from "../api/fetchFrequencySnapshots";
 import { fetchMassSnapshots } from "../api/fetchMassSnapshots";
 import {
@@ -10,9 +11,8 @@ import {
   fetchSymptomRecord,
 } from "../api/fetchMedicalRecord";
 import { fetchPatient } from "../api/fetchPatient";
-import { stardogQuery } from "../api/types";
 import AnalysisCard from "../components/AnalysisCard";
-import { DocumentCard } from "../components/DocumentCard";
+import BloodTestCardCard from "../components/BloodTestCard";
 import FrequencyCard from "../components/FrequencyCard";
 import { Layout } from "../components/Layout";
 import MassCard from "../components/MassCard";
@@ -26,8 +26,7 @@ export const Paziente: FC = () => {
   const { data, status } = useQuery(["fetchPatient", fiscalCode], () =>
     Promise.all([
       fetchExaminationRecord({ fiscalCode }),
-      fetchDiseaseRecord({ fiscalCode }),
-      fetchSymptomRecord({ fiscalCode }),
+      fetchBloodTestCount({ fiscalCode }),
       fetchPatient({ fiscalCode }),
       fetchMassSnapshots({ fiscalCode }),
       fetchFrequencySnapshots({ fiscalCode }),
@@ -39,7 +38,7 @@ export const Paziente: FC = () => {
       <Layout>
         <Grid container spacing={2}>
           <Grid item xs={12} md={3}>
-            <PatientCard {...data[3]} />
+            <PatientCard {...data[2]} />
           </Grid>
           <Grid item xs={12} md={9}>
             <Grid container spacing={2}>
@@ -54,29 +53,25 @@ export const Paziente: FC = () => {
                 />
               </Grid>
               <Grid item xs={4}>
-                <MedicalRecordCard
-                  title="Disease"
-                  count={data[1]}
-                  link={`/patients/${fiscalCode}/examination`}
-                />
+                <AnalysisCard link={`/patients/${fiscalCode}/analysis`} />
               </Grid>
               <Grid item xs={4}>
-                <AnalysisCard
-                  count={data[2]}
-                  link={`/patients/${fiscalCode}/analysis`}
+                <BloodTestCardCard
+                  count={data[1]}
+                  link={`/patients/${fiscalCode}/bloodTests`}
                 />
               </Grid>
               <Grid item xs={12}>
                 <Typography variant="h6">Snapshots</Typography>
               </Grid>
-              {data[4].length > 0 && (
+              {data[3].length > 0 && (
                 <Grid item xs={12}>
-                  <MassCard records={data[4]} />
+                  <MassCard records={data[3]} />
                 </Grid>
               )}
-              {data[5].length > 0 && (
+              {data[4].length > 0 && (
                 <Grid item xs={12}>
-                  <FrequencyCard records={data[5]} />
+                  <FrequencyCard records={data[4]} />
                 </Grid>
               )}
             </Grid>

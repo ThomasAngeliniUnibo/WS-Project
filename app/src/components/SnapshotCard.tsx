@@ -28,6 +28,8 @@ const formatXAxis = (date: Date): string =>
     .toString()
     .padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
 
+const sign = (no: number) => (no > 0 ? "+" : "");
+
 export const SnapshotCard: FC<SnapshotCardProps> = ({
   differential,
   title,
@@ -52,15 +54,16 @@ export const SnapshotCard: FC<SnapshotCardProps> = ({
             border="1px solid #888"
             sx={{ opacity: 0.9 }}
           >
-            <Typography variant="h6">
+            <Typography variant="overline">
               {payload[0].payload.dateTime.toLocaleDateString("en-US")}
             </Typography>
             <Typography variant="subtitle1">
               Value: {payload[0].payload[valueType]} {uom}
             </Typography>
-            {payload[0].payload.differential && (
+            {payload[0].payload.differential !== undefined && (
               <Typography variant="subtitle1">
-                Differential: {payload[0].payload.differential} {uom}
+                Differential: {sign(payload[0].payload.differential)}
+                {(payload[0].payload.differential as number).toFixed(2)} {uom}
               </Typography>
             )}
           </Paper>

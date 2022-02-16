@@ -7,25 +7,27 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { lightGreen } from "@mui/material/colors";
-import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
+import { blue } from "@mui/material/colors";
+import BiotechIcon from "@mui/icons-material/Biotech";
 import { To, useNavigate } from "react-router";
 
-interface AnalysisCardProps {
+interface BloodTestCardProps {
+  readonly count: number;
   readonly link: To;
 }
 
-function AnalysisCard({ link }: AnalysisCardProps) {
+function BloodTestCard({ count, link }: BloodTestCardProps) {
   const navigate = useNavigate();
-  const color = lightGreen[300];
+  const color = blue[300];
   return (
     <Card sx={{ height: "100%" }}>
       <CardContent>
         <Stack direction="row" justifyContent="space-between">
           <Box>
-            <Typography variant="overline">Analysis</Typography>
+            <Typography variant="overline">Blood test</Typography>
+            <Typography variant="h6">{count} record(s)</Typography>
           </Box>
-          <MedicalServicesIcon
+          <BiotechIcon
             sx={{
               background: color,
               width: 60,
@@ -45,4 +47,4 @@ function AnalysisCard({ link }: AnalysisCardProps) {
   );
 }
 
-export default AnalysisCard;
+export default BloodTestCard;
