@@ -1,5 +1,8 @@
-import { Box, Button, capitalize, Grid } from "@mui/material";
 import {
+  Box,
+  Button,
+  capitalize,
+  Grid,
   FormControl,
   InputLabel,
   MenuItem,
@@ -25,7 +28,9 @@ const aggregatorText = (aggregator: Aggregator) =>
     ? "maximum"
     : aggregator === "min"
     ? "minimum"
-    : "average";
+    : aggregator === "avg"
+    ? "average"
+    : "";
 
 const physicalEntities = {
   heart: {
@@ -39,21 +44,19 @@ const physicalEntities = {
     title: "Height",
     uom: "m",
     valueType: "length",
-    aggregators: false,
   },
 };
 type PhysicalEntity = keyof typeof physicalEntities;
 
 const PazienteAnalysis: FC = () => {
   const { fiscalCode } = useParams();
-  const navigate = useNavigate();
   const [aggregator, handleChangeAggregator] = useSelect<Aggregator>("max");
   const [physicalEntity, handleChangePhysicalEntity] =
     useSelect<PhysicalEntity>("heart");
   const { ref, title, uom, valueType } = physicalEntities[physicalEntity];
   const { data, status } = useQuery(
     ["fetchPatientAnalysis", fiscalCode, aggregator, physicalEntities],
-    () =>
+    async () =>
       Promise.all([
         fetchPatient({ fiscalCode }),
         fetchAnalysis(aggregator, ref)({ fiscalCode }),
@@ -81,7 +84,7 @@ const PazienteAnalysis: FC = () => {
                 onChange={handleChangePhysicalEntity}
               >
                 {Object.keys(physicalEntities).map((value) => (
-                  <MenuItem value={value} key={value}>
+                  <MenuItem key={value} value={value}>
                     {capitalize(value)}
                   </MenuItem>
                 ))}
@@ -96,6 +99,7 @@ const PazienteAnalysis: FC = () => {
                 label="Aggregator"
                 onChange={handleChangeAggregator}
               >
+                <MenuItem value="none">(none)</MenuItem>
                 <MenuItem value="max">Max</MenuItem>
                 <MenuItem value="min">Min</MenuItem>
                 <MenuItem value="avg">Avg</MenuItem>

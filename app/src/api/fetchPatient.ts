@@ -1,5 +1,5 @@
-import { Patient, PatientBasicInfo } from '../model/patient';
-import { pickValue } from '../utils/pickValue';
+import {Patient, PatientBasicInfo} from '../model/patient';
+import {pickValue} from '../utils/pickValue';
 import {stardogQuery} from './types';
 
 const source = ({fiscalCode}: Pick<Patient, 'fiscalCode'>) => `
@@ -34,36 +34,34 @@ GROUP BY ?s ?firstName ?lastName ?birthDate ?city
 LIMIT 1
 `;
 
-// export const fetchPatient = (parameters: {fiscalCode: string}) => 
+// Export const fetchPatient = (parameters: {fiscalCode: string}) =>
 //   stardogQuery({
 //     source,
 //     reasoning: false,
 //   }, parameters)
 //     .then(x => x.map(pickValue('firstName', 'lastName'))[0] as Patient);
 
-const zip = <A, B, C>(a: A[], b: B[], c: C[]): [A, B, C][] => a.map((k, i) => [k, b[i], c[i]]);
+const zip = <A, B, C>(a: A[], b: B[], c: C[]): Array<[A, B, C]> => a.map((k, i) => [k, b[i], c[i]]);
 
-export const fetchPatient = (parameters: {fiscalCode: string}): Promise<Patient> => 
+export const fetchPatient = async (parameters: {fiscalCode: string}): Promise<Patient> =>
   stardogQuery({
     source,
     reasoning: true,
   }, parameters)
     .then(x => (x as any[]).map(pickValue('firstName', 'lastName', 'birthDate', 'relativeFiscalCodes', 'relativeFirstNames', 'relativeLastNames', 'city'))[0])
-    .then(({ firstName, lastName, birthDate, relativeFirstNames, relativeFiscalCodes, relativeLastNames, city }) => {
-
-      const relatives: PatientBasicInfo[] = 
-        relativeFiscalCodes === '' ? [] : 
-          zip(
-            (relativeFiscalCodes as string).split(";"),
-            (relativeFirstNames as string).split(";"),
-            (relativeLastNames as string).split(";")
+    .then(({firstName, lastName, birthDate, relativeFirstNames, relativeFiscalCodes, relativeLastNames, city}) => {
+      const relatives: PatientBasicInfo[]
+        = relativeFiscalCodes === '' ? []
+          : zip(
+            (relativeFiscalCodes as string).split(';'),
+            (relativeFirstNames as string).split(';'),
+            (relativeLastNames as string).split(';'),
           )
-          .map(([fiscalCode, firstName, lastName]) => ({
-            fiscalCode,
-            firstName,
-            lastName
-          }));
-
+            .map(([fiscalCode, firstName, lastName]) => ({
+              fiscalCode,
+              firstName,
+              lastName,
+            }));
 
       return {
         fiscalCode: parameters.fiscalCode,
@@ -71,6 +69,6 @@ export const fetchPatient = (parameters: {fiscalCode: string}): Promise<Patient>
         lastName,
         birthDate: new Date(birthDate),
         relatives,
-        city
+        city,
       };
     });

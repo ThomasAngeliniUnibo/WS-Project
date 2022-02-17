@@ -6,16 +6,16 @@ import {
   CardActions,
   CardContent,
   Typography,
-} from "@mui/material";
-import { FC } from "react";
-import { useNavigate } from "react-router-dom";
-import { useHover } from "../hooks/useHover";
-import { Patient } from "../model/patient";
-import { avatarColors, avatarLetters } from "../utils/avatar";
+} from '@mui/material';
+import {FC} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {useHover} from '../hooks/useHover';
+import {Patient} from '../model/patient';
+import {avatarColors, avatarLetters} from '../utils/avatar';
 
 type PatientListCardProps = Pick<
-  Patient,
-  "firstName" | "lastName" | "fiscalCode"
+Patient,
+'firstName' | 'lastName' | 'fiscalCode'
 >;
 export const PatientListCard: FC<PatientListCardProps> = ({
   firstName,
@@ -24,13 +24,13 @@ export const PatientListCard: FC<PatientListCardProps> = ({
 }) => {
   const avatar = avatarLetters(firstName, lastName);
   const bgcolor = avatarColors(firstName, lastName);
-  const name = firstName + " " + lastName;
+  const name = firstName + ' ' + lastName;
   const navigate = useNavigate();
 
   const [hover, props] = useHover();
 
   return (
-    <Box sx={{ minWidth: 275 }}>
+    <Box sx={{minWidth: 275}}>
       <MuiCard
         variant="elevation"
         elevation={hover ? 3 : 1}
@@ -41,7 +41,7 @@ export const PatientListCard: FC<PatientListCardProps> = ({
       >
         <CardContent>
           <Box display="flex" flexDirection="row">
-            <Avatar sx={{ mr: 2, bgcolor }}>{avatar}</Avatar>
+            <Avatar sx={{mr: 2, bgcolor}}>{avatar}</Avatar>
             <Box>
               <Typography>{name}</Typography>
               <Typography variant="subtitle2">Paziente</Typography>
@@ -51,7 +51,9 @@ export const PatientListCard: FC<PatientListCardProps> = ({
         <CardActions>
           <Button
             size="small"
-            onClick={() => navigate(`/patients/${fiscalCode}`)}
+            onClick={() => {
+              navigate(`/patients/${fiscalCode}`);
+            }}
           >
             View
           </Button>

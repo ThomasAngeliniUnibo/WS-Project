@@ -1,3 +1,3 @@
-import { fetchSnapshots } from "./fetchSnapshots";
+import {fetchSnapshots} from './fetchSnapshots';
 
-export const fetchFrequencySnapshots = fetchSnapshots("bpm");
+export const fetchFrequencySnapshots = fetchSnapshots('bpm');

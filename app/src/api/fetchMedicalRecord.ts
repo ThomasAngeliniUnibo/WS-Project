@@ -1,8 +1,8 @@
-import { PatientBasicInfo } from "../model/patient";
-import { pickValue } from "../utils/pickValue";
-import { stardogQuery } from "./types";
+import {PatientBasicInfo} from '../model/patient';
+import {pickValue} from '../utils/pickValue';
+import {stardogQuery} from './types';
 
-const examinationSource = ({ fiscalCode = '' }: Pick<PatientBasicInfo, 'fiscalCode'>) => `
+const examinationSource = ({fiscalCode = ''}: Pick<PatientBasicInfo, 'fiscalCode'>) => `
 SELECT (COUNT(*) AS ?count)
 WHERE
 {
@@ -13,7 +13,7 @@ WHERE
 }
 `;
 
-const symptomSource = ({ fiscalCode = '' }: Pick<PatientBasicInfo, 'fiscalCode'>) => `
+const symptomSource = ({fiscalCode = ''}: Pick<PatientBasicInfo, 'fiscalCode'>) => `
 SELECT (COUNT(*) AS ?count)
 WHERE
 {
@@ -24,7 +24,7 @@ WHERE
 }
 `;
 
-const diseaseSource = ({ fiscalCode = '' }: Pick<PatientBasicInfo, 'fiscalCode'>) => `
+const diseaseSource = ({fiscalCode = ''}: Pick<PatientBasicInfo, 'fiscalCode'>) => `
 SELECT (COUNT(*) AS ?count)
 WHERE
 {
@@ -35,26 +35,26 @@ WHERE
 }
 `;
 
-export const fetchExaminationRecord = (params: Pick<PatientBasicInfo, 'fiscalCode'>) =>
+export const fetchExaminationRecord = async (parameters: Pick<PatientBasicInfo, 'fiscalCode'>) =>
   stardogQuery({
-      source: examinationSource,
-      reasoning: true,
-  }, params)
-    .then((x) => x.map(pickValue('count')) as [{ count: number }])
-    .then((x) => x[0].count);
+    source: examinationSource,
+    reasoning: true,
+  }, parameters)
+    .then(x => x.map(pickValue('count')) as [{count: number}])
+    .then(x => x[0].count);
 
-export const fetchSymptomRecord = (params: Pick<PatientBasicInfo, 'fiscalCode'>) =>
+export const fetchSymptomRecord = async (parameters: Pick<PatientBasicInfo, 'fiscalCode'>) =>
   stardogQuery({
-      source: symptomSource,
-      reasoning: true,
-  }, params)
-    .then((x) => x.map(pickValue('count')) as [{ count: number }])
-    .then((x) => x[0].count);
+    source: symptomSource,
+    reasoning: true,
+  }, parameters)
+    .then(x => x.map(pickValue('count')) as [{count: number}])
+    .then(x => x[0].count);
 
-export const fetchDiseaseRecord = (params: Pick<PatientBasicInfo, 'fiscalCode'>) =>
+export const fetchDiseaseRecord = async (parameters: Pick<PatientBasicInfo, 'fiscalCode'>) =>
   stardogQuery({
-      source: diseaseSource,
-      reasoning: true,
-  }, params)
-    .then((x) => x.map(pickValue('count')) as [{ count: number }])
-    .then((x) => x[0].count);
+    source: diseaseSource,
+    reasoning: true,
+  }, parameters)
+    .then(x => x.map(pickValue('count')) as [{count: number}])
+    .then(x => x[0].count);

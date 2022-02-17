@@ -1,6 +1,6 @@
-import { Box, Button, Typography } from "@mui/material";
-import { QueryStatus } from "react-query";
-import { Loading } from "./Loading";
+import {Box, Button, Typography} from '@mui/material';
+import {QueryStatus} from 'react-query';
+import {Loading} from './Loading';
 
 interface QueryContentProps<T> {
   readonly status: QueryStatus;
@@ -15,11 +15,11 @@ export function QueryContent<T>({
   children,
   retry,
 }: QueryContentProps<T>) {
-  if (status === "loading") {
-    return <Loading />;
+  if (status === 'loading') {
+    return <Loading/>;
   }
 
-  if (status === "error") {
+  if (status === 'error') {
     return (
       <Box
         mt={10}
@@ -41,5 +41,5 @@ export function QueryContent<T>({
     );
   }
 
-  return <>{children(data!)}</>;
+  return <>{children(data)}</>;
 }
