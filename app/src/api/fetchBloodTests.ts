@@ -16,7 +16,7 @@ WHERE
         cpv:taxCode "${fiscalCode}" ;
         :personHasBloodAnalysis [
             mu:hasValue [
-                :hasBloodMeasurement cmo:${bloodMeasurement} ;
+                :hasBloodMeasurement [ a cmo:${bloodMeasurement} ];
                 mu:value ?value
             ] ;
             :atTimeInstant / ti:dateTime ?dateTime
