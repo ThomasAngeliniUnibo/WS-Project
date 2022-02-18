@@ -41,9 +41,9 @@ const physicalEntities = {
   },
   body: {
     ref: "fma:FMA_67811",
-    title: "Height",
-    uom: "m",
-    valueType: "length",
+    title: "Body weight",
+    uom: "kg",
+    valueType: "weight",
   },
 };
 type PhysicalEntity = keyof typeof physicalEntities;
