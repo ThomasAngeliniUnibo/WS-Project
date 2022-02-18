@@ -670,9 +670,7 @@ _:genid19 a owl:Restriction ;
 	:hasMedicalRecord <http://purl.obolibrary.org/obo/ws-fse-prototype#Elia's_medical_record> ;
 	:sonHasFather :Ivan ;
 	:sonHasMother :Simona ;
-	<https://w3id.org/italia/onto/CPV/isGrandChildOf> :Aurora , :Mario , :Massimo , :Pasquina ;
-	<https://w3id.org/italia/onto/CPV/age> "24"^^xsd:integer ;
-	<https://w3id.org/italia/onto/CPV/taxCode> "PSQLEI97H02Z130E"^^xsd:string .
+	<https://w3id.org/italia/onto/CPV/isGrandChildOf> :Aurora , :Mario , :Massimo , :Pasquina .
 # 
 # http://purl.obolibrary.org/obo/ws-fse-prototype#Examination0003
 
