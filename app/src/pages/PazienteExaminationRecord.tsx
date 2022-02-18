@@ -1,5 +1,4 @@
 import {
-  Container,
   Grid,
   Paper,
   Table,
@@ -25,7 +24,7 @@ export const PazienteExaminationRecord: FC = () => {
   const { fiscalCode } = useParams();
   const { data, status } = useQuery(
     ["fetchExaminationRecordData", fiscalCode],
-    () =>
+    async () =>
       Promise.all([
         fetchPatient({ fiscalCode }),
         fetchExaminationRecordData({ fiscalCode }),
@@ -40,7 +39,7 @@ export const PazienteExaminationRecord: FC = () => {
         <TableCell>{date.toLocaleString("en-US")}</TableCell>
         <TableCell>{report}</TableCell>
         <TableCell>
-          <a target="_blank" href={disease}>
+          <a target="_blank" href={disease} rel="noreferrer">
             {diseaseName}
           </a>
         </TableCell>
@@ -66,8 +65,8 @@ export const PazienteExaminationRecord: FC = () => {
                   <TableRow>
                     <TableCell>Date</TableCell>
                     <TableCell>Medical report</TableCell>
-                    <TableCell>Symptom</TableCell>
                     <TableCell>Disease</TableCell>
+                    <TableCell>Symptom</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>{data[1].map(renderRow)}</TableBody>
@@ -77,7 +76,7 @@ export const PazienteExaminationRecord: FC = () => {
         </Grid>
       </Layout>
     );
-  } else {
-    return <Loading />;
   }
+
+  return <Loading />;
 };

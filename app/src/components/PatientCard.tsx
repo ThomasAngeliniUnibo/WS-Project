@@ -1,8 +1,8 @@
-import { Avatar, Box, Paper, Typography } from "@mui/material";
-import { FC } from "react";
-import { Link } from "react-router-dom";
-import { Patient } from "../model/patient";
-import { avatarColors, avatarLetters } from "../utils/avatar";
+import {Avatar, Box, Paper, Typography} from '@mui/material';
+import {FC} from 'react';
+import {Link} from 'react-router-dom';
+import {Patient} from '../model/patient';
+import {avatarColors, avatarLetters} from '../utils/avatar';
 
 export const PatientCard: FC<Patient> = ({
   firstName,
@@ -20,7 +20,7 @@ export const PatientCard: FC<Patient> = ({
       return (
         <>
           <Typography variant="caption">Relatives</Typography>
-          {relatives.map(({ firstName, lastName, fiscalCode }) => (
+          {relatives.map(({firstName, lastName, fiscalCode}) => (
             <Box
               key={fiscalCode}
               display="flex"
@@ -42,7 +42,7 @@ export const PatientCard: FC<Patient> = ({
               <Typography>
                 <Link
                   to={`/patients/${fiscalCode}`}
-                  style={{ textDecoration: "none" }}
+                  style={{textDecoration: 'none'}}
                 >
                   {firstName} {lastName}
                 </Link>
@@ -52,13 +52,14 @@ export const PatientCard: FC<Patient> = ({
         </>
       );
     }
+
     return <></>;
   };
 
   return (
-    <Paper sx={{ p: 4 }}>
+    <Paper sx={{p: 4}}>
       <Box display="flex" flexDirection="row" alignItems="center">
-        <Avatar sx={{ mr: 1, bgcolor }}>
+        <Avatar sx={{mr: 1, bgcolor}}>
           {avatarLetters(firstName, lastName)}
         </Avatar>
         <Typography>
@@ -72,14 +73,14 @@ export const PatientCard: FC<Patient> = ({
       <Typography variant="caption">Last name</Typography>
       <Typography>{lastName}</Typography>
       <Typography variant="caption">Birth date</Typography>
-      <Typography>{birthDate.toLocaleDateString("en-US")}</Typography>
+      <Typography>{birthDate.toLocaleDateString('en-US')}</Typography>
       {city && (
         <>
           <Typography variant="caption">City</Typography>
           <Typography>{city}</Typography>
         </>
       )}
-      <Relatives />
+      <Relatives/>
     </Paper>
   );
 };

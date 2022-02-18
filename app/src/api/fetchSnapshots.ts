@@ -1,15 +1,15 @@
-import { PatientBasicInfo } from "../model/patient";
-import { pickValue } from "../utils/pickValue";
-import { stardogQuery } from "./types";
+import {PatientBasicInfo} from '../model/patient';
+import {pickValue} from '../utils/pickValue';
+import {stardogQuery} from './types';
 
 export type SnapshotRecord = {
   dateTime: Date;
   value: number;
 };
 
-type Params = Pick<PatientBasicInfo, "fiscalCode"> & { mu: string }
+type Parameters_ = Pick<PatientBasicInfo, 'fiscalCode'> & {mu: string};
 
-const source = ({ fiscalCode, mu }: Params) => `
+const source = ({fiscalCode, mu}: Parameters_) => `
 SELECT ?dateTime ?value
 WHERE
 {
@@ -28,8 +28,8 @@ ORDER BY DESC(?date)
 LIMIT 10
 `;
 
-export const fetchSnapshots = (mu: string) => (
-  params: Pick<PatientBasicInfo, "fiscalCode">
+export const fetchSnapshots = (mu: string) => async (
+  parameters: Pick<PatientBasicInfo, 'fiscalCode'>,
 ) =>
   stardogQuery(
     {
@@ -38,12 +38,12 @@ export const fetchSnapshots = (mu: string) => (
     },
     {
       mu,
-      ...params,
-    }
+      ...parameters,
+    },
   ).then(
-    (x) =>
-      x.map(pickValue("dateTime", "value")).map(({ dateTime, ...rest }) => ({
+    x =>
+      x.map(pickValue('dateTime', 'value')).map(({dateTime, ...rest}) => ({
         dateTime: new Date(dateTime),
         ...rest,
-      })) as SnapshotRecord[]
+      })) as SnapshotRecord[],
   );

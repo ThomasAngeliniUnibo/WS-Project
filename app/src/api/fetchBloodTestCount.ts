@@ -1,8 +1,8 @@
-import { PatientBasicInfo } from "../model/patient"
-import { pickValue } from "../utils/pickValue";
-import { stardogQuery } from "./types";
+import {PatientBasicInfo} from '../model/patient';
+import {pickValue} from '../utils/pickValue';
+import {stardogQuery} from './types';
 
-const source = ({ fiscalCode }: Pick<PatientBasicInfo, 'fiscalCode'>) => `
+const source = ({fiscalCode}: Pick<PatientBasicInfo, 'fiscalCode'>) => `
 SELECT (COUNT(*) as ?count)
 WHERE
 {
@@ -13,12 +13,12 @@ WHERE
 }
 `;
 
-export const fetchBloodTestCount = (
-    params: Pick<PatientBasicInfo, 'fiscalCode'>
-) => 
+export const fetchBloodTestCount = async (
+  parameters: Pick<PatientBasicInfo, 'fiscalCode'>,
+) =>
   stardogQuery({
-      source,
-      reasoning: true,
-  }, params)
-    .then((x) => x.map(pickValue('count')) as [{ count: number }])
-    .then((x) => x[0].count);
+    source,
+    reasoning: true,
+  }, parameters)
+    .then(x => x.map(pickValue('count')) as [{count: number}])
+    .then(x => x[0].count);

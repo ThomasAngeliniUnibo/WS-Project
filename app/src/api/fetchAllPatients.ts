@@ -1,7 +1,7 @@
-import { Patient } from '../model/patient';
-import { pickValue } from '../utils/pickValue';
+import {Patient} from '../model/patient';
+import {pickValue} from '../utils/pickValue';
 import {Paginated} from './paginated';
-import { Search } from './search';
+import {Search} from './search';
 import {stardogQuery} from './types';
 
 const source = ({skip, limit, query = ''}: Paginated & Search) => `
@@ -13,18 +13,18 @@ WHERE {
     
 
   ${
-query !== ''
-  ? `FILTER(REGEX(CONCAT(?firstName, " ", ?lastName), "${query}", "i"))`
-  : ''
-  }
+  query !== ''
+    ? `FILTER(REGEX(CONCAT(?firstName, " ", ?lastName), "${query}", "i"))`
+    : ''
+}
 }
 OFFSET ${skip}
 LIMIT ${limit}
 `;
 
-export const fetchAllPatients = (params: Paginated & Search) => 
+export const fetchAllPatients = async (parameters: Paginated & Search) =>
   stardogQuery({
     source,
     reasoning: false,
-  }, params)
-    .then((x) => x.map(pickValue('firstName', 'lastName', 'fiscalCode')) as Pick<Patient, 'firstName' | 'lastName' | 'fiscalCode'>[]);
+  }, parameters)
+    .then(x => x.map(pickValue('firstName', 'lastName', 'fiscalCode')) as Array<Pick<Patient, 'firstName' | 'lastName' | 'fiscalCode'>>);

@@ -1,15 +1,15 @@
-import { PatientBasicInfo } from "../model/patient";
-import { pickValue } from "../utils/pickValue";
-import { stardogQuery } from "./types";
+import {PatientBasicInfo} from '../model/patient';
+import {pickValue} from '../utils/pickValue';
+import {stardogQuery} from './types';
 
 export type ExaminationRecord = {
-    date: Date,
-    report: string,
-    disease: string,
-    symptom: string,
-}
+  date: Date;
+  report: string;
+  disease: string;
+  symptom: string;
+};
 
-const source = ({ fiscalCode = '' }: Pick<PatientBasicInfo, 'fiscalCode'>) => `
+const source = ({fiscalCode = ''}: Pick<PatientBasicInfo, 'fiscalCode'>) => `
 SELECT ?date ?report ?symptom ?disease
 WHERE
 {
@@ -20,16 +20,17 @@ WHERE
         
     ?e fse:medicalReport ?report ;
         ti:date ?date ;
-        fse:examinationDiseaseReport ?disease ;
+
+    OPTIONAL { ?e fse:examinationDiseaseReport ?disease }
 
     OPTIONAL { ?e fse:examinationSymptomRecord ?symptom }
 }
 ORDER BY DESC(?date)
 `;
 
-export const fetchExaminationRecordData = (params: Pick<PatientBasicInfo, 'fiscalCode'>) =>
+export const fetchExaminationRecordData = async (parameters: Pick<PatientBasicInfo, 'fiscalCode'>) =>
   stardogQuery({
-      source,
-      reasoning: true,
-  }, params)
-    .then((x) => x.map(pickValue('date', 'report', 'disease', 'symptom')) as ExaminationRecord[])
+    source,
+    reasoning: true,
+  }, parameters)
+    .then(x => x.map(pickValue('date', 'report', 'disease', 'symptom')) as ExaminationRecord[]);
