@@ -18,7 +18,7 @@ WHERE {
         cpv:taxCode "${fiscalCode}";
         :personHasAnalysis [
             mu:hasValue [
-                :hasPhisicalEntity ${physicalEntity};
+                :hasPhisicalEntity [ a ${physicalEntity} ];
                 mu:value ?value ;
                 ${aggregator !== 'none' ? `:hasMeasureAggregator :${aggregator}` : ''}
             ] ;
