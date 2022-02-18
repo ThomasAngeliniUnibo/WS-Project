@@ -1,3 +1,0 @@
-DELETE WHERE {
-    ?s cpv:taxCode ?o .
-}
