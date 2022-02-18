@@ -514,26 +514,20 @@ _:genid14 :hasMeasureAggregator :avg ;
               :isAnalysisOfPerson fse:Elia ;
               mu:hasValue _:genid17 ,
                           _:genid18 ,
-                          _:genid19 ,
                           _:genid20 .
 
 _:genid17 :hasMeasureAggregator :avg ;
-           :hasPhisicalEntity fma:FMA_7088 ;
+           :hasPhisicalEntity [ a fma:FMA_7088 ] ;
            mu:MeasurementUnit :bpm ;
            mu:value 120 .
 
 _:genid18 mu:hasMeasureType :Mass ;
-           :hasPhisicalEntity fma:FMA_67811 ;
+           :hasPhisicalEntity [ a fma:FMA_67811 ] ;
            mu:MeasurementUnit :kg ;
            mu:value 80 .
 
-_:genid19 mu:hasMeasureType :Length ;
-           :hasPhisicalEntity fma:FMA_67811 ;
-           mu:MeasurementUnit :m ;
-           mu:value 1.80 .
-
 _:genid20 :hasMeasureAggregator :max ;
-           :hasPhisicalEntity fma:FMA_7088 ;
+           :hasPhisicalEntity [ a fma:FMA_7088 ] ;
            mu:MeasurementUnit :bpm ;
            mu:value 150 .
 
@@ -546,28 +540,22 @@ _:genid20 :hasMeasureAggregator :max ;
               :isAnalysisOfPerson fse:Elia ;
               mu:hasValue _:genid22 ,
                           _:genid23 ,
-                          _:genid24 ,
-                          _:genid25 .
+                          _:genid24 .
 
 _:genid22 mu:hasMeasureType :Mass ;
-           :hasPhisicalEntity fma:FMA_67811 ;
+           :hasPhisicalEntity [ a fma:FMA_67811 ] ;
            mu:MeasurementUnit :kg ;
            mu:value 85 .
 
 _:genid23 :hasMeasureAggregator :avg ;
-           :hasPhisicalEntity fma:FMA_7088 ;
+           :hasPhisicalEntity [ a fma:FMA_7088 ] ;
            mu:MeasurementUnit :bpm ;
            mu:value 128 .
 
 _:genid24 :hasMeasureAggregator :max ;
-           :hasPhisicalEntity fma:FMA_7088 ;
+           :hasPhisicalEntity [ a fma:FMA_7088 ] ;
            mu:MeasurementUnit :bpm ;
            mu:value 155 .
-
-_:genid25 mu:hasMeasureType :Length ;
-           :hasPhisicalEntity fma:FMA_67811 ;
-           mu:MeasurementUnit :m ;
-           mu:value 1.83 .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#Analysis0003
@@ -578,28 +566,22 @@ _:genid25 mu:hasMeasureType :Length ;
               :isAnalysisOfPerson fse:Elia ;
               mu:hasValue _:genid27 ,
                           _:genid28 ,
-                          _:genid29 ,
-                          _:genid30 .
+                          _:genid29 .
 
 _:genid27 :hasMeasureAggregator :max ;
-           :hasPhisicalEntity fma:FMA_7088 ;
+           :hasPhisicalEntity [ a fma:FMA_7088 ] ;
            mu:MeasurementUnit :bpm ;
            mu:value 148 .
 
 _:genid28 mu:hasMeasureType :Mass ;
-           :hasPhisicalEntity fma:FMA_67811 ;
+           :hasPhisicalEntity [ a fma:FMA_67811 ] ;
            mu:MeasurementUnit :kg ;
            mu:value 80 .
 
 _:genid29 :hasMeasureAggregator :avg ;
-           :hasPhisicalEntity fma:FMA_7088 ;
+           :hasPhisicalEntity [ a fma:FMA_7088 ] ;
            mu:MeasurementUnit :bpm ;
            mu:value 118 .
-
-_:genid30 mu:hasMeasureType :Length ;
-           :hasPhisicalEntity fma:FMA_67811 ;
-           mu:MeasurementUnit :m ;
-           mu:value 1.85 .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#Analysis0004
@@ -610,26 +592,20 @@ _:genid30 mu:hasMeasureType :Length ;
               :isAnalysisOfPerson fse:Elia ;
               mu:hasValue _:genid32 ,
                           _:genid33 ,
-                          _:genid34 ,
                           _:genid35 .
 
 _:genid32 :hasMeasureAggregator :avg ;
-           :hasPhisicalEntity fma:FMA_7088 ;
+           :hasPhisicalEntity [ a fma:FMA_7088 ] ;
            mu:MeasurementUnit :bpm ;
            mu:value 115 .
 
 _:genid33 :hasMeasureAggregator :max ;
-           :hasPhisicalEntity fma:FMA_7088 ;
+           :hasPhisicalEntity [ a fma:FMA_7088 ] ;
            mu:MeasurementUnit :bpm ;
            mu:value 145 .
 
-_:genid34 mu:hasMeasureType :Length ;
-           :hasPhisicalEntity fma:FMA_67811 ;
-           mu:MeasurementUnit :m ;
-           mu:value 1.85 .
-
 _:genid35 mu:hasMeasureType :Mass ;
-           :hasPhisicalEntity fma:FMA_67811 ;
+           :hasPhisicalEntity [ a fma:FMA_67811 ] ;
            mu:MeasurementUnit :kg ;
            mu:value 80 .
 
