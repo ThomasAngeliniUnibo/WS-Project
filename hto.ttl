@@ -3,7 +3,7 @@
 @prefix mu: <https://w3id.org/italia/onto/MU/> .
 @prefix ti: <https://w3id.org/italia/onto/TI/> .
 @prefix clv: <https://w3id.org/italia/onto/CLV/> .
-@prefix cmo: <http://purl.obolibrary.org/obo/cmo.owl#> .
+@prefix cmo: <http://purl.obolibrary.org/obo/> .
 @prefix cpv: <https://w3id.org/italia/onto/CPV/> .
 @prefix fma: <http://purl.obolibrary.org/obo/fma.owl#> .
 @prefix fse: <http://purl.obolibrary.org/obo/ws-fse-prototype#> .
@@ -15,7 +15,7 @@
 @base <http://www.semanticweb.org/health-track-ontology#> .
 
 <http://www.semanticweb.org/health-track-ontology#> rdf:type owl:Ontology ;
-                                                     owl:imports <http://purl.obolibrary.org/obo/ws-fse-prototype> ,
+                                                     owl:imports cmo:ws-fse-prototype ,
                                                                  <http://purl.obolibrary.org/obo/cmo/releases/2019-02-19/cmo.owl> ,
                                                                  <https://w3id.org/italia/onto/CPV> .
 
@@ -112,7 +112,7 @@ fse:hasMedicalExamination rdf:type owl:ObjectProperty .
 ###  http://www.semanticweb.org/health-track-ontology#hasBloodMeasurement
 :hasBloodMeasurement rdf:type owl:ObjectProperty ;
                      rdfs:domain :BloodTest ;
-                     rdfs:range <http://purl.obolibrary.org/obo/CMO_0000035> .
+                     rdfs:range cmo:CMO_0000035 .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#hasCardioActivity
@@ -143,7 +143,7 @@ fse:hasMedicalExamination rdf:type owl:ObjectProperty .
 :hasPhysicalEntity rdf:type owl:ObjectProperty ;
                    owl:inverseOf :isPhysicalEntityOfAnalysis ;
                    rdfs:domain mu:Value ;
-                   rdfs:range <http://purl.obolibrary.org/obo/FMA_61775> ;
+                   rdfs:range cmo:FMA_61775 ;
                    rdfs:label "has physical entity"@en .
 
 
@@ -272,7 +272,7 @@ ti:hasTemporalEntity rdf:type owl:ObjectProperty .
 #################################################################
 
 ###  http://purl.obolibrary.org/obo/FMA_61775
-<http://purl.obolibrary.org/obo/FMA_61775> rdf:type owl:Class .
+cmo:FMA_61775 rdf:type owl:Class .
 
 
 ###  http://purl.obolibrary.org/obo/ws-fse-prototype#MedicalExamination
@@ -404,12 +404,12 @@ fse:examination0001 rdf:type owl:NamedIndividual ;
 
 ###  http://www.semanticweb.org/health-track-ontology#Hyperthyroidism
 :Hyperthyroidism rdf:type owl:NamedIndividual ,
-                          <http://purl.obolibrary.org/obo/DOID_7998> .
+                          cmo:DOID_7998 .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#Hypothyroidism
 :Hypothyroidism rdf:type owl:NamedIndividual ,
-                         <http://purl.obolibrary.org/obo/DOID_1459> .
+                         cmo:DOID_1459 .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#Length
@@ -433,12 +433,12 @@ fse:examination0001 rdf:type owl:NamedIndividual ;
 
 ###  http://www.semanticweb.org/health-track-ontology#Thrombocytopenia
 :Thrombocytopenia rdf:type owl:NamedIndividual ,
-                           <http://purl.obolibrary.org/obo/DOID_1588> .
+                           cmo:DOID_1588 .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#Thrombocytosis
 :Thrombocytosis rdf:type owl:NamedIndividual ,
-                         <http://purl.obolibrary.org/obo/DOID_2228> .
+                         cmo:DOID_2228 .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#analysis0001
@@ -565,10 +565,9 @@ _:genid24 mu:hasMeasureType :Mass ;
                              ] ;
                    :steps 8000 .
 
-_:genid25 :hasMeasureAggregator :avg ;
-           mu:hasMeasureType :Frequency ;
-           mu:hasMeasurementUnit :bpm ;
-           mu:value 100 .
+_:genid25 mu:hasMeasureType :Length ;
+           mu:hasMeasurementUnit :km ;
+           mu:value 4 .
 
 _:genid26 mu:hasMeasureType :Length ;
            mu:hasMeasurementUnit :km ;
@@ -579,9 +578,10 @@ _:genid27 :hasMeasureAggregator :max ;
            mu:hasMeasurementUnit :bpm ;
            mu:value 145 .
 
-_:genid28 mu:hasMeasureType :Length ;
-           mu:hasMeasurementUnit :km ;
-           mu:value 4 .
+_:genid28 :hasMeasureAggregator :avg ;
+           mu:hasMeasureType :Frequency ;
+           mu:hasMeasurementUnit :bpm ;
+           mu:value 100 .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#marioActivity0002
@@ -618,21 +618,21 @@ _:genid32 mu:hasMeasureType :Length ;
            mu:hasMeasurementUnit :km ;
            mu:value 6 .
 
-_:genid33 mu:hasMeasureType :Length ;
-           mu:hasMeasurementUnit :km ;
-           mu:value 6 .
-
-_:genid34 :hasMeasureAggregator :avg ;
-           mu:hasMeasureType :Frequency ;
-           mu:hasMeasurementUnit :bpm ;
-           mu:value 96 .
-
-_:genid35 :hasMeasureAggregator :max ,
+_:genid33 :hasMeasureAggregator :max ,
                                  :min ;
            mu:hasMeasureType :Frequency ;
            mu:hasMeasurementUnit :bpm ;
            mu:value 135 ,
                     65 .
+
+_:genid34 mu:hasMeasureType :Length ;
+           mu:hasMeasurementUnit :km ;
+           mu:value 6 .
+
+_:genid35 :hasMeasureAggregator :avg ;
+           mu:hasMeasureType :Frequency ;
+           mu:hasMeasurementUnit :bpm ;
+           mu:value 96 .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#marioFitnessTracker
@@ -667,7 +667,7 @@ _:genid35 :hasMeasureAggregator :max ,
 
 ###  http://www.semanticweb.org/health-track-ontology#platelet_count
 :platelet_count rdf:type owl:NamedIndividual ,
-                         <http://purl.obolibrary.org/obo/CMO_0000029> .
+                         cmo:CMO_0000029 .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#snapshot0001
@@ -684,7 +684,7 @@ _:genid35 :hasMeasureAggregator :max ,
 
 ###  http://www.semanticweb.org/health-track-ontology#tsh
 :tsh rdf:type owl:NamedIndividual ,
-              <http://purl.obolibrary.org/obo/CMO_0001248> .
+              cmo:CMO_0001248 .
 
 
 ###  http://www.semanticweb.org/health-track-ontology#val1
@@ -982,18 +982,11 @@ _:genid35 :hasMeasureAggregator :max ,
                                          ] ;
    <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :isActivityOf ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> :a ;
-                                                       <http://www.w3.org/2003/11/swrl#argument2> :p
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasActivity ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :a
                                                      ] ;
-                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasActivity ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument2> :a
-                                                                ] ;
-                                                      rdf:rest rdf:nil
-                                                    ]
+                                           rdf:rest rdf:nil
                                          ]
  ] .
 
@@ -1073,18 +1066,11 @@ _:genid35 :hasMeasureAggregator :max ,
                                          ] ;
    <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :isCardioActivityOf ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> :c ;
-                                                       <http://www.w3.org/2003/11/swrl#argument2> :p
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasCardioActivity ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :c
                                                      ] ;
-                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasCardioActivity ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument2> :c
-                                                                ] ;
-                                                      rdf:rest rdf:nil
-                                                    ]
+                                           rdf:rest rdf:nil
                                          ]
  ] .
 
@@ -1136,18 +1122,11 @@ _:genid35 :hasMeasureAggregator :max ,
                                          ] ;
    <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :isWalkingActivityOf ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> :c ;
-                                                       <http://www.w3.org/2003/11/swrl#argument2> :p
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasWalkingActivity ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :p ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :c
                                                      ] ;
-                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasWalkingActivity ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument1> :p ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument2> :c
-                                                                ] ;
-                                                      rdf:rest rdf:nil
-                                                    ]
+                                           rdf:rest rdf:nil
                                          ]
  ] .
 
